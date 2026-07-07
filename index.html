@@ -1,0 +1,1420 @@
+<!doctype html>
+<html lang="el" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skout Studio | Σύγχρονες Ιστοσελίδες για Επιχειρήσεις</title>
+    <!-- Fonts and Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Tailwind v3 CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              studio: {
+                bg: '#050505',
+                card: 'rgba(255, 255, 255, 0.05)',
+                border: 'rgba(255, 255, 255, 0.1)',
+                accent: '#ffffff',
+                violet: '#3b82f6',
+                emerald: '#a855f7',
+              }
+            },
+            fontFamily: {
+              sans: ['"Inter"', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      /* Glassmorphism & Custom effects */
+      .glass-card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(24px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .glass-nav {
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(24px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      /* Custom glowing cursor spotlight */
+      #spotlight {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, rgba(168, 85, 247, 0.04) 50%, transparent 100%);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        z-index: 1;
+        transition: width 0.3s, height 0.3s;
+      }
+      /* Scroll Reveal Animations */
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      /* Title Gradient matching Immersive UI vertical gradient from-white to-gray-500 */
+      .gradient-title {
+        background: linear-gradient(to bottom, #ffffff 30%, #a3a3a3 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .nav-underline {
+        position: relative;
+      }
+      .nav-underline::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -4px;
+        left: 0;
+        background: linear-gradient(90deg, #ffffff, #888888);
+        transition: width 0.3s ease;
+      }
+      .nav-underline:hover::after {
+        width: 100%;
+      }
+      summary::-webkit-details-marker {
+        display: none;
+      }
+      summary {
+        list-style: none;
+      }
+    </style>
+  </head>
+  <body class="bg-studio-bg text-gray-300 font-sans relative overflow-x-hidden selection:bg-white/20 selection:text-white">
+    <!-- Scroll Progress Bar -->
+    <div class="fixed top-0 left-0 w-full h-[3px] bg-white/5 z-[9999] pointer-events-none">
+      <div id="scrollProgressBar" class="h-full w-0 bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500 transition-all duration-75"></div>
+    </div>
+
+    <!-- Spotlight BG effect -->
+    <div id="spotlight" class="hidden md:block"></div>
+
+    <!-- Ambient Light Overlays (Immersive UI Style) -->
+    <div class="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
+    <div class="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
+    <div class="absolute top-[40%] right-[-15%] w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[130px] pointer-events-none z-0"></div>
+    <div class="absolute bottom-[30%] left-[5%] w-[450px] h-[450px] bg-purple-500/5 rounded-full blur-[130px] pointer-events-none z-0"></div>
+
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300" id="navbar">
+      <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <!-- Logo -->
+        <a href="#home" class="flex items-center space-x-2 group">
+          <div class="w-8 h-8 bg-gradient-to-br from-white to-gray-400 rounded-lg flex items-center justify-center text-black text-lg font-bold shadow-md">S</div>
+          <span class="text-white font-extrabold text-xl tracking-tight">SKOUT <span class="text-gray-400 font-medium">STUDIO</span></span>
+        </a>
+
+        <!-- Desktop Links -->
+        <div class="hidden lg:flex items-center space-x-8 text-sm font-semibold tracking-wide">
+          <a href="#home" class="text-white hover:text-white transition-colors nav-underline">Αρχική</a>
+          <a href="#about" class="text-gray-400 hover:text-white transition-colors nav-underline">Προφίλ</a>
+          <a href="#services" class="text-gray-400 hover:text-white transition-colors nav-underline">Υπηρεσίες</a>
+          <a href="#projects" class="text-gray-400 hover:text-white transition-colors nav-underline">Projects</a>
+          <a href="#gallery" class="text-gray-400 hover:text-white transition-colors nav-underline">Gallery</a>
+          <a href="#why-choose" class="text-gray-400 hover:text-white transition-colors nav-underline">Γιατί Εμάς</a>
+          <a href="#contact" class="text-gray-400 hover:text-white transition-colors nav-underline">Επικοινωνία</a>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="hidden lg:flex items-center">
+          <a href="#contact" class="px-5 py-2.5 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 transition-all text-white text-xs font-bold uppercase tracking-wider">
+            Ζήτα Προσφορά
+          </a>
+        </div>
+
+        <!-- Mobile Menu Trigger -->
+        <button class="lg:hidden w-10 h-10 flex flex-col justify-center items-center space-y-1.5 focus:outline-none z-50" id="mobileMenuBtn">
+          <span class="w-6 h-0.5 bg-white transition-all duration-300" id="bar1"></span>
+          <span class="w-6 h-0.5 bg-white transition-all duration-300" id="bar2"></span>
+          <span class="w-6 h-0.5 bg-white transition-all duration-300" id="bar3"></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- MOBILE MENU DRAWER -->
+    <div class="fixed inset-0 bg-studio-bg/98 z-40 hidden flex-col justify-center items-center space-y-8 text-2xl font-bold transition-all duration-300" id="mobileMenu">
+      <a href="#home" class="text-white hover:text-white transition-colors py-2 mobile-nav-link">Αρχική</a>
+      <a href="#about" class="text-gray-400 hover:text-white transition-colors py-2 mobile-nav-link">Προφίλ</a>
+      <a href="#services" class="text-gray-400 hover:text-white transition-colors py-2 mobile-nav-link">Υπηρεσίες</a>
+      <a href="#projects" class="text-gray-400 hover:text-white transition-colors py-2 mobile-nav-link">Projects</a>
+      <a href="#gallery" class="text-gray-400 hover:text-white transition-colors py-2 mobile-nav-link">Gallery</a>
+      <a href="#why-choose" class="text-gray-400 hover:text-white transition-colors py-2 mobile-nav-link">Γιατί Εμάς</a>
+      <a href="#contact" class="text-gray-400 hover:text-white transition-colors py-2 mobile-nav-link">Επικοινωνία</a>
+      <a href="#contact" class="px-8 h-14 rounded-full border border-white/10 bg-white/5 text-white text-lg font-bold flex items-center justify-center hover:bg-white/10 transition-all mobile-nav-link">
+        Ζήτα Προσφορά
+      </a>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="min-h-screen pt-32 pb-20 px-6 flex items-center relative">
+      <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Hero Text -->
+        <div class="lg:col-span-7 flex flex-col space-y-8 z-10 text-left">
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-semibold text-gray-300 w-fit mb-6">
+            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span> AVAILABLE FOR NEW PROJECTS
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.1] gradient-title">
+            Ιστοσελίδες που κάνουν την επιχείρησή σου να ξεχωρίζει.
+          </h1>
+
+          <p class="text-gray-400 text-lg sm:text-xl max-w-xl font-normal leading-relaxed">
+            Στο <strong class="text-white font-medium">Skout Studio</strong> σχεδιάζουμε και αναπτύσσουμε μοντέρνες ιστοσελίδες για εστιατόρια, καφετέριες, κομμωτήρια, τοπικές επιχειρήσεις και επαγγελματίες που αναζητούν την κορυφή.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4 pt-4">
+            <a href="#projects" class="px-8 h-14 rounded-xl bg-white text-black font-extrabold flex items-center justify-center hover:bg-gray-200 transition-all text-base group">
+              Δες Projects
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
+            <a href="#contact" class="px-8 h-14 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-white font-bold flex items-center justify-center transition-all text-base">
+              Ζήτα Προσφορά
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero Graphic (Abstract Browser with Code/Mockup Overlay) -->
+        <div class="lg:col-span-5 relative w-full h-[400px] sm:h-[480px] flex items-center justify-center z-10">
+          <div class="absolute inset-0 bg-radial-gradient from-studio-accent/10 to-transparent blur-3xl pointer-events-none"></div>
+
+          <!-- Decorative Floating Gradients -->
+          <div class="absolute -top-10 -right-10 w-24 h-24 bg-studio-violet/30 rounded-full blur-2xl animate-float-slow"></div>
+          <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-studio-accent/20 rounded-full blur-3xl animate-float-delayed"></div>
+
+          <!-- Browser Mockup -->
+          <div class="relative w-full max-w-md glass-card rounded-2xl overflow-hidden shadow-2xl border border-white/10 animate-float-slow">
+            <div class="bg-black/40 px-4 py-3 border-b border-white/5 flex items-center space-x-2">
+              <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+              <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+              <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
+              <span class="text-[10px] text-gray-500 font-mono pl-4">skoutstudio.gr</span>
+            </div>
+            <div class="p-6 space-y-4">
+              <!-- Code view inside browser -->
+              <div class="font-mono text-xs text-studio-accent space-y-1.5 opacity-80">
+                <p class="text-purple-400">&lt;div class="skout-studio"&gt;</p>
+                <p class="pl-4 text-emerald-400">const portfolio = {</p>
+                <p class="pl-8 text-blue-400">style: "Premium & Minimal",</p>
+                <p class="pl-8 text-blue-400">speed: "Ultrafast (100%)",</p>
+                <p class="pl-8 text-blue-400">mobileReady: true</p>
+                <p class="pl-4 text-emerald-400">};</p>
+                <p class="text-purple-400">&lt;/div&gt;</p>
+              </div>
+
+              <!-- Graphic elements inside browser -->
+              <div class="h-32 rounded-xl bg-gradient-to-br from-studio-border to-studio-bg/50 p-4 border border-white/5 flex flex-col justify-between">
+                <div class="flex items-center justify-between">
+                  <div class="w-12 h-2.5 bg-white/20 rounded-full"></div>
+                  <div class="w-6 h-6 rounded-full bg-studio-accent/20 flex items-center justify-center">
+                    <span class="w-2.5 h-2.5 rounded-full bg-studio-accent"></span>
+                  </div>
+                </div>
+                <div class="space-y-2">
+                  <div class="h-4 bg-white/10 rounded-lg w-3/4"></div>
+                  <div class="h-2.5 bg-white/5 rounded-md w-1/2"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Overlapping Card - Float Reverse -->
+          <div class="absolute bottom-6 -right-4 sm:-right-8 bg-studio-card/90 border border-white/10 rounded-2xl p-4 shadow-xl flex items-center space-x-4 max-w-[220px] animate-float-delayed">
+            <div class="w-10 h-10 rounded-xl bg-studio-emerald/10 flex items-center justify-center text-studio-emerald">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-xs text-gray-400">Google Speed Score</p>
+              <p class="text-lg font-extrabold text-white">99 / 100</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-24 px-6 relative reveal">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div class="lg:col-span-4">
+            <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Ποιοι Είμαστε</p>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Σχετικά με το Skout Studio</h2>
+            <div class="w-12 h-0.5 bg-gradient-to-r from-white to-white/10 mt-4 rounded-full"></div>
+          </div>
+          <div class="lg:col-span-8">
+            <p class="text-gray-300 text-xl sm:text-2xl font-light leading-relaxed mb-6">
+              “Στο <strong class="text-white font-medium">Skout Studio</strong> σχεδιάζουμε και αναπτύσσουμε μοντέρνες ιστοσελίδες για επιχειρήσεις που θέλουν επαγγελματική εικόνα, καθαρή παρουσίαση και σωστή εμπειρία χρήστη σε κινητό και υπολογιστή.”
+            </p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-6">
+              <div class="p-4 rounded-xl border border-white/5 bg-white/5 backdrop-blur-md">
+                <span class="text-white font-extrabold text-2xl tracking-tight block">100%</span>
+                <span class="text-gray-400 text-xs">Custom Σχεδίαση</span>
+              </div>
+              <div class="p-4 rounded-xl border border-white/5 bg-white/5 backdrop-blur-md">
+                <span class="text-white font-extrabold text-2xl tracking-tight block">&lt;1.5s</span>
+                <span class="text-gray-400 text-xs">Χρόνος Φόρτωσης</span>
+              </div>
+              <div class="p-4 rounded-xl border border-white/5 bg-white/5 backdrop-blur-md">
+                <span class="text-white font-extrabold text-2xl tracking-tight block">Mobile</span>
+                <span class="text-gray-400 text-xs">First Φιλοσοφία</span>
+              </div>
+              <div class="p-4 rounded-xl border border-white/5 bg-white/5 backdrop-blur-md">
+                <span class="text-white font-extrabold text-2xl tracking-tight block">SEO</span>
+                <span class="text-gray-400 text-xs">Βελτιστοποιημένο</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services" class="py-24 px-6 relative reveal bg-studio-card/30">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Υπηρεσίες</p>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Τι Δημιουργούμε</h2>
+          <p class="text-gray-400 mt-4 leading-relaxed">Ολοκληρωμένες ψηφιακές λύσεις, σχεδιασμένες για να αναβαθμίσουν την επιχείρησή σας και να φέρουν πραγματικά αποτελέσματα.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Service 1 -->
+          <div class="glass-card p-8 rounded-2xl hover:-translate-y-2 transition-all duration-300 group hover:border-studio-accent/20">
+            <div class="w-12 h-12 rounded-xl bg-studio-accent/10 text-studio-accent flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3 group-hover:text-studio-accent transition-colors">Κατασκευή Ιστοσελίδας</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Σύγχρονος σχεδιασμός προσαρμοσμένος απόλυτα στο brand σας, με έμφαση στην ταχύτητα, την αισθητική και την ευκολία χρήσης.
+            </p>
+          </div>
+
+          <!-- Service 2 -->
+          <div class="glass-card p-8 rounded-2xl hover:-translate-y-2 transition-all duration-300 group hover:border-studio-accent/20">
+            <div class="w-12 h-12 rounded-xl bg-studio-accent/10 text-studio-accent flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3 group-hover:text-studio-accent transition-colors">Responsive Design</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Τέλεια εμφάνιση και λειτουργικότητα σε κάθε μέγεθος οθόνης, από smartphone μέχρι ultra-wide monitors.
+            </p>
+          </div>
+
+          <!-- Service 3 -->
+          <div class="glass-card p-8 rounded-2xl hover:-translate-y-2 transition-all duration-300 group hover:border-studio-accent/20">
+            <div class="w-12 h-12 rounded-xl bg-studio-accent/10 text-studio-accent flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3 group-hover:text-studio-accent transition-colors">Business Websites</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Παρουσιάστε τη δουλειά και τις υπηρεσίες σας με έναν κομψό, επαγγελματικό τρόπο που εμπνέει απόλυτη εμπιστοσύνη στους πελάτες σας.
+            </p>
+          </div>
+
+          <!-- Service 4 -->
+          <div class="glass-card p-8 rounded-2xl hover:-translate-y-2 transition-all duration-300 group hover:border-studio-accent/20">
+            <div class="w-12 h-12 rounded-xl bg-studio-accent/10 text-studio-accent flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3 group-hover:text-studio-accent transition-colors">Landing Pages</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Στοχευμένες σελίδες υψηλής μετατροπής για διαφημιστικές καμπάνιες και άμεση προσέλκυση νέων πελατών.
+            </p>
+          </div>
+
+          <!-- Service 5 -->
+          <div class="glass-card p-8 rounded-2xl hover:-translate-y-2 transition-all duration-300 group hover:border-studio-accent/20">
+            <div class="w-12 h-12 rounded-xl bg-studio-accent/10 text-studio-accent flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 8H18" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3 group-hover:text-studio-accent transition-colors">Βελτίωση Ιστοσελίδας</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Ανασχεδιασμός, αναβάθμιση ταχύτητας και βελτίωση SEO για να φέρετε την τρέχουσα σελίδα σας στα σύγχρονα πρότυπα.
+            </p>
+          </div>
+
+          <!-- Service 6 -->
+          <div class="glass-card p-8 rounded-2xl hover:-translate-y-2 transition-all duration-300 group hover:border-studio-accent/20">
+            <div class="w-12 h-12 rounded-xl bg-studio-accent/10 text-studio-accent flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 10.742l5.474-2.737m0 0a3.75 3.75 0 11.234 4.314l-5.474 2.737m0 0a3.75 3.75 0 11-.234-4.314" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3 group-hover:text-studio-accent transition-colors">Social Media & Google Maps</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Σύνδεση με Instagram/Facebook, δημιουργία Google Business Profile και σωστή τοπική ψηφιακή παρουσίαση.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RECENT PROJECTS SECTION -->
+    <section id="projects" class="py-24 px-6 relative reveal">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16">
+          <div>
+            <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Portfolio</p>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Recent Projects</h2>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="projectsGrid">
+          <!-- Project 1 -->
+          <div class="glass-card rounded-2xl overflow-hidden group hover:border-studio-accent/20 transition-all duration-500 flex flex-col justify-between">
+            <div class="p-6 bg-gradient-to-b from-black/40 to-transparent">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-semibold uppercase tracking-widest text-studio-accent">Κομμωτήριο & Barber</span>
+                <span class="w-2.5 h-2.5 rounded-full bg-studio-accent shadow-lg shadow-studio-accent/50"></span>
+              </div>
+              <h3 class="text-2xl font-extrabold text-white mb-2">Trakelles Hair</h3>
+              <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                Premium, κομψή ιστοσελίδα κομμωτηρίου με παρουσίαση υπηρεσιών, φωτογραφικό υλικό (gallery), πληροφορίες επικοινωνίας και luxury design.
+              </p>
+            </div>
+
+            <!-- Website Live Preview Frame (Trakelles) -->
+            <div class="px-6 pb-6">
+              <div class="border border-white/10 rounded-2xl bg-black/60 overflow-hidden shadow-xl">
+                <!-- Browser Bar -->
+                <div class="px-4 py-2 bg-white/5 border-b border-white/5 flex items-center justify-between text-[11px] text-gray-400">
+                  <div class="flex items-center space-x-1">
+                    <span class="w-2 h-2 rounded-full bg-red-500/60"></span>
+                    <span class="w-2 h-2 rounded-full bg-yellow-500/60"></span>
+                    <span class="w-2 h-2 rounded-full bg-green-500/60"></span>
+                  </div>
+                  <span class="font-mono text-gray-500">trakelleshair.gr</span>
+                  <div class="w-4"></div>
+                </div>
+                <!-- Browser Content with Real Site Iframe -->
+                <div class="h-[320px] w-full bg-zinc-950 overflow-hidden relative">
+                  <iframe src="https://trakelleshair.gr/" class="w-full h-full border-0" loading="lazy"></iframe>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="px-6 py-4 bg-black/40 border-t border-white/5 flex flex-wrap items-center justify-between gap-3">
+              <a href="https://trakelleshair.gr/" target="_blank" class="px-4 py-2 rounded-full bg-white text-black text-xs font-extrabold flex items-center hover:bg-gray-200 transition-all">
+                Επίσκεψη Site
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 ml-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+              <span class="text-xs font-semibold text-gray-500 flex items-center">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 mr-1.5 animate-pulse"></span>
+                Διαδραστικό Preview
+              </span>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="glass-card rounded-2xl overflow-hidden group hover:border-studio-accent/20 transition-all duration-500 flex flex-col justify-between">
+            <div class="p-6 bg-gradient-to-b from-black/40 to-transparent">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-semibold uppercase tracking-widest text-emerald-400">Εστίαση &amp; Food Ordering</span>
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-lg shadow-emerald-500/50"></span>
+              </div>
+              <h3 class="text-2xl font-extrabold text-white mb-2">«Ο Γύρος του Πολύτεκνου» &amp; «Alpha Pizza»</h3>
+              <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                Ένα καινοτόμο ψηφιακό πάντρεμα δύο κορυφαίων ιστοσελίδων εστίασης της Λέσβου σε μία κοινή πλατφόρμα. Επιτρέπει στους πελάτες να συνδυάζουν τις παραγγελίες τους από το γυράδικο και την πιτσαρία σε ένα κοινό καλάθι.
+              </p>
+            </div>
+
+            <!-- Website Live Preview Frame (Ο Γύρος του Πολύτεκνου) -->
+            <div class="px-6 pb-6">
+              <div class="border border-white/10 rounded-2xl bg-black/60 overflow-hidden shadow-xl">
+                <!-- Browser Bar -->
+                <div class="px-4 py-2 bg-white/5 border-b border-white/5 flex items-center justify-between text-[11px] text-gray-400">
+                  <div class="flex items-center space-x-1">
+                    <span class="w-2 h-2 rounded-full bg-red-500/60"></span>
+                    <span class="w-2 h-2 rounded-full bg-yellow-500/60"></span>
+                    <span class="w-2 h-2 rounded-full bg-green-500/60"></span>
+                  </div>
+                  <span class="font-mono text-gray-500">polyteknoslesvos.gr</span>
+                  <div class="w-4"></div>
+                </div>
+                <!-- Browser Content with Real Site Iframe -->
+                <div class="h-[320px] w-full bg-zinc-950 overflow-hidden relative">
+                  <iframe src="https://polyteknoslesvos.gr/" class="w-full h-full border-0" loading="lazy"></iframe>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="px-6 py-4 bg-black/40 border-t border-white/5 flex flex-wrap items-center justify-between gap-3">
+              <a href="https://polyteknoslesvos.gr/" target="_blank" class="px-4 py-2 rounded-full bg-white text-black text-xs font-extrabold flex items-center hover:bg-gray-200 transition-all">
+                Επίσκεψη Site
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 ml-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+              <span class="text-xs font-semibold text-gray-500 flex items-center">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 mr-1.5 animate-pulse"></span>
+                Διαδραστικό Preview
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY CHOOSE SECTION -->
+    <section id="why-choose" class="py-24 px-6 relative reveal">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Η Υπεροχή Μας</p>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Γιατί να επιλέξεις το Skout Studio;</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Point 1 -->
+          <div class="p-6 rounded-2xl border border-white/5 bg-white/2 hover:bg-white/5 transition-all duration-300">
+            <div class="text-studio-accent text-4xl font-extrabold mb-4">01</div>
+            <h3 class="text-lg font-bold text-white mb-2">Μοντέρνος σχεδιασμός</h3>
+            <p class="text-gray-400 text-xs leading-relaxed">Αισθητική που μαγνητίζει τα βλέμματα και αντανακλά την ποιότητα της επιχείρησής σας.</p>
+          </div>
+
+          <!-- Point 2 -->
+          <div class="p-6 rounded-2xl border border-white/5 bg-white/2 hover:bg-white/5 transition-all duration-300">
+            <div class="text-studio-violet text-4xl font-extrabold mb-4">02</div>
+            <h3 class="text-lg font-bold text-white mb-2">Γρήγορη φόρτωση</h3>
+            <p class="text-gray-400 text-xs leading-relaxed">Βέλτιστος κώδικας για αστραπιαίες ταχύτητες, βελτιώνοντας την εμπειρία του χρήστη και το SEO.</p>
+          </div>
+
+          <!-- Point 3 -->
+          <div class="p-6 rounded-2xl border border-white/5 bg-white/2 hover:bg-white/5 transition-all duration-300">
+            <div class="text-studio-emerald text-4xl font-extrabold mb-4">03</div>
+            <h3 class="text-lg font-bold text-white mb-2">Σωστή εμφάνιση σε κινητό</h3>
+            <p class="text-gray-400 text-xs leading-relaxed">Mobile-first σχεδιασμός ώστε η ιστοσελίδα σας να λειτουργεί άψογα σε κάθε smartphone.</p>
+          </div>
+
+          <!-- Point 4 -->
+          <div class="p-6 rounded-2xl border border-white/5 bg-white/2 hover:bg-white/5 transition-all duration-300">
+            <div class="text-orange-400 text-4xl font-extrabold mb-4">04</div>
+            <h3 class="text-lg font-bold text-white mb-2">Καθαρή εικόνα</h3>
+            <p class="text-gray-400 text-xs leading-relaxed">Χωρίς περιττή φλυαρία, εστιάζουμε σε ό,τι φέρνει πραγματικούς πελάτες και αποτελέσματα.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-24 px-6 relative reveal">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Συχνές Ερωτήσεις</p>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Απαντήσεις στις απορίες σας</h2>
+          <p class="text-gray-400 mt-4 leading-relaxed text-sm">Όλα όσα θέλετε να γνωρίζετε για τη διαδικασία, τους χρόνους, τη φιλοξενία και τον σχεδιασμό της νέας σας ιστοσελίδας.</p>
+        </div>
+
+        <div class="space-y-4">
+          <!-- FAQ Item 1 -->
+          <div class="glass-card rounded-2xl border border-white/5 overflow-hidden transition-all duration-300 hover:border-white/10">
+            <details class="group">
+              <summary class="flex justify-between items-center p-6 text-white font-bold cursor-pointer select-none list-none">
+                <span class="text-base sm:text-lg pr-4">Πόσος χρόνος χρειάζεται για την ολοκλήρωση μιας ιστοσελίδας;</span>
+                <span class="transition-transform duration-300 group-open:rotate-180 text-gray-400 shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </span>
+              </summary>
+              <div class="px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-4">
+                Για ένα Landing Page ή μια απλή επαγγελματική ιστοσελίδα, ο χρόνος παράδοσης είναι συνήθως <strong>5 έως 7 ημέρες</strong>. Για πιο σύνθετα projects ή e-commerce ιστοσελίδες, απαιτούνται <strong>10 έως 14 ημέρες</strong>, ανάλογα με τις ανάγκες σας.
+              </div>
+            </details>
+          </div>
+
+          <!-- FAQ Item 2 -->
+          <div class="glass-card rounded-2xl border border-white/5 overflow-hidden transition-all duration-300 hover:border-white/10">
+            <details class="group">
+              <summary class="flex justify-between items-center p-6 text-white font-bold cursor-pointer select-none list-none">
+                <span class="text-base sm:text-lg pr-4">Ποια είναι η διαδικασία σχεδιασμού (Design Process);</span>
+                <span class="transition-transform duration-300 group-open:rotate-180 text-gray-400 shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </span>
+              </summary>
+              <div class="px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-4">
+                Η διαδικασία μας χωρίζεται σε 3 απλά και ξεκάθαρα βήματα:
+                <ul class="list-disc pl-5 mt-2 space-y-2">
+                  <li><strong>1. Ανάλυση &amp; Στρατηγική:</strong> Συζητάμε τις ανάγκες, το κοινό και τους επιχειρηματικούς σας στόχους.</li>
+                  <li><strong>2. Custom Σχεδιασμός:</strong> Δημιουργούμε το εικαστικό, τη δομή και την πλοήγηση της σελίδας σας.</li>
+                  <li><strong>3. Ανάπτυξη &amp; SEO:</strong> Κατασκευάζουμε την ιστοσελίδα, πραγματοποιούμε ελέγχους ταχύτητας, βέλτιστου SEO και την παραδίδουμε έτοιμη.</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+
+          <!-- FAQ Item 3 -->
+          <div class="glass-card rounded-2xl border border-white/5 overflow-hidden transition-all duration-300 hover:border-white/10">
+            <details class="group">
+              <summary class="flex justify-between items-center p-6 text-white font-bold cursor-pointer select-none list-none">
+                <span class="text-base sm:text-lg pr-4">Τι γίνεται με το Hosting (Φιλοξενία) και το Domain Name;</span>
+                <span class="transition-transform duration-300 group-open:rotate-180 text-gray-400 shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </span>
+              </summary>
+              <div class="px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-4">
+                Σας καθοδηγούμε πλήρως για την επιλογή του κατάλληλου πακέτου φιλοξενίας (hosting) και την κατοχύρωση του domain name σας (π.χ. .gr). Η ιστοσελίδα σχεδιάζεται ώστε να είναι εύκολη στη μεταφορά και απόλυτα συμβατή με όλους τους κορυφαίους παρόχους.
+              </div>
+            </details>
+          </div>
+
+          <!-- FAQ Item 4 -->
+          <div class="glass-card rounded-2xl border border-white/5 overflow-hidden transition-all duration-300 hover:border-white/10">
+            <details class="group">
+              <summary class="flex justify-between items-center p-6 text-white font-bold cursor-pointer select-none list-none">
+                <span class="text-base sm:text-lg pr-4">Η ιστοσελίδα θα εμφανίζεται σωστά σε κινητά και tablet;</span>
+                <span class="transition-transform duration-300 group-open:rotate-180 text-gray-400 shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </span>
+              </summary>
+              <div class="px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-4">
+                Απόλυτα! Κάθε ιστοσελίδα που δημιουργούμε σχεδιάζεται με τη φιλοσοφία <strong>Mobile-First</strong>. Αυτό σημαίνει ότι θα λειτουργεί άψογα, θα προσαρμόζεται αυτόματα σε κάθε μέγεθος οθόνης και θα είναι εξαιρετικά γρήγορη σε όλα τα smartphone, tablet και υπολογιστές.
+              </div>
+            </details>
+          </div>
+
+          <!-- FAQ Item 5 -->
+          <div class="glass-card rounded-2xl border border-white/5 overflow-hidden transition-all duration-300 hover:border-white/10">
+            <details class="group">
+              <summary class="flex justify-between items-center p-6 text-white font-bold cursor-pointer select-none list-none">
+                <span class="text-base sm:text-lg pr-4">Υπάρχει υποστήριξη μετά την παράδοση του project;</span>
+                <span class="transition-transform duration-300 group-open:rotate-180 text-gray-400 shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </span>
+              </summary>
+              <div class="px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-4">
+                Φυσικά! Παρέχουμε <strong>δωρεάν υποστήριξη για τις πρώτες 30 ημέρες</strong> μετά την παράδοση για οποιαδήποτε απορία ή ρύθμιση χρειαστείτε, διασφαλίζοντας την ομαλή και απρόσκοπτη λειτουργία της νέας σας ιστοσελίδας.
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE ESTIMATOR & CONTACT SECTION -->
+    <section id="contact" class="py-24 px-6 relative reveal bg-studio-card/30">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          <!-- Left: Contact info -->
+          <div class="lg:col-span-5 flex flex-col justify-between space-y-10">
+            <div class="space-y-6">
+              <p class="text-xs font-bold text-gray-500 uppercase tracking-widest">Επικοινωνία</p>
+              <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Ας χτίσουμε κάτι σπουδαίο μαζί.</h2>
+              <p class="text-gray-400 leading-relaxed text-sm">
+                Θέλεις μια ιστοσελίδα που να δείχνει επαγγελματική από την πρώτη ματιά; Συμπλήρωσε την φόρμα, υπολόγισε το κόστος σου στα δεξιά ή κάλεσε μας απευθείας!
+              </p>
+            </div>
+
+            <!-- Contact Details -->
+            <div class="space-y-6">
+              <a href="tel:+306978175497" class="flex items-center space-x-4 p-4 rounded-xl border border-white/5 hover:border-studio-accent/20 transition-all bg-black/20 group">
+                <div class="w-10 h-10 rounded-lg bg-studio-accent/10 text-studio-accent flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Τηλέφωνο</p>
+                  <p class="text-white text-sm font-semibold">+30 697 817 54 97</p>
+                </div>
+              </a>
+
+              <a href="mailto:info@skoutstudio.gr" class="flex items-center space-x-4 p-4 rounded-xl border border-white/5 hover:border-studio-accent/20 transition-all bg-black/20 group">
+                <div class="w-10 h-10 rounded-lg bg-studio-accent/10 text-studio-accent flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Email</p>
+                  <p class="text-white text-sm font-semibold">info@skoutstudio.gr</p>
+                </div>
+              </a>
+
+              <a href="https://instagram.com" target="_blank" class="flex items-center space-x-4 p-4 rounded-xl border border-white/5 hover:border-studio-accent/20 transition-all bg-black/20 group">
+                <div class="w-10 h-10 rounded-lg bg-studio-accent/10 text-studio-accent flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Instagram</p>
+                  <p class="text-white text-sm font-semibold">@skoutstudio.gr</p>
+                </div>
+              </a>
+            </div>
+
+            <!-- Viber direct block -->
+            <a href="viber://chat?number=%2B306978175497" class="w-full h-14 rounded-full bg-[#7360F2] hover:bg-[#5f4be3] text-white font-extrabold flex items-center justify-center transition-all text-base shadow-lg shadow-purple-500/10">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+              Άμεση Επικοινωνία (Viber)
+            </a>
+          </div>
+
+          <!-- Right: Interactive Cost & Project Estimator -->
+          <div class="lg:col-span-7">
+            <div class="glass-card p-8 rounded-3xl border border-white/5 space-y-8">
+              <div>
+                <h3 class="text-2xl font-extrabold text-white">Υπολογισμός Κόστους</h3>
+                <p class="text-gray-400 text-xs mt-1">Επίλεξε τις υπηρεσίες που χρειάζεσαι και δες αμέσως την εκτίμηση.</p>
+              </div>
+
+              <!-- Selection Controls -->
+              <div class="space-y-6">
+                <!-- Type Selector -->
+                <div>
+                  <label class="text-xs font-bold uppercase tracking-wider text-gray-400 block mb-3">Τύπος Ιστοσελίδας</label>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="estimatorType">
+                    <button class="p-4 rounded-xl border border-studio-accent bg-studio-accent/10 text-white text-left transition-all flex justify-between items-center" data-base-price="350" data-time="5-7">
+                      <div>
+                        <p class="font-bold text-sm">Landing Page</p>
+                        <p class="text-xs text-gray-400">Μονοσέλιδη παρουσίαση</p>
+                      </div>
+                      <span class="text-studio-accent font-extrabold text-sm">Από 350€</span>
+                    </button>
+                    <button class="p-4 rounded-xl border border-white/5 bg-black/20 text-white text-left transition-all flex justify-between items-center" data-base-price="550" data-time="10-14">
+                      <div>
+                        <p class="font-bold text-sm">Εταιρική Ιστοσελίδα</p>
+                        <p class="text-xs text-gray-400">Πολυσέλιδη προβολή</p>
+                      </div>
+                      <span class="text-studio-accent font-extrabold text-sm">Από 550€</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Feature Checkboxes -->
+                <div>
+                  <label class="text-xs font-bold uppercase tracking-wider text-gray-400 block mb-3">Επιπλέον Λειτουργίες</label>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="estimatorAddons">
+                    <button class="p-4 rounded-xl border border-white/5 bg-black/20 text-left transition-all flex items-center justify-between group" data-addon="bookings" data-price="120" data-time="2">
+                      <div class="flex items-center space-x-3">
+                        <div class="w-5 h-5 rounded border border-white/20 flex items-center justify-center group-hover:border-studio-accent/50 check-box transition-all"></div>
+                        <span class="text-sm font-semibold text-white">Online Κρατήσεις</span>
+                      </div>
+                      <span class="text-xs font-mono text-gray-400">+120€</span>
+                    </button>
+
+                    <button class="p-4 rounded-xl border border-white/5 bg-black/20 text-left transition-all flex items-center justify-between group" data-addon="qrmenu" data-price="80" data-time="1">
+                      <div class="flex items-center space-x-3">
+                        <div class="w-5 h-5 rounded border border-white/20 flex items-center justify-center group-hover:border-studio-accent/50 check-box transition-all"></div>
+                        <span class="text-sm font-semibold text-white">QR Menu / Κατάλογος</span>
+                      </div>
+                      <span class="text-xs font-mono text-gray-400">+80€</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Live Estimate Display -->
+              <div class="p-6 rounded-2xl bg-black/40 border border-white/5 flex flex-col sm:flex-row justify-between items-center gap-6">
+                <div class="text-center sm:text-left">
+                  <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Εκτιμώμενο Κόστος</p>
+                  <p class="text-4xl font-extrabold text-white mt-1" id="estimatePrice">350€</p>
+                </div>
+                <div class="text-center sm:text-left">
+                  <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Χρόνος Παράδοσης</p>
+                  <p class="text-lg font-bold text-studio-accent mt-1" id="estimateTime">5-7 ημέρες</p>
+                </div>
+                <button onclick="submitEstimate()" class="w-full sm:w-auto px-6 h-12 rounded-xl bg-white hover:bg-gray-200 text-black font-extrabold text-sm transition-all shadow-md">
+                  Ας Ξεκινήσουμε
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-12 border-t border-white/5 bg-black/40 text-center text-sm text-gray-500 px-6">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+        <!-- Logo -->
+        <div class="flex items-center space-x-2">
+          <div class="w-6 h-6 bg-gradient-to-br from-white to-gray-400 rounded flex items-center justify-center text-black text-[10px] font-bold shadow-sm">S</div>
+          <span class="text-white font-extrabold tracking-tight">SKOUT <span class="text-gray-400 font-medium">STUDIO</span></span>
+        </div>
+        <p>© 2026 Skout Studio. All rights reserved. | skoutstudio.gr</p>
+      </div>
+    </footer>
+
+    <!-- INTERACTIVE DEMO PREVIEW MODAL -->
+    <div class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden flex-col justify-center items-center p-4 md:p-8" id="demoModal">
+      <!-- Modal Canvas Wrapper -->
+      <div class="w-full max-w-5xl h-[85vh] bg-studio-bg rounded-2xl border border-white/10 overflow-hidden flex flex-col shadow-2xl">
+        <!-- Modal Toolbar -->
+        <div class="px-6 py-4 bg-black/60 border-b border-white/5 flex items-center justify-between">
+          <div class="flex items-center space-x-4">
+            <!-- Close Button -->
+            <button onclick="closeDemo()" class="p-1.5 rounded-lg bg-white/5 hover:bg-red-500/20 text-gray-400 hover:text-white transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <span class="text-white font-bold text-sm" id="modalTitle">Website Preview</span>
+          </div>
+
+          <!-- Desktop / Mobile Frame toggles -->
+          <div class="flex items-center space-x-2 bg-white/5 rounded-lg p-1">
+            <button id="toggleDesktop" class="px-3 py-1.5 rounded text-xs font-bold text-white bg-white/10 transition-all flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              Desktop
+            </button>
+            <button id="toggleMobile" class="px-3 py-1.5 rounded text-xs font-bold text-gray-400 hover:text-white transition-all flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg>
+              Mobile
+            </button>
+          </div>
+
+          <!-- Dummy browser top indicators -->
+          <div class="hidden sm:flex items-center space-x-1 border border-white/10 rounded-md bg-white/2 px-3 py-1 text-[10px] text-gray-500">
+            <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+            <span id="modalDomain" class="font-mono">demo.skoutstudio.gr</span>
+          </div>
+        </div>
+
+        <!-- Dynamic Website Preview Screen Container -->
+        <div class="flex-1 bg-neutral-900/40 overflow-y-auto p-4 md:p-8 flex items-center justify-center transition-all duration-300" id="previewContainer">
+          <!-- Frame simulation -->
+          <div id="mockFrame" class="w-full max-w-md bg-black/80 border border-white/10 rounded-2xl p-4 space-y-4 shadow-2xl transition-all duration-300 min-h-[400px]">
+            <!-- Dynamic demo content injects here -->
+            <div id="mockContent" class="space-y-4 text-white"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Spotlight follow cursor
+      const spotlight = document.getElementById('spotlight');
+      if (spotlight) {
+        document.addEventListener('mousemove', (e) => {
+          spotlight.style.left = `${e.clientX}px`;
+          spotlight.style.top = `${e.clientY}px`;
+        });
+      }
+
+      // Mobile Menu Drawer logic
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const bar1 = document.getElementById('bar1');
+      const bar2 = document.getElementById('bar2');
+      const bar3 = document.getElementById('bar3');
+
+      if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+          const isHidden = mobileMenu.classList.contains('hidden');
+          if (isHidden) {
+            mobileMenu.classList.remove('hidden');
+            mobileMenu.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+            
+            // Hamburger to X
+            bar1.classList.add('rotate-45', 'translate-y-2');
+            bar2.classList.add('opacity-0');
+            bar3.classList.add('-rotate-45', '-translate-y-2');
+          } else {
+            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.remove('flex');
+            document.body.style.overflow = '';
+            
+            // X to Hamburger
+            bar1.classList.remove('rotate-45', 'translate-y-2');
+            bar2.classList.remove('opacity-0');
+            bar3.classList.remove('-rotate-45', '-translate-y-2');
+          }
+        });
+
+        // Close drawer on links click
+        const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+        mobileLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.remove('flex');
+            document.body.style.overflow = '';
+            bar1.classList.remove('rotate-45', 'translate-y-2');
+            bar2.classList.remove('opacity-0');
+            bar3.classList.remove('-rotate-45', '-translate-y-2');
+          });
+        });
+      }
+
+      // Scroll Reveal logic (Intersection Observer)
+      const revealElements = document.querySelectorAll('.reveal');
+      if (revealElements.length > 0) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('active');
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(el => observer.observe(el));
+      }
+
+      // Desktop / Mobile preview toggle logic
+      const toggleDesktopBtn = document.getElementById('toggleDesktop');
+      const toggleMobileBtn = document.getElementById('toggleMobile');
+      const mockFrameEl = document.getElementById('mockFrame');
+
+      if (toggleDesktopBtn && toggleMobileBtn && mockFrameEl) {
+        toggleDesktopBtn.addEventListener('click', () => {
+          toggleDesktopBtn.classList.add('bg-white/10', 'text-white');
+          toggleDesktopBtn.classList.remove('text-gray-400');
+          toggleMobileBtn.classList.remove('bg-white/10', 'text-white');
+          toggleMobileBtn.classList.add('text-gray-400');
+          
+          mockFrameEl.classList.remove('max-w-md', 'min-h-[400px]');
+          mockFrameEl.classList.add('max-w-none', 'w-full', 'h-full');
+        });
+
+        toggleMobileBtn.addEventListener('click', () => {
+          toggleMobileBtn.classList.add('bg-white/10', 'text-white');
+          toggleMobileBtn.classList.remove('text-gray-400');
+          toggleDesktopBtn.classList.remove('bg-white/10', 'text-white');
+          toggleDesktopBtn.classList.add('text-gray-400');
+          
+          mockFrameEl.classList.remove('max-w-none', 'w-full');
+          mockFrameEl.classList.add('max-w-md', 'w-full', 'min-h-[400px]');
+        });
+      }
+
+      // Estimator calculations
+      const estTypeBtns = document.querySelectorAll('#estimatorType button');
+      const estAddonBtns = document.querySelectorAll('#estimatorAddons button');
+      const estimatePriceEl = document.getElementById('estimatePrice');
+      const estimateTimeEl = document.getElementById('estimateTime');
+
+      let basePrice = 350;
+      let baseTime = '5-7';
+      let selectedAddons = [];
+
+      estTypeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          estTypeBtns.forEach(b => {
+            b.classList.remove('border-studio-accent', 'bg-studio-accent/10', 'text-white');
+            b.classList.add('border-white/5', 'bg-black/20', 'text-gray-400');
+          });
+          btn.classList.add('border-studio-accent', 'bg-studio-accent/10', 'text-white');
+          btn.classList.remove('border-white/5', 'bg-black/20', 'text-gray-400');
+
+          basePrice = parseInt(btn.getAttribute('data-base-price'));
+          baseTime = btn.getAttribute('data-time');
+          calculateEstimate();
+        });
+      });
+
+      estAddonBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const addonId = btn.getAttribute('data-addon');
+          const checkbox = btn.querySelector('.check-box');
+          if (selectedAddons.includes(addonId)) {
+            selectedAddons = selectedAddons.filter(id => id !== addonId);
+            btn.classList.remove('border-studio-accent', 'bg-studio-accent/10', 'text-white');
+            btn.classList.add('border-white/5', 'bg-black/20', 'text-gray-400');
+            if (checkbox) checkbox.innerHTML = '';
+          } else {
+            selectedAddons.push(addonId);
+            btn.classList.add('border-studio-accent', 'bg-studio-accent/10', 'text-white');
+            btn.classList.remove('border-white/5', 'bg-black/20', 'text-gray-400');
+            if (checkbox) checkbox.innerHTML = '<span class="text-white text-xs font-bold">✓</span>';
+          }
+          calculateEstimate();
+        });
+      });
+
+      function calculateEstimate() {
+        let total = basePrice;
+        estAddonBtns.forEach(btn => {
+          const addonId = btn.getAttribute('data-addon');
+          if (selectedAddons.includes(addonId)) {
+            total += parseInt(btn.getAttribute('data-price'));
+          }
+        });
+        estimatePriceEl.innerText = `${total}€`;
+        estimateTimeEl.innerText = `${baseTime} ημέρες`;
+      }
+
+      window.submitEstimate = function() {
+        const total = estimatePriceEl.innerText;
+        const time = estimateTimeEl.innerText;
+        
+        // Find or create toast message
+        let toast = document.getElementById('estimateToast');
+        if (!toast) {
+          toast = document.createElement('div');
+          toast.id = 'estimateToast';
+          toast.className = 'fixed bottom-6 right-6 px-6 py-4 bg-white text-black font-semibold rounded-2xl shadow-2xl transition-all duration-500 transform translate-y-20 opacity-0 z-50 text-sm';
+          document.body.appendChild(toast);
+        }
+        
+        toast.innerHTML = `🌟 Η εκτίμησή σας: <strong class="font-bold">${total}</strong> (${time}) καταχωρήθηκε!`;
+        toast.classList.remove('translate-y-20', 'opacity-0');
+        toast.classList.add('translate-y-0', 'opacity-100');
+        
+        setTimeout(() => {
+          toast.classList.add('translate-y-20', 'opacity-0');
+          toast.classList.remove('translate-y-0', 'opacity-100');
+        }, 5000);
+
+        // Smooth scroll to contact options below
+        const telLink = document.querySelector('a[href^="tel:"]');
+        if (telLink) {
+          telLink.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }
+
+      function openDemo(projectKey) {
+        demoModal.classList.remove('hidden');
+        demoModal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+
+        if (projectKey === 'trakelles') {
+          modalTitle.innerText = 'Trakelles Hair - Live Demo';
+          modalDomain.innerText = 'trakelleshair.gr';
+          renderTrakellesDemo();
+        } else if (projectKey === 'polyteknos') {
+          modalTitle.innerText = 'Σύλλογος Πολυτέκνων Λέσβου - Live Demo';
+          modalDomain.innerText = 'polyteknoslesvos.gr';
+          renderPolyteknosDemo();
+        } else if (projectKey === 'apizza') {
+          modalTitle.innerText = 'A Pizza Pizzeria - Live Demo';
+          modalDomain.innerText = 'apizza.skoutstudio.gr';
+          renderAPizzaDemo();
+        } else if (projectKey === 'historic') {
+          modalTitle.innerText = 'Historic Lounge - Live Demo';
+          modalDomain.innerText = 'historic.skoutstudio.gr';
+          renderHistoricDemo();
+        }
+      }
+
+      function closeDemo() {
+        demoModal.classList.add('hidden');
+        demoModal.classList.remove('flex');
+        document.body.style.overflow = 'auto';
+      }
+
+      function renderTrakellesDemo() {
+        mockContent.innerHTML = `
+          <!-- Header -->
+          <div class="flex justify-between items-center border-b border-white/5 pb-4">
+            <h1 class="text-xl font-bold tracking-widest text-white uppercase">TRAKELLES HAIR SALON</h1>
+            <span class="px-2 py-1 bg-amber-500/10 border border-amber-500/30 text-[10px] rounded text-amber-400">Luxury Barber</span>
+          </div>
+
+          <!-- Hero Banner -->
+          <div class="rounded-xl bg-gradient-to-tr from-neutral-950 to-neutral-900 p-6 text-center border border-white/5 relative overflow-hidden mt-4">
+            <h2 class="text-xl font-extrabold text-white">The Ultimate Styling Experience</h2>
+            <p class="text-[11px] text-gray-400 mt-2">Σύγχρονες τεχνικές, κλασική φινέτσα και απόλυτη φροντίδα.</p>
+          </div>
+
+          <!-- Interactive Pricing Service list -->
+          <div class="space-y-3 mt-4">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400">Premium Υπηρεσίες</h3>
+            <div class="grid grid-cols-1 gap-2">
+              <div class="flex justify-between items-center p-3 rounded-lg bg-white/2 hover:bg-white/5 transition-colors border border-white/5">
+                <span class="text-xs font-bold text-white">Κούρεμα & Styling (Classic)</span>
+                <span class="text-xs text-amber-400 font-bold">18€</span>
+              </div>
+              <div class="flex justify-between items-center p-3 rounded-lg bg-white/2 hover:bg-white/5 transition-colors border border-white/5">
+                <span class="text-xs font-bold text-white">Παραδοσιακό Ξύρισμα με Φαλτσέτα</span>
+                <span class="text-xs text-amber-400 font-bold">12€</span>
+              </div>
+              <div class="flex justify-between items-center p-3 rounded-lg bg-white/2 hover:bg-white/5 transition-colors border border-white/5">
+                <span class="text-xs font-bold text-white">Βαφή & Αναδόμηση Μαλλιών</span>
+                <span class="text-xs text-amber-400 font-bold">35€</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Opening Hours & Contact Information (No Booking Program) -->
+          <div class="glass-card p-4 rounded-xl space-y-4 mt-4">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-white">Ωράριο & Επικοινωνία</h3>
+            <div class="space-y-2 text-xs text-gray-400">
+              <div class="flex justify-between border-b border-white/5 pb-1">
+                <span>Τρίτη - Παρασκευή</span>
+                <span class="text-white font-semibold">09:00 - 20:00</span>
+              </div>
+              <div class="flex justify-between border-b border-white/5 pb-1">
+                <span>Σάββατο</span>
+                <span class="text-white font-semibold">09:00 - 17:00</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Κυριακή & Δευτέρα</span>
+                <span class="text-red-400 font-semibold">Κλειστά</span>
+              </div>
+            </div>
+            <div class="pt-2 flex gap-2">
+              <a href="tel:+306978175497" class="flex-1 py-2.5 bg-amber-500 text-black font-extrabold text-xs rounded-lg hover:bg-amber-400 transition-colors text-center block">Καλέστε Μας</a>
+              <a href="viber://chat?number=%2B306978175497" class="px-3 py-2 bg-[#7360F2] text-white font-extrabold text-xs rounded-lg hover:bg-opacity-90 transition-all text-center flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        `;
+      }
+
+      function renderPolyteknosDemo() {
+        mockContent.innerHTML = `
+          <!-- Header -->
+          <div class="flex justify-between items-center border-b border-white/5 pb-4">
+            <h1 class="text-sm font-extrabold tracking-tight text-white uppercase flex items-center">
+              <span class="w-2.5 h-2.5 bg-blue-500 mr-2 rounded-sm"></span>ΣΥΛΛΟΓΟΣ ΠΟΛΥΤΕΚΝΩΝ ΛΕΣΒΟΥ
+            </h1>
+            <span class="text-[9px] font-bold text-blue-400">Επίσημη Πύλη</span>
+          </div>
+
+          <!-- Hero Announcement -->
+          <div class="rounded-xl bg-gradient-to-tr from-neutral-950 to-neutral-900 border border-white/5 p-4 text-center mt-4">
+            <span class="px-2 py-0.5 bg-blue-500/10 border border-blue-500/20 text-[9px] rounded text-blue-400 font-bold">ΝΕΑ ΑΝΑΚΟΙΝΩΣΗ</span>
+            <h3 class="text-xs font-bold text-white mt-2">Διανομή Τροφίμων &amp; Παροχές 2026</h3>
+            <p class="text-[9px] text-gray-500 mt-1">Ενημερωθείτε για τις ημερομηνίες και τα απαραίτητα δικαιολογητικά για το νέο έτος.</p>
+          </div>
+
+          <!-- Tabs or Announcements List -->
+          <div class="space-y-3 mt-4">
+            <div class="flex justify-between items-center">
+              <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400">Έγγραφα &amp; Ανακοινώσεις</h3>
+              <div class="flex space-x-1" id="mockProjFilter">
+                <button onclick="filterMockAnnounce('all')" class="px-2 py-1 bg-blue-500 text-black text-[9px] font-bold rounded">Όλα</button>
+                <button onclick="filterMockAnnounce('docs')" class="px-2 py-1 bg-white/5 hover:bg-white/10 text-white text-[9px] font-bold rounded">Δικαιολογητικά</button>
+                <button onclick="filterMockAnnounce('news')" class="px-2 py-1 bg-white/5 hover:bg-white/10 text-white text-[9px] font-bold rounded">Νέα</button>
+              </div>
+            </div>
+
+            <!-- Documents Grid -->
+            <div class="grid grid-cols-1 gap-2" id="mockAnnounceGrid">
+              <div class="p-3 bg-white/2 border border-white/5 rounded-lg flex justify-between items-center" data-mock-cat="docs">
+                <div>
+                  <h4 class="text-xs font-bold text-white">Αίτηση Νέου Μέλους</h4>
+                  <p class="text-[9px] text-gray-400">Έγγραφα για εγγραφή νέων πολυτέκνων.</p>
+                </div>
+                <span class="text-[10px] text-blue-400 font-bold uppercase">PDF 📄</span>
+              </div>
+              <div class="p-3 bg-white/2 border border-white/5 rounded-lg flex justify-between items-center" data-mock-cat="docs">
+                <div>
+                  <h4 class="text-xs font-bold text-white">Πιστοποιητικό Πολυτεκνίας</h4>
+                  <p class="text-[9px] text-gray-400">Απαιτούμενα δικαιολογητικά έκδοσης.</p>
+                </div>
+                <span class="text-[10px] text-blue-400 font-bold uppercase">PDF 📄</span>
+              </div>
+              <div class="p-3 bg-white/2 border border-white/5 rounded-lg flex justify-between items-center" data-mock-cat="news">
+                <div>
+                  <h4 class="text-xs font-bold text-white">Εκπτώσεις &amp; Απαλλαγές</h4>
+                  <p class="text-[9px] text-gray-400">Πληροφορίες για μειωμένα εισιτήρια &amp; ΔΕΗ.</p>
+                </div>
+                <span class="text-[10px] text-blue-400 font-bold uppercase">ΝΕΑ 📣</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      window.filterMockAnnounce = function(category) {
+        const items = document.querySelectorAll('#mockAnnounceGrid > div');
+        const filters = document.querySelectorAll('#mockProjFilter button');
+        
+        // Button highlight
+        filters.forEach(f => {
+          f.classList.remove('bg-blue-500', 'text-black');
+          f.classList.add('bg-white/5', 'text-white');
+        });
+        
+        if (window.event && window.event.target) {
+          window.event.target.classList.add('bg-blue-500', 'text-black');
+          window.event.target.classList.remove('bg-white/5', 'text-white');
+        }
+
+        items.forEach(item => {
+          if (category === 'all' || item.getAttribute('data-mock-cat') === category) {
+            item.style.display = 'flex';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      }
+
+      function renderAPizzaDemo() {
+        mockContent.innerHTML = `
+          <!-- Header -->
+          <div class="flex justify-between items-center border-b border-white/5 pb-4">
+            <h1 class="text-xl font-extrabold tracking-tight text-white flex items-center">
+              🍕 A PIZZA
+            </h1>
+            <span class="text-[10px] font-bold text-emerald-400 uppercase">QR MENU SYSTEM</span>
+          </div>
+
+          <!-- Interactive Menu -->
+          <div class="space-y-4 mt-4">
+            <div class="flex justify-between items-center">
+              <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400">Παράγγειλε τώρα</h3>
+              <span class="px-2 py-0.5 bg-emerald-500/10 border border-emerald-500/20 text-[10px] rounded text-emerald-400 font-bold" id="cartCounter">Καλάθι: 0 είδη</span>
+            </div>
+
+            <div class="grid grid-cols-1 gap-3">
+              <!-- Item 1 -->
+              <div class="p-3 rounded-xl bg-white/2 border border-white/5 flex justify-between items-center">
+                <div>
+                  <h4 class="text-xs font-bold text-white">Pizza Margherita</h4>
+                  <p class="text-[9px] text-gray-400 mt-1">Σάλτσα ντομάτας, μοτσαρέλα, φρέσκος βασιλικός.</p>
+                  <p class="text-xs font-bold text-emerald-400 mt-1.5">8.50€</p>
+                </div>
+                <button onclick="addToCart('Margherita', 8.50)" class="px-3 py-1.5 rounded-lg bg-emerald-500 text-black text-[10px] font-extrabold hover:bg-emerald-400 transition-colors">Προσθήκη</button>
+              </div>
+
+              <!-- Item 2 -->
+              <div class="p-3 rounded-xl bg-white/2 border border-white/5 flex justify-between items-center">
+                <div>
+                  <h4 class="text-xs font-bold text-white">Pizza Special Skout</h4>
+                  <p class="text-[9px] text-gray-400 mt-1">Μπέικον, μανιτάρια, πιπεριές, σάλτσα, τυριά.</p>
+                  <p class="text-xs font-bold text-emerald-400 mt-1.5">12.00€</p>
+                </div>
+                <button onclick="addToCart('Special Skout', 12.00)" class="px-3 py-1.5 rounded-lg bg-emerald-500 text-black text-[10px] font-extrabold hover:bg-emerald-400 transition-colors">Προσθήκη</button>
+              </div>
+
+              <!-- Item 3 -->
+              <div class="p-3 rounded-xl bg-white/2 border border-white/5 flex justify-between items-center">
+                <div>
+                  <h4 class="text-xs font-bold text-white">Tiramisu</h4>
+                  <p class="text-[9px] text-gray-400 mt-1">Αυθεντική ιταλική συνταγή με μασκαρπόνε & εσπρέσο.</p>
+                  <p class="text-xs font-bold text-emerald-400 mt-1.5">5.00€</p>
+                </div>
+                <button onclick="addToCart('Tiramisu', 5.00)" class="px-3 py-1.5 rounded-lg bg-emerald-500 text-black text-[10px] font-extrabold hover:bg-emerald-400 transition-colors">Προσθήκη</button>
+              </div>
+            </div>
+            
+            <button onclick="checkoutAPizza()" class="w-full py-2.5 bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold text-xs rounded-lg transition-colors">Ολοκλήρωση Παραγγελίας</button>
+            <div id="cartResult" class="hidden p-3 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-center text-xs"></div>
+          </div>
+        `;
+      }
+
+      let cart = [];
+      window.addToCart = function(name, price) {
+        cart.push({ name, price });
+        const counterEl = document.getElementById('cartCounter');
+        if (counterEl) {
+          counterEl.innerText = `Καλάθι: ${cart.length} είδη`;
+        }
+      }
+
+      window.checkoutAPizza = function() {
+        if (cart.length === 0) {
+          alert('Το καλάθι σας είναι άδειο!');
+          return;
+        }
+        const total = cart.reduce((acc, item) => acc + item.price, 0).toFixed(2);
+        const res = document.getElementById('cartResult');
+        if (res) {
+          res.classList.remove('hidden');
+          res.innerText = `Η παραγγελία σας καταχωρήθηκε επιτυχώς! Συνολικό ποσό: ${total}€. Η πίτσα σας ετοιμάζεται!`;
+        }
+        cart = [];
+        const counterEl = document.getElementById('cartCounter');
+        if (counterEl) {
+          counterEl.innerText = `Καλάθι: 0 είδη`;
+        }
+      }
+
+      function renderHistoricDemo() {
+        mockContent.innerHTML = `
+          <!-- Header -->
+          <div class="flex justify-between items-center border-b border-white/5 pb-4">
+            <h1 class="text-xl font-extrabold tracking-wider text-white uppercase">HISTORIC LOUNGE</h1>
+            <span class="px-2 py-1 bg-red-500/10 border border-red-500/30 text-[9px] rounded text-red-400">Café & Cocktail Bar</span>
+          </div>
+
+          <!-- Hero Promo -->
+          <div class="rounded-xl bg-gradient-to-tr from-neutral-950 to-neutral-900 border border-white/5 p-4 text-center">
+            <h3 class="text-sm font-bold text-white">Atmospheric DJ Sets Every Weekend</h3>
+            <p class="text-[9px] text-gray-500 mt-1">Απόλαυσε τα καλύτερα cocktails της πόλης κάτω από τους ήχους lounge μουσικής.</p>
+          </div>
+
+          <!-- Signature Cocktails List -->
+          <div class="space-y-3">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400">Signature Cocktails</h3>
+            <div class="grid grid-cols-2 gap-3">
+              <div class="p-3 rounded-xl bg-white/2 border border-white/5 text-center space-y-1">
+                <span class="text-xl block">🥃</span>
+                <h4 class="text-xs font-bold text-white">Mystic Smoke</h4>
+                <p class="text-[9px] text-gray-500">Premium mezcal, lime, secret spices.</p>
+                <span class="text-[11px] text-red-400 font-extrabold block mt-1">11.00€</span>
+              </div>
+              <div class="p-3 rounded-xl bg-white/2 border border-white/5 text-center space-y-1">
+                <span class="text-xl block">🍸</span>
+                <h4 class="text-xs font-bold text-white">Emerald Glow</h4>
+                <p class="text-[9px] text-gray-500">Gin, basil infusion, fresh cucumber.</p>
+                <span class="text-[11px] text-red-400 font-extrabold block mt-1">10.00€</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reservation system -->
+          <div class="glass-card p-4 rounded-xl space-y-3">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-white">Κράτηση Τραπεζιού</h3>
+            <div class="grid grid-cols-2 gap-2 text-[10px]">
+              <div>
+                <label class="text-gray-500 block mb-0.5">Ώρα</label>
+                <select id="resTime" class="w-full p-2 rounded bg-black border border-white/10 text-white focus:outline-none">
+                  <option>21:00</option>
+                  <option>22:30</option>
+                  <option>23:30</option>
+                </select>
+              </div>
+              <div>
+                <label class="text-gray-500 block mb-0.5">Άτομα</label>
+                <select id="resPeople" class="w-full p-2 rounded bg-black border border-white/10 text-white focus:outline-none">
+                  <option>2 Άτομα</option>
+                  <option>4 Άτομα</option>
+                  <option>6+ Άτομα</option>
+                </select>
+              </div>
+            </div>
+            <button onclick="confirmLoungeBooking()" class="w-full py-2 bg-red-500 hover:bg-red-400 text-black font-extrabold text-xs rounded-lg transition-colors">Κάνε Κράτηση</button>
+            <div id="loungeResult" class="hidden p-3 rounded bg-red-500/10 border border-red-500/30 text-red-400 text-center text-xs"></div>
+          </div>
+        `;
+      }
+
+      window.confirmLoungeBooking = function() {
+        const time = document.getElementById('resTime').value;
+        const people = document.getElementById('resPeople').value;
+        const res = document.getElementById('loungeResult');
+        res.classList.remove('hidden');
+        res.innerText = `Το τραπέζι σας επιβεβαιώθηκε για τις ${time} (${people})! Σας περιμένουμε.`;
+      }
+
+      // State and helpers for the combined food-ordering inline preview
+      let combinedCart = [];
+
+      window.switchFoodTab = function(tab) {
+        const polyMenu = document.getElementById('polyFoodMenu');
+        const pizzaMenu = document.getElementById('pizzaFoodMenu');
+        const polyBtn = document.getElementById('tabPolyteknosBtn');
+        const pizzaBtn = document.getElementById('tabAlphaPizzaBtn');
+
+        if (tab === 'polyteknos') {
+          if (polyMenu) polyMenu.classList.remove('hidden');
+          if (pizzaMenu) pizzaMenu.classList.add('hidden');
+          if (polyBtn) {
+            polyBtn.classList.add('bg-emerald-500', 'text-black');
+            polyBtn.classList.remove('text-gray-400');
+          }
+          if (pizzaBtn) {
+            pizzaBtn.classList.remove('bg-emerald-500', 'text-black');
+            pizzaBtn.classList.add('text-gray-400');
+          }
+        } else {
+          if (pizzaMenu) pizzaMenu.classList.remove('hidden');
+          if (polyMenu) polyMenu.classList.add('hidden');
+          if (pizzaBtn) {
+            pizzaBtn.classList.add('bg-emerald-500', 'text-black');
+            pizzaBtn.classList.remove('text-gray-400');
+          }
+          if (polyBtn) {
+            polyBtn.classList.remove('bg-emerald-500', 'text-black');
+            polyBtn.classList.add('text-gray-400');
+          }
+        }
+      }
+
+      window.addCombinedFood = function(name, price) {
+        combinedCart.push({ name, price });
+        updateCombinedCartUI();
+      }
+
+      function updateCombinedCartUI() {
+        const counter = document.getElementById('combinedCartCounter');
+        if (!counter) return;
+        const total = combinedCart.reduce((sum, item) => sum + item.price, 0).toFixed(2);
+        counter.innerText = `${combinedCart.length} είδη - ${total}€`;
+      }
+
+      window.checkoutCombinedFood = function() {
+        const result = document.getElementById('combinedCartResult');
+        if (!result) return;
+        if (combinedCart.length === 0) {
+          result.classList.remove('hidden', 'bg-emerald-500/15', 'text-emerald-400');
+          result.classList.add('bg-red-500/15', 'text-red-400');
+          result.innerText = '❌ Το καλάθι σας είναι άδειο!';
+          result.classList.remove('hidden');
+          setTimeout(() => { result.classList.add('hidden'); }, 3000);
+          return;
+        }
+
+        const total = combinedCart.reduce((sum, item) => sum + item.price, 0).toFixed(2);
+        result.classList.remove('hidden', 'bg-red-500/15', 'text-red-400');
+        result.classList.add('bg-emerald-500/15', 'text-emerald-400');
+        result.innerHTML = `🎉 Η παραγγελία ύψους <strong>${total}€</strong> στάλθηκε! Παντρέψατε με επιτυχία τον <strong>Γύρο του Πολύτεκνου</strong> & την <strong>Alpha Pizza</strong> σε μία παράδοση!`;
+        result.classList.remove('hidden');
+
+        combinedCart = [];
+        updateCombinedCartUI();
+      }
+
+      // Scroll Progress Bar logic
+      window.addEventListener('scroll', () => {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+        const progressBar = document.getElementById('scrollProgressBar');
+        if (progressBar) {
+          progressBar.style.width = scrolled + '%';
+        }
+      });
+
+    </script>
+  </body>
+</html>

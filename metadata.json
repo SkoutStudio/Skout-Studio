@@ -1,0 +1,6 @@
+{
+  "name": "Skout Studio",
+  "description": "Premium personal web design portfolio for Skout Studio in Greek, showcasing modern business web designs.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
