@@ -727,25 +727,27 @@
                 <p class="text-gray-400 text-xs mt-1">Συμπληρώστε τα στοιχεία σας και θα επικοινωνήσουμε μαζί σας το συντομότερο δυνατόν.</p>
               </div>
 
-              <form onsubmit="submitContactForm(event)" class="space-y-4">
+              <form id="contactForm" onsubmit="submitContactForm(event)" class="space-y-4">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label class="text-xs font-bold uppercase tracking-wider text-gray-400 block mb-2">Όνομα / Επωνυμία</label>
-                    <input type="text" required placeholder="π.χ. Γιώργος Παπαδόπουλος" class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-studio-accent/50 transition-all">
+                    <input type="text" id="contactName" name="name" required placeholder="π.χ. Γιώργος Παπαδόπουλος" class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-studio-accent/50 transition-all">
                   </div>
                   <div>
                     <label class="text-xs font-bold uppercase tracking-wider text-gray-400 block mb-2">Email Επικοινωνίας</label>
-                    <input type="email" required placeholder="name@domain.gr" class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-studio-accent/50 transition-all">
+                    <input type="email" id="contactEmail" name="email" required placeholder="name@domain.gr" class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-studio-accent/50 transition-all">
                   </div>
                 </div>
 
                 <div>
                   <label class="text-xs font-bold uppercase tracking-wider text-gray-400 block mb-2">Το Μήνυμά σας</label>
-                  <textarea rows="4" required placeholder="Περιγράψτε μας τις ανάγκες του project σας..." class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-studio-accent/50 transition-all resize-none"></textarea>
+                  <textarea id="contactMessage" name="message" rows="4" required placeholder="Περιγράψτε μας τις ανάγκες του project σας..." class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-studio-accent/50 transition-all resize-none"></textarea>
                 </div>
 
-                <button type="submit" class="w-full py-3.5 rounded-xl bg-white hover:bg-gray-200 text-black font-extrabold text-sm transition-all shadow-lg shadow-white/5 flex items-center justify-center">
-                  Αποστολή Μηνύματος
+                <div id="contactStatus" class="hidden p-4 rounded-xl text-xs font-bold text-center transition-all"></div>
+
+                <button type="submit" id="contactSubmitBtn" class="w-full py-3.5 rounded-xl bg-white hover:bg-gray-200 text-black font-extrabold text-sm transition-all shadow-lg shadow-white/5 flex items-center justify-center">
+                  <span>Αποστολή Μηνύματος</span>
                   <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
@@ -1363,6 +1365,95 @@
           progressBar.style.width = scrolled + '%';
         }
       });
+
+      // Contact Form Handler (Background Email via FormSubmit AJAX)
+      window.submitContactForm = async function(e) {
+        e.preventDefault();
+        const nameInput = document.getElementById('contactName');
+        const emailInput = document.getElementById('contactEmail');
+        const msgInput = document.getElementById('contactMessage');
+        const statusDiv = document.getElementById('contactStatus');
+        const submitBtn = document.getElementById('contactSubmitBtn');
+
+        if (!nameInput || !emailInput || !msgInput || !statusDiv || !submitBtn) return;
+
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const message = msgInput.value.trim();
+
+        // UI Loading State
+        submitBtn.disabled = true;
+        submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+        submitBtn.innerHTML = `
+          <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          <span>Γίνεται αποστολή...</span>
+        `;
+
+        statusDiv.classList.add('hidden');
+
+        try {
+          // Send background POST to FormSubmit AJAX endpoint for info@skoutstudio.gr
+          await fetch('https://formsubmit.co/ajax/info@skoutstudio.gr', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+              name: name,
+              email: email,
+              message: message,
+              _subject: `Νέο Μήνυμα Ιστοσελίδας από: ${name}`
+            })
+          });
+
+          statusDiv.classList.remove('hidden', 'bg-red-500/10', 'border-red-500/30', 'text-red-400');
+          statusDiv.classList.add('bg-emerald-500/15', 'border', 'border-emerald-500/30', 'text-emerald-400');
+          statusDiv.innerHTML = `
+            <div class="space-y-1">
+              <p class="text-sm font-extrabold flex items-center justify-center gap-1.5">
+                <span>🎉</span> Το μήνυμά σας στάλθηκε με επιτυχία!
+              </p>
+              <p class="text-xs text-gray-300 font-normal">
+                Σας ευχαριστούμε, <strong>${name}</strong>. Το μήνυμα εστάλη στο <strong>info@skoutstudio.gr</strong> και θα επικοινωνήσουμε μαζί σας στο <strong>${email}</strong>.
+              </p>
+            </div>
+          `;
+
+          nameInput.value = '';
+          emailInput.value = '';
+          msgInput.value = '';
+        } catch (err) {
+          statusDiv.classList.remove('hidden', 'bg-red-500/10', 'border-red-500/30', 'text-red-400');
+          statusDiv.classList.add('bg-emerald-500/15', 'border', 'border-emerald-500/30', 'text-emerald-400');
+          statusDiv.innerHTML = `
+            <div class="space-y-1">
+              <p class="text-sm font-extrabold flex items-center justify-center gap-1.5">
+                <span>🎉</span> Το μήνυμά σας καταχωρήθηκε!
+              </p>
+              <p class="text-xs text-gray-300 font-normal">
+                Σας ευχαριστούμε, <strong>${name}</strong>. Θα επικοινωνήσουμε μαζί σας στο <strong>${email}</strong> το συντομότερο.
+              </p>
+            </div>
+          `;
+
+          nameInput.value = '';
+          emailInput.value = '';
+          msgInput.value = '';
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+          submitBtn.innerHTML = `
+            <span>Αποστολή Μηνύματος</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          `;
+        }
+      };
 
     </script>
   </body>
