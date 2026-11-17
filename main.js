@@ -313,15 +313,18 @@
     fields.forEach(f => data[f.name] = f.value.trim());
     Object.assign(data, extra);
     btn.disabled = true; msg.className = 'sform__msg'; msg.textContent = 'Αποστολή…';
+    // όριο χρόνου: αν η υπηρεσία αργεί, δεν μένουμε για πάντα στο «Αποστολή…»
+    const ctrl = new AbortController(), slow = setTimeout(() => msg.textContent = 'Αποστολή… (λίγο ακόμα)', 6000);
+    const stop = setTimeout(() => ctrl.abort(), 20000);
     try {
-      const r = await fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) });
+      const r = await fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data), signal: ctrl.signal });
       const out = await r.json().catch(() => ({}));
       if (!r.ok || String(out.success) !== 'true') throw new Error(out.message || r.status);
       form.reset(); msg.className = 'sform__msg is-ok'; msg.textContent = 'Το μήνυμα στάλθηκε! Θα σου απαντήσουμε σύντομα.';
     } catch (e) {
       msg.className = 'sform__msg is-err';
       msg.innerHTML = `Δεν στάλθηκε. Στείλε μας στο <a href="mailto:${FORM_TO}">${FORM_TO}</a>.`;
-    } finally { btn.disabled = false; }
+    } finally { clearTimeout(slow); clearTimeout(stop); btn.disabled = false; }
   };
   $('#contactForm').addEventListener('submit', e => { e.preventDefault(); sendForm(e.currentTarget); });
   $('#planForm').addEventListener('submit', e => {
