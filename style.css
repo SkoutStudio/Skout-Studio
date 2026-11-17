@@ -1,4 +1,8 @@
 /* ---------- Fonts (self-hosted, με ελληνικά) ---------- */
+@font-face{font-family:"Didot GFS";font-weight:400;font-display:swap;src:url(fonts/gfs-didot-greek-400-normal.woff2) format("woff2");unicode-range:U+0370-03FF,U+1F00-1FFF}
+@font-face{font-family:"Didot GFS";font-weight:400;font-display:swap;src:url(fonts/gfs-didot-latin-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+2000-206F,U+20AC,U+2190-2199}
+@font-face{font-family:"Manrope";font-weight:300;font-display:swap;src:url(fonts/manrope-greek-300-normal.woff2) format("woff2");unicode-range:U+0370-03FF}
+@font-face{font-family:"Manrope";font-weight:300;font-display:swap;src:url(fonts/manrope-latin-300-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+2000-206F,U+20AC,U+2190-2199}
 @font-face{font-family:"Sofia X";font-weight:800;font-display:swap;src:url(fonts/sofia-sans-extra-condensed-greek-800-normal.woff2) format("woff2");unicode-range:U+0370-03FF}
 @font-face{font-family:"Sofia X";font-weight:800;font-display:swap;src:url(fonts/sofia-sans-extra-condensed-latin-800-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+2000-206F,U+20AC,U+2190-2199}
 @font-face{font-family:"Manrope";font-weight:400;font-display:swap;src:url(fonts/manrope-greek-400-normal.woff2) format("woff2");unicode-range:U+0370-03FF}
@@ -15,7 +19,8 @@
   --accent:#dac1a7;   /* σαμπανιζέ της καρδιάς */
   --screen:#1a1815;
   --body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --display:"Sofia X","Arial Narrow",Impact,sans-serif;
+  --display:"Didot GFS",Didot,"Bodoni 72","Bodoni MT",Georgia,serif;
+  --gold:#b39b82;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
@@ -385,3 +390,49 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .sform--row .btn,.sform--row .sform__msg{grid-column:1/-1;justify-self:center}
 .contact__or{margin:18px 0 0;text-align:center;font-size:11.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--shade)}
 @media (max-width:760px){.sform--row{grid-template-columns:1fr}.sform .btn{justify-self:stretch;justify-content:center}}
+
+/* =========================================================
+   Πολυτελές ύφος: Didot για τίτλους, λεπτές αραιές ετικέτες
+   ========================================================= */
+.room__slogan,.win h2,.win h3,.slogan,.plan .plan__big,.files b,.stat__num,.steps span,.pv__tabs b,.plan2__more b,
+.card h3,.plan h3,.pack h3,.plan2__cols h3,.win__lead{font-family:var(--display)!important;font-weight:400!important;text-transform:none!important;letter-spacing:.005em!important}
+.win h2{font-size:clamp(1.9rem,3.2vw,2.5rem)!important;line-height:1.08!important}
+.win h3{font-size:1.5rem!important;line-height:1.12!important}
+.pack h3,.card h3{font-size:1.6rem!important}
+.plan h3{font-size:1.35rem!important;color:var(--shade)}
+.plan .plan__big{font-size:4.2rem!important}
+.stat__num{font-size:clamp(2.8rem,6.4vw,4rem)!important}
+.steps span{font-size:1.6rem!important;line-height:1!important;padding-top:2px}
+.files b{font-size:1.45rem!important}
+.pv__tabs b{font-size:1.2rem!important;line-height:1.12!important}
+.plan2__more b{font-size:1.25rem!important}
+.win__lead{font-size:1.5rem!important}
+
+/* γραφείο */
+.room__slogan{font-size:clamp(1.8rem,3.3vw,2.8rem)!important;line-height:1.05!important}
+.room__slogan em{font-style:normal;color:var(--shade)}
+.brand b{font:400 21px/1.1 var(--display);letter-spacing:.01em}
+.brand i{font-weight:300!important;letter-spacing:.32em!important;font-size:10.5px!important;margin-top:3px}
+
+/* ετικέτες: λεπτές και αραιές */
+.kicker,.win__ctx,.stat__label,.contact__row span,.sform label span,.plan2__meta b,.plan2__first b,.contact__or,.plan__sub,.pv__tabs i,.files i,.card__no{font-weight:300!important;letter-spacing:.24em!important}
+.card__no{letter-spacing:.12em!important}
+
+/* κουμπιά */
+.btn{font-weight:400;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase}
+.opts button{font-weight:400}
+
+/* SKOUT STUDIO στην οθόνη: όπως το logo */
+.os__name{font-family:var(--body)!important;font-weight:300!important;letter-spacing:.36em!important;margin-right:-.36em!important}
+.os__sub{font-family:var(--body)!important;font-weight:300!important;color:var(--accent)}
+.os__trio{font-family:var(--body)!important;font-weight:300!important}
+.os__trio button{font-weight:300}
+.win__ctx{color:#6a645c}
+@media (max-width:760px){
+  .brand i{letter-spacing:.2em!important;font-size:9.5px!important;white-space:nowrap}
+  .stats{gap:8px}
+  .stat{padding:14px 8px}
+  .stat__num{font-size:clamp(1.9rem,9.5vw,2.6rem)!important}
+  .room__slogan{font-size:1.75rem!important}
+}
+.room__slogan em{white-space:nowrap}
