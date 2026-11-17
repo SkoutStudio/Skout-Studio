@@ -1,1808 +1,274 @@
 <!doctype html>
-<html lang="el" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Skout Studio | Σύγχρονες Ιστοσελίδες για Επιχειρήσεις</title>
-    <!-- Fonts and Icons -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <!-- Tailwind v3 CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              studio: {
-                bg: '#050505',
-                card: 'rgba(255, 255, 255, 0.05)',
-                border: 'rgba(255, 255, 255, 0.1)',
-                accent: '#ffffff',
-                violet: '#3b82f6',
-                emerald: '#a855f7',
-              }
-            },
-            fontFamily: {
-              sans: ['"Inter"', 'sans-serif'],
-            }
-          }
-        }
-      }
-    </script>
-    <style>
-      /* Glassmorphism & Custom effects */
-      .glass-card {
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(24px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-      }
-      .glass-nav {
-        background: rgba(0, 0, 0, 0.4);
-        backdrop-filter: blur(24px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      }
-      /* Custom glowing cursor spotlight */
-      #spotlight {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 500px;
-        height: 500px;
-        background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, rgba(168, 85, 247, 0.04) 50%, transparent 100%);
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
-        pointer-events: none;
-        z-index: 1;
-        transition: width 0.3s, height 0.3s;
-      }
-      /* Scroll Reveal Animations */
-      .reveal {
-        opacity: 0;
-        transform: translateY(24px);
-        transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-      }
-      .reveal.active {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      /* Title Gradient matching Immersive UI vertical gradient from-white to-gray-500 */
-      .gradient-title {
-        background: linear-gradient(to bottom, #ffffff 30%, #a3a3a3 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-      .nav-underline {
-        position: relative;
-      }
-      .nav-underline::after {
-        content: '';
-        position: absolute;
-        width: 0;
-        height: 2px;
-        bottom: -4px;
-        left: 0;
-        background: linear-gradient(90deg, #ffffff, #888888);
-        transition: width 0.3s ease;
-      }
-      .nav-underline:hover::after {
-        width: 100%;
-      }
-      summary::-webkit-details-marker {
-        display: none;
-      }
-      summary {
-        list-style: none;
-      }
-    </style>
-  </head>
-  <body class="bg-studio-bg text-gray-300 font-sans relative overflow-x-hidden selection:bg-white/20 selection:text-white">
-    <!-- Scroll Progress Bar -->
-    <div class="fixed top-0 left-0 w-full h-[3px] bg-white/5 z-[9999] pointer-events-none">
-      <div id="scrollProgressBar" class="h-full w-0 bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500 transition-all duration-75"></div>
-    </div>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Skout Studio | Ιστοσελίδες, Social Media & Βίντεο στη Μυτιλήνη</title>
+  <meta name="description" content="Skout Studio by Johnny — digital studio για τοπικές επιχειρήσεις στη Μυτιλήνη, Λέσβο. Ιστοσελίδες, διαχείριση social media και διαφημιστικά βίντεο. We build. We grow. You succeed.">
+  <meta name="theme-color" content="#0b0a09">
+  <meta property="og:title" content="Skout Studio — We build. We grow. You succeed.">
+  <meta property="og:description" content="Digital studio για τοπικές επιχειρήσεις. Ιστοσελίδες, social media και βίντεο από τη Μυτιλήνη.">
+  <meta property="og:url" content="https://skoutstudio.gr">
+  <meta property="og:image" content="https://skoutstudio.gr/og.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="el_GR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://skoutstudio.gr/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0a09'/%3E%3Crect x='19' y='10' width='26' height='44' rx='6' fill='none' stroke='%23e9e5d9' stroke-width='3'/%3E%3Ctext x='32' y='41' font-family='Georgia,serif' font-size='24' text-anchor='middle' fill='%23e9e5d9'%3ES%3C/text%3E%3Ccircle cx='46' cy='13' r='8' fill='%23dac1a7'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-    <!-- Spotlight BG effect -->
-    <div id="spotlight" class="hidden md:block"></div>
+<!-- εικονίδια -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-folder" viewBox="0 0 62 48"><path d="M6 2h17a3 3 0 0 1 3 3v4h27a4 4 0 0 1 4 4v29a4 4 0 0 1-4 4H5a4 4 0 0 1-4-4V5a3 3 0 0 1 3-3z" fill="var(--ink)"/><path d="M6 4h17a1 1 0 0 1 1 1v8H5V5a1 1 0 0 1 1-1z" fill="var(--paper)"/><rect x="3" y="11" width="52" height="33" rx="2" fill="var(--mid)"/><rect x="7" y="17" width="53" height="29" rx="4" fill="var(--ink)"/><rect x="9" y="19" width="49" height="25" rx="2" fill="var(--paper)"/><rect x="9" y="19" width="49" height="2" fill="#fff"/><rect x="9" y="42" width="49" height="2" fill="var(--mid)"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 62 48"><rect x="14" y="1" width="34" height="46" rx="4" fill="var(--ink)"/><rect x="16" y="3" width="30" height="42" rx="2" fill="var(--paper)"/><path d="M22 11h18M22 17h18M22 23h18M22 29h12" stroke="var(--shade)" stroke-width="2.4"/><rect x="22" y="35" width="8" height="5" fill="var(--accent)"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 62 48"><rect x="6" y="3" width="50" height="42" rx="4" fill="var(--ink)"/><rect x="8" y="5" width="46" height="38" rx="2" fill="var(--paper)"/><rect x="14" y="27" width="7" height="11" fill="var(--mid)"/><rect x="25" y="20" width="7" height="18" fill="var(--shade)"/><rect x="36" y="11" width="7" height="27" fill="var(--ink)"/><path d="M12 22l12-8 10 3 12-9" fill="none" stroke="var(--accent)" stroke-width="2.4"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 62 48"><rect x="4" y="7" width="54" height="36" rx="4" fill="var(--ink)"/><rect x="6" y="9" width="50" height="32" rx="2" fill="var(--paper)"/><path d="M7 11l24 17 24-17" fill="none" stroke="var(--ink)" stroke-width="2.4"/><rect x="6" y="39" width="50" height="2" fill="var(--mid)"/></symbol>
+  <symbol id="i-help" viewBox="0 0 62 48"><rect x="10" y="2" width="42" height="44" rx="6" fill="var(--ink)"/><rect x="12" y="4" width="38" height="40" rx="4" fill="var(--paper)"/><path d="M24 17a7 7 0 1 1 10 6c-2 1-3 2-3 5" fill="none" stroke="var(--ink)" stroke-width="3.4" stroke-linecap="round"/><circle cx="31" cy="35" r="2.4" fill="var(--ink)"/></symbol>
+  <symbol id="i-steps" viewBox="0 0 62 48"><rect x="6" y="3" width="50" height="42" rx="4" fill="var(--ink)"/><rect x="8" y="5" width="46" height="38" rx="2" fill="var(--paper)"/><circle cx="18" cy="24" r="5" fill="var(--ink)"/><circle cx="31" cy="24" r="5" fill="var(--shade)"/><circle cx="44" cy="24" r="5" fill="var(--accent)" stroke="var(--ink)" stroke-width="2"/><path d="M23 24h3M36 24h3" stroke="var(--ink)" stroke-width="2"/></symbol>
+  <symbol id="i-plan" viewBox="0 0 62 48"><rect x="12" y="4" width="38" height="43" rx="4" fill="var(--ink)"/><rect x="14" y="6" width="34" height="39" rx="2" fill="var(--paper)"/><rect x="23" y="1" width="16" height="9" rx="3" fill="var(--ink)"/><rect x="26" y="3.500" width="10" height="4" rx="1.500" fill="var(--accent)"/><path d="M19 19l3 3 5-6M19 30l3 3 5-6" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M31 20h12M31 31h12M19 40h24" stroke="var(--shade)" stroke-width="2.4"/></symbol>
+  <symbol id="i-insta" viewBox="0 0 62 48"><rect x="9" y="2" width="44" height="44" rx="11" fill="var(--ink)"/><rect x="12" y="5" width="38" height="38" rx="8" fill="var(--paper)"/><circle cx="31" cy="24" r="9" fill="none" stroke="var(--ink)" stroke-width="3.4"/><circle cx="42" cy="13" r="2.6" fill="var(--ink)"/></symbol>
+  <symbol id="i-mark" viewBox="0 0 40 50"><rect x="5" y="6" width="25" height="41" rx="5.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M14 10.5h7M13 42.5h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><text x="17.5" y="33" text-anchor="middle" font-family="Didot,'Bodoni MT',Georgia,serif" font-size="21" fill="currentColor">S</text><circle cx="32" cy="8" r="5.6" fill="var(--accent)"/></symbol>
+</svg>
 
-    <!-- Ambient Light Overlays (Immersive UI Style) -->
-    <div class="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
-    <div class="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
-    <div class="absolute top-[40%] right-[-15%] w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[130px] pointer-events-none z-0"></div>
-    <div class="absolute bottom-[30%] left-[5%] w-[450px] h-[450px] bg-purple-500/5 rounded-full blur-[130px] pointer-events-none z-0"></div>
+<!-- ============ ΓΡΑΦΕΙΟ ============ -->
+<main class="room" id="room">
+  <header class="room__head">
+    <a class="brand" href="./" aria-label="Skout Studio">
+      <svg class="brand__mark"><use href="#i-mark"/></svg>
+      <span><b>Skout Studio</b><i>Website · Socials · Video</i></span>
+    </a>
+    <button class="btn" type="button" data-enter="contact">Επικοινωνία</button>
+  </header>
 
-    <!-- NAVBAR -->
-    <nav class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300" id="navbar">
-      <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <!-- Logo -->
-        <a href="#home" class="flex items-center space-x-2 group">
-          <div class="w-8 h-8 bg-gradient-to-br from-white to-gray-400 rounded-lg flex items-center justify-center text-black text-lg font-bold shadow-md">S</div>
-          <span class="text-white font-extrabold text-xl tracking-tight">SKOUT <span class="text-gray-400 font-medium">STUDIO</span></span>
-        </a>
 
-        <!-- Desktop Links -->
-        <div class="hidden lg:flex items-center space-x-8 text-sm font-semibold tracking-wide">
-          <a href="#home" class="text-white hover:text-white transition-colors nav-underline">Αρχική</a>
-          <a href="#about" class="text-gray-400 hover:text-white transition-colors nav-underline">Προφίλ</a>
-          <a href="#services" class="text-gray-400 hover:text-white transition-colors nav-underline">Υπηρεσίες</a>
-          <a href="#projects" class="text-gray-400 hover:text-white transition-colors nav-underline">Projects</a>
-          <a href="#gallery" class="text-gray-400 hover:text-white transition-colors nav-underline">Gallery</a>
-          <a href="#why-choose" class="text-gray-400 hover:text-white transition-colors nav-underline">Γιατί Εμάς</a>
-          <a href="#contact" class="text-gray-400 hover:text-white transition-colors nav-underline">Επικοινωνία</a>
-        </div>
+  <div class="desk" id="desk">
+    <svg id="scene" role="img" aria-label="Γραφείο με ρετρό υπολογιστή — πάτα τον υπολογιστή για να μπεις"></svg>
+  </div>
 
-        <!-- Call to Action -->
-        <div class="hidden lg:flex items-center">
-          <a href="#contact" class="px-5 py-2.5 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 transition-all text-white text-xs font-bold uppercase tracking-wider">
-            Ζήτα Προσφορά
-          </a>
-        </div>
+  <div class="room__foot">
+    <h1 class="room__slogan">We build. We grow. <em>You succeed.</em></h1>
+    <p class="room__hint" id="hint">Κάνε scroll για να μπεις στον υπολογιστή <i>↓</i></p>
+  </div>
+</main>
 
-        <!-- Mobile Menu Trigger -->
-        <button class="lg:hidden w-10 h-10 flex flex-col justify-center items-center space-y-1.5 focus:outline-none z-50" id="mobileMenuBtn">
-          <span class="w-6 h-0.5 bg-white transition-all duration-300" id="bar1"></span>
-          <span class="w-6 h-0.5 bg-white transition-all duration-300" id="bar2"></span>
-          <span class="w-6 h-0.5 bg-white transition-all duration-300" id="bar3"></span>
-        </button>
-      </div>
+<!-- ============ ΟΘΟΝΗ ΥΠΟΛΟΓΙΣΤΗ ============ -->
+<div class="os" id="os" hidden>
+  <div class="os__screen" id="screen">
+    <nav class="os__icons" aria-label="Συντομεύσεις">
+      <button type="button" data-win="services"><svg><use href="#i-folder"/></svg><span>Υπηρεσίες</span></button>
+      <button type="button" data-win="packages"><svg><use href="#i-folder"/></svg><span>Πακέτα Social</span></button>
+      <button type="button" data-win="plan" class="is-hot"><svg><use href="#i-plan"/></svg><span>Το πλάνο σου</span></button>
+      <button type="button" data-win="projects"><svg><use href="#i-folder"/></svg><span>Projects</span></button>
+      <button type="button" data-win="results"><svg><use href="#i-chart"/></svg><span>Αποτελέσματα</span></button>
+      <button type="button" data-win="process"><svg><use href="#i-steps"/></svg><span>Διαδικασία</span></button>
+      <button type="button" data-win="faq"><svg><use href="#i-help"/></svg><span>Συχνές ερωτήσεις</span></button>
+      <button type="button" data-win="contact"><svg><use href="#i-mail"/></svg><span>Επικοινωνία</span></button>
+      <a href="https://www.instagram.com/skoutstudio/" target="_blank" rel="noopener"><svg><use href="#i-insta"/></svg><span>Instagram</span></a>
     </nav>
 
-    <!-- MOBILE MENU DRAWER -->
-    <div class="fixed inset-0 bg-studio-bg/98 z-40 hidden flex-col justify-center items-center space-y-8 text-2xl font-bold transition-all duration-300" id="mobileMenu">
-      <a href="#home" class="text-white hover:text-white transition-colors py-2 mobile-nav-link">Αρχική</a>
-      <a href="#about" class="text-gray-400 hover:text-white transition-colors py-2 mobile-nav-link">Προφίλ</a>
-      <a href="#services" class="text-gray-400 hover:text-white transition-colors py-2 mobile-nav-link">Υπηρεσίες</a>
-      <a href="#projects" class="text-gray-400 hover:text-white transition-colors py-2 mobile-nav-link">Projects</a>
-      <a href="#gallery" class="text-gray-400 hover:text-white transition-colors py-2 mobile-nav-link">Gallery</a>
-      <a href="#why-choose" class="text-gray-400 hover:text-white transition-colors py-2 mobile-nav-link">Γιατί Εμάς</a>
-      <a href="#contact" class="text-gray-400 hover:text-white transition-colors py-2 mobile-nav-link">Επικοινωνία</a>
-      <a href="#contact" class="px-8 h-14 rounded-full border border-white/10 bg-white/5 text-white text-lg font-bold flex items-center justify-center hover:bg-white/10 transition-all mobile-nav-link">
-        Ζήτα Προσφορά
-      </a>
+    <div class="os__info">
+      <svg class="os__logo" viewBox="0 0 120 150" role="img" aria-label="Skout Studio">
+        <rect x="22" y="14" width="68" height="122" rx="13" fill="none" stroke="currentColor" stroke-width="4"/>
+        <path d="M46 26h20M43 124h26" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/>
+        <text x="56" y="96" text-anchor="middle" font-family="Didot,'Bodoni MT','Playfair Display',Georgia,serif" font-size="62" fill="currentColor">S</text>
+        <circle cx="93" cy="19" r="19" fill="#0d0c0b"/>
+        <path d="M93 4a15 15 0 1 1-9.5 26.600l-7.500 3 2.800-7.600A15 15 0 0 1 93 4z" fill="var(--accent)"/>
+        <path d="M93 27c-6-4-8.500-6.800-8.500-10a4.300 4.300 0 0 1 8.500-1.300 4.300 4.300 0 0 1 8.500 1.300c0 3.200-2.500 6-8.500 10z" fill="#0d0c0b"/>
+      </svg>
+      <p class="os__name">Skout</p>
+      <p class="os__sub">Studio</p>
+      <div class="os__term">
+        <p>Skout Studio by Johnny</p>
+        <p>Digital studio για τοπικές επιχειρήσεις</p>
+        <p>Μυτιλήνη, Λέσβος · skoutstudio.gr</p>
+        <p class="os__slogan">We build. We grow. You succeed.<i class="blink">█</i></p>
+      </div>
+      <nav class="os__trio" aria-label="Υπηρεσίες">
+        <button type="button" data-win="services">Website</button><span aria-hidden="true">·</span><button type="button" data-win="packages">Socials</button><span aria-hidden="true">·</span><button type="button" data-win="services">Video</button>
+      </nav>
+    </div>
+    <span class="os__ver" aria-hidden="true">SKOUT OS v1.0</span>
+    <div class="os__wins" id="wins">
+
+      <section class="win" id="win-services" data-title="Υπηρεσίες" data-w="720" hidden>
+        <div class="cards">
+          <article class="card">
+            <span class="card__no">01</span>
+            <h3>Ιστοσελίδες</h3>
+            <p>Σύγχρονες, γρήγορες ιστοσελίδες που φέρνουν πελάτες.</p>
+            <ul class="tags"><li>Custom σχεδιασμός</li><li>Φόρτωση κάτω από 1,5 δευτ.</li><li>Mobile first</li><li>SEO &amp; Google</li><li>Κρατήσεις / παραγγελίες</li><li>Συντήρηση</li></ul>
+          </article>
+          <article class="card">
+            <span class="card__no">02</span>
+            <h3>Social Media</h3>
+            <p>Instagram, Facebook &amp; TikTok με σχέδιο και συνέπεια.</p>
+            <ul class="tags"><li>Δημιουργία περιεχομένου</li><li>Πρόγραμμα δημοσιεύσεων</li><li>Stories</li><li>Meta &amp; TikTok ads</li><li>Google Business Profile</li><li>Μηνιαία αναφορά</li></ul>
+          </article>
+          <article class="card">
+            <span class="card__no">03</span>
+            <h3>Βίντεο</h3>
+            <p>Διαφημιστικά βίντεο &amp; reels που τραβούν την προσοχή.</p>
+            <ul class="tags"><li>Promo videos</li><li>Reels</li><li>Μοντάζ</li><li>Ήχος &amp; εφέ</li><li>Έτοιμα για κάθε πλατφόρμα</li></ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="win" id="win-packages" data-title="Πακέτα Social Media" data-w="700" hidden>
+        <div class="cards cards--2">
+          <article class="card pack"><h3>Παρουσία</h3><p>Σταθερή παρουσία στα social, χωρίς να ασχολείσαι εσύ.</p>
+            <ul class="ticks"><li>Posts &amp; stories</li><li>Πρόγραμμα δημοσιεύσεων</li></ul></article>
+          <article class="card pack"><h3>Ανάπτυξη</h3><p>Περιεχόμενο που φέρνει νέο κόσμο στη σελίδα σου.</p>
+            <ul class="ticks"><li>Posts, stories &amp; reels</li><li>Δημιουργία περιεχομένου</li><li>Μηνιαία αναφορά</li></ul></article>
+          <article class="card pack pack--pro"><h3>Πλήρες</h3><p>Τα αναλαμβάνουμε όλα, από το περιεχόμενο μέχρι τις διαφημίσεις.</p>
+            <ul class="ticks"><li>Περιεχόμενο &amp; βίντεο</li><li>Meta &amp; TikTok ads</li><li>Google Business Profile</li><li>Μηνιαία αναφορά</li></ul></article>
+          <article class="card pack pack--custom"><h3>Στα μέτρα σου</h3><p>Διαλέγεις μόνο ό,τι χρειάζεσαι και το στήνουμε μαζί.</p>
+            <p class="row"><button class="btn btn--dark" type="button" data-win="plan">Φτιάξε το πλάνο σου →</button></p></article>
+        </div>
+        <p class="note"><b>Κάθε πακέτο προσαρμόζεται</b> ανάλογα με τις ανάγκες της επιχείρησής σου.<br>Οι δημοσιεύσεις ανεβαίνουν σε Instagram, Facebook, TikTok, IG Story &amp; FB Story.</p>
+        <p class="row row--center"><button class="btn" type="button" data-win="contact">Ζήτα προσφορά</button></p>
+      </section>
+
+      <section class="win" id="win-plan" data-title="Το πλάνο σου" data-w="680" hidden>
+        <div class="plan2" id="plan">
+          <div class="plan2__step">
+            <p class="kicker">Βήμα 1 από 2</p>
+            <h2>Τι επιχείρηση έχεις;</h2>
+            <div class="opts" id="planBiz">
+              <button type="button" data-v="food">Εστίαση / Καφέ</button>
+              <button type="button" data-v="beauty">Κομμωτήριο / Beauty</button>
+              <button type="button" data-v="stay">Διαμονή / Τουρισμός</button>
+              <button type="button" data-v="shop">Κατάστημα</button>
+              <button type="button" data-v="pro">Επαγγελματίας / Υπηρεσίες</button>
+              <button type="button" data-v="other">Κάτι άλλο</button>
+            </div>
+          </div>
+          <div class="plan2__step" hidden>
+            <p class="kicker">Βήμα 2 από 2</p>
+            <h2>Τι θέλεις πιο πολύ;</h2>
+            <div class="opts" id="planGoal">
+              <button type="button" data-v="orders">Περισσότερες κρατήσεις / παραγγελίες</button>
+              <button type="button" data-v="google">Να με βρίσκουν στο Google</button>
+              <button type="button" data-v="social">Να μεγαλώσω στα social</button>
+              <button type="button" data-v="image">Πιο επαγγελματική εικόνα</button>
+              <button type="button" data-v="all" class="opts__all">Όλα τα παραπάνω</button>
+            </div>
+            <p class="row"><button class="btn" type="button" id="planBack1">‹ Πίσω</button></p>
+          </div>
+          <div class="plan2__step" hidden>
+            <p class="kicker" id="planFor"></p>
+            <h2>Το πλάνο σου</h2>
+            <div class="plan2__out" id="planOut"></div>
+            <p class="note">Ενδεικτικό πλάνο. Το προσαρμόζουμε μαζί στις ανάγκες σου.</p>
+            <label class="plan2__more" for="planMore">
+              <b>Πες μας περισσότερα για την επιχείρησή σου</b>
+              <textarea id="planMore" rows="4" maxlength="1200" placeholder="π.χ. Έχουμε καφέ στη Μυτιλήνη και θέλουμε online παραγγελίες για το καλοκαίρι…"></textarea>
+            </label>
+            <form class="sform sform--row" id="planForm" data-subject="Νέο πλάνο από το skoutstudio.gr" novalidate>
+              <label><span>Όνομα</span><input name="Όνομα" autocomplete="name" required maxlength="80"></label>
+              <label><span>Email ή τηλέφωνο</span><input name="Επικοινωνία" autocomplete="email" required maxlength="120"></label>
+              <input class="sform__hp" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <button class="btn btn--dark" type="submit">Στείλε μας αυτό το πλάνο →</button>
+              <p class="sform__msg" role="status" aria-live="polite"></p>
+            </form>
+            <p class="row row--center">
+              <a class="btn" href="https://www.instagram.com/skoutstudio/" target="_blank" rel="noopener">Μήνυμα στο Instagram</a>
+              <button class="btn" type="button" id="planReset">Από την αρχή</button>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="win" id="win-projects" data-title="Projects" data-w="920" hidden>
+        <div class="pv">
+          <div class="pv__tabs" id="pvTabs">
+            <button type="button" data-url="https://trakelleshair.gr/" data-img="trakelles"><b>Trakelles Hair</b><i>Κομμωτήριο</i></button>
+            <button type="button" data-url="https://kaitlynrooms.gr/" data-img="kaitlyn"><b>Kaitlyn Rooms</b><i>Ενοικιαζόμενα δωμάτια</i></button>
+            <button type="button" data-url="https://polyteknoslesvos.gr/" data-img="polyteknos"><b>Ο Γύρος του Πολύτεκνου &amp; Alpha Pizza</b><i>Γύρος &amp; πίτσα · online παραγγελίες</i></button>
+          </div>
+          <div class="pv__view">
+            <div class="pv__chrome">
+              <span class="pv__dots"><i></i><i></i><i></i></span>
+              <span class="pv__url" id="pvUrl"></span>
+              <span class="pv__dev" role="group" aria-label="Συσκευή">
+                <button type="button" data-dev="d" aria-pressed="true" title="Υπολογιστής"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4"/></svg><span>Υπολογιστής</span></button>
+                <button type="button" data-dev="m" aria-pressed="false" title="Κινητό"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18.5h2"/></svg><span>Κινητό</span></button>
+              </span>
+              <a class="btn btn--dark" id="pvOpen" href="#" target="_blank" rel="noopener">Άνοιγμα ↗</a>
+            </div>
+            <div class="pv__stage" id="pvStage" data-dev="d">
+              <div class="pv__device">
+                <div class="pv__screen" id="pvScreen" tabindex="0" aria-label="Προεπισκόπηση ιστοσελίδας — κάνε scroll">
+                  <img id="pvImg" alt="" decoding="async">
+                </div>
+                <div class="pv__bar" aria-hidden="true"><i id="pvProg"></i></div>
+              </div>
+              <p class="pv__hint" id="pvHint">Κάνε scroll μέσα στην οθόνη ↕</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="win" id="win-results" data-title="Αποτελέσματα" data-w="560" hidden>
+        <h3 class="win__lead">Αποτελέσματα από την τελευταία δουλειά</h3>
+        <p class="win__ctx">Κομμωτήριο · σε 1 μήνα</p>
+        <div class="stats">
+          <div class="stat"><p class="stat__num">153.917</p><p class="stat__label">προβολές</p><p class="stat__delta">▲ +72,6%</p></div>
+          <div class="stat"><p class="stat__num">11.753</p><p class="stat__label">θεατές</p><p class="stat__delta">▲ +102,7%</p></div>
+        </div>
+      </section>
+
+      <section class="win" id="win-process" data-title="Διαδικασία" data-w="520" hidden>
+        <ol class="steps">
+          <li><span>1</span><h3>Γνωριμία &amp; ανάγκες</h3></li>
+          <li><span>2</span><h3>Σχεδιασμός &amp; υλοποίηση</h3></li>
+          <li><span>3</span><h3>Παράδοση &amp; υποστήριξη</h3></li>
+        </ol>
+      </section>
+
+      <section class="win" id="win-faq" data-title="Συχνές ερωτήσεις" data-w="560" hidden>
+        <div class="faq">
+          <details open><summary>Πόσο χρόνο χρειάζεται μια ιστοσελίδα;</summary><p>Από 5 έως 14 ημέρες.</p></details>
+          <details><summary>Τι γίνεται με το domain και το hosting;</summary><p>Τα αναλαμβάνουμε εμείς.</p></details>
+          <details><summary>Θα φαίνεται σωστά στο κινητό;</summary><p>Ναι. Όλα σχεδιάζονται mobile first.</p></details>
+          <details><summary>Ποιος φτιάχνει το περιεχόμενο για τα social;</summary><p>Το φτιάχνουμε εμείς, με υλικό της επιχείρησης ή με δικά μας γυρίσματα.</p></details>
+          <details><summary>Μπορώ να αλλάξω πακέτο;</summary><p>Ναι, κάθε μήνα.</p></details>
+        </div>
+      </section>
+
+      <section class="win" id="win-contact" data-title="Ας μιλήσουμε!" data-w="520" hidden>
+        <div class="contact">
+          <h2>Ας χτίσουμε κάτι σπουδαίο μαζί.</h2>
+          <form class="sform" id="contactForm" data-subject="Νέο μήνυμα από το skoutstudio.gr" novalidate>
+            <label><span>Όνομα</span><input name="Όνομα" autocomplete="name" required maxlength="80"></label>
+            <label><span>Email ή τηλέφωνο</span><input name="Επικοινωνία" autocomplete="email" required maxlength="120"></label>
+            <label><span>Μήνυμα</span><textarea name="Μήνυμα" rows="4" required maxlength="1500" placeholder="Πες μας τι χρειάζεσαι…"></textarea></label>
+            <input class="sform__hp" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <button class="btn btn--dark" type="submit">Αποστολή μηνύματος →</button>
+            <p class="sform__msg" role="status" aria-live="polite"></p>
+            <p class="sform__note">Τα στοιχεία σου χρησιμοποιούνται μόνο για να σου απαντήσουμε.</p>
+          </form>
+          <p class="contact__or">ή απευθείας</p>
+          <a class="contact__row" href="mailto:info@skoutstudio.gr"><span>Email</span><b>info@skoutstudio.gr</b></a>
+          <a class="contact__row" href="https://www.instagram.com/skoutstudio/" target="_blank" rel="noopener"><span>Instagram</span><b>@skoutstudio</b></a>
+          <p class="contact__foot">Skout Studio by Johnny · Μυτιλήνη, Λέσβος · © 2026</p>
+        </div>
+      </section>
     </div>
 
-    <!-- HERO SECTION -->
-    <section id="home" class="min-h-screen pt-36 pb-20 px-6 flex items-center justify-center relative overflow-hidden">
-      <!-- Hero Background Image with Gradient Overlay -->
-      <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <img 
-          src="/src/assets/images/hero_studio_bg_1785791764514.jpg" 
-          alt="Skout Studio Digital Agency Background" 
-          referrerPolicy="no-referrer" 
-          class="w-full h-full object-cover object-center opacity-30 scale-105 transition-transform duration-1000"
-        />
-        <div class="absolute inset-0 bg-gradient-to-b from-studio-bg/90 via-studio-bg/75 to-studio-bg"></div>
-      </div>
-
-      <div class="max-w-5xl mx-auto w-full text-center space-y-10 z-10 relative">
-        <!-- Top Badge -->
-        <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full text-xs font-bold text-studio-accent uppercase tracking-widest shadow-inner">
-          <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
-          Skout Studio — Digital Agency
-        </div>
-
-        <!-- Main Title -->
-        <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.15] text-white">
-          Φτιάχνουμε την <span class="gradient-title">Ιστοσελίδα</span> σου &amp; Διαχειριζόμαστε τα <span class="gradient-title">Social Media</span> σου.
-        </h1>
-
-        <!-- Clear Subtitle -->
-        <p class="text-gray-300 text-lg sm:text-2xl max-w-3xl mx-auto font-normal leading-relaxed">
-          Βοηθάμε καταστήματα, εστιατόρια, επαγγελματίες &amp; τοπικές επιχειρήσεις να αποκτήσουν μια μοντέρνα εικόνα στο διαδίκτυο και να προσελκύσουν νέους πελάτες καθημερινά.
-        </p>
-
-        <!-- Two Core Pillars Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 text-left">
-          <!-- Pillar 1: Web Development -->
-          <div class="glass-card p-6 sm:p-8 rounded-3xl border border-white/10 hover:border-blue-500/40 transition-all duration-300 group hover:-translate-y-1">
-            <div class="flex items-center space-x-4 mb-4">
-              <div class="w-12 h-12 rounded-2xl bg-blue-500/10 text-blue-400 flex items-center justify-center group-hover:scale-110 transition-transform">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-                </svg>
-              </div>
-              <div>
-                <span class="text-xs font-bold text-blue-400 uppercase tracking-wider">Υπηρεσία 01</span>
-                <h3 class="text-xl font-extrabold text-white">Κατασκευή Ιστοσελίδων</h3>
-              </div>
-            </div>
-            <p class="text-gray-300 text-sm leading-relaxed">
-              Μοντέρνες, πανέμορφες και γρήγορες ιστοσελίδες που δουλεύουν άψογα σε όλα τα κινητά. Ιδανικές για προβολή της επιχείρησής σου, του καταλόγου σου ή για online ραντεβού.
-            </p>
-          </div>
-
-          <!-- Pillar 2: Social Media -->
-          <div class="glass-card p-6 sm:p-8 rounded-3xl border border-white/10 hover:border-purple-500/40 transition-all duration-300 group hover:-translate-y-1">
-            <div class="flex items-center space-x-4 mb-4">
-              <div class="w-12 h-12 rounded-2xl bg-purple-500/10 text-purple-400 flex items-center justify-center group-hover:scale-110 transition-transform">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 10.742l5.474-2.737m0 0a3.75 3.75 0 11.234 4.314l-5.474 2.737m0 0a3.75 3.75 0 11-.234-4.314" />
-                </svg>
-              </div>
-              <div>
-                <span class="text-xs font-bold text-purple-400 uppercase tracking-wider">Υπηρεσία 02</span>
-                <h3 class="text-xl font-extrabold text-white">Διαχείριση Social Media &amp; TikTok</h3>
-              </div>
-            </div>
-            <p class="text-gray-300 text-sm leading-relaxed">
-              Αναλαμβάνουμε το Instagram, το Facebook, το TikTok και το Google Maps της επιχείρησής σου με συχνές δημοσιεύσεις, Reels/TikToks και στοχευμένες διαφημίσεις.
-            </p>
-          </div>
-        </div>
-
-        <!-- Trust Features Bar -->
-        <div class="flex flex-wrap justify-center items-center gap-6 pt-2 text-xs font-semibold text-gray-300">
-          <div class="flex items-center space-x-2 bg-white/5 border border-white/5 px-4 py-2 rounded-xl">
-            <span class="text-emerald-400 text-base">⚡</span>
-            <span>Γρήγορη Παράδοση</span>
-          </div>
-          <div class="flex items-center space-x-2 bg-white/5 border border-white/5 px-4 py-2 rounded-xl">
-            <span class="text-blue-400 text-base">📱</span>
-            <span>100% Προσαρμοσμένο σε Κινητά</span>
-          </div>
-          <div class="flex items-center space-x-2 bg-white/5 border border-white/5 px-4 py-2 rounded-xl">
-            <span class="text-purple-400 text-base">📈</span>
-            <span>Περισσότεροι Πελάτες</span>
-          </div>
-          <div class="flex items-center space-x-2 bg-white/5 border border-white/5 px-4 py-2 rounded-xl">
-            <span class="text-amber-400 text-base">🤝</span>
-            <span>Συνεχής Υποστήριξη</span>
-          </div>
-        </div>
-
-        <!-- CTA Buttons -->
-        <div class="flex flex-col sm:flex-row justify-center items-center gap-4 pt-4">
-          <a href="#projects" class="w-full sm:w-auto px-10 h-14 rounded-2xl bg-white hover:bg-gray-200 text-black font-extrabold text-base flex items-center justify-center transition-all shadow-xl shadow-white/10 group">
-            Δες τα Projects μας
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </a>
-          <a href="#contact" class="w-full sm:w-auto px-10 h-14 rounded-2xl border border-white/15 bg-white/5 hover:bg-white/10 text-white font-bold text-base flex items-center justify-center transition-all">
-            Επικοινώνησε μαζί μας
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT SECTION -->
-    <section id="about" class="py-24 px-6 relative reveal">
-      <div class="max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div class="lg:col-span-4">
-            <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Ποιοι Είμαστε</p>
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Σχετικά με το Skout Studio</h2>
-            <div class="w-12 h-0.5 bg-gradient-to-r from-white to-white/10 mt-4 rounded-full"></div>
-          </div>
-          <div class="lg:col-span-8">
-            <p class="text-gray-300 text-xl sm:text-2xl font-light leading-relaxed mb-6">
-              “Στο <strong class="text-white font-medium">Skout Studio</strong> σχεδιάζουμε και αναπτύσσουμε μοντέρνες ιστοσελίδες για επιχειρήσεις που θέλουν επαγγελματική εικόνα, καθαρή παρουσίαση και σωστή εμπειρία χρήστη σε κινητό και υπολογιστή.”
-            </p>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-6">
-              <div class="p-4 rounded-xl border border-white/5 bg-white/5 backdrop-blur-md">
-                <span class="text-white font-extrabold text-2xl tracking-tight block">100%</span>
-                <span class="text-gray-400 text-xs">Custom Σχεδίαση</span>
-              </div>
-              <div class="p-4 rounded-xl border border-white/5 bg-white/5 backdrop-blur-md">
-                <span class="text-white font-extrabold text-2xl tracking-tight block">&lt;1.5s</span>
-                <span class="text-gray-400 text-xs">Χρόνος Φόρτωσης</span>
-              </div>
-              <div class="p-4 rounded-xl border border-white/5 bg-white/5 backdrop-blur-md">
-                <span class="text-white font-extrabold text-2xl tracking-tight block">Mobile</span>
-                <span class="text-gray-400 text-xs">First Φιλοσοφία</span>
-              </div>
-              <div class="p-4 rounded-xl border border-white/5 bg-white/5 backdrop-blur-md">
-                <span class="text-white font-extrabold text-2xl tracking-tight block">SEO</span>
-                <span class="text-gray-400 text-xs">Βελτιστοποιημένο</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SERVICES SECTION -->
-    <section id="services" class="py-24 px-6 relative reveal bg-studio-card/30">
-      <div class="max-w-7xl mx-auto space-y-20">
-        <div class="text-center max-w-3xl mx-auto">
-          <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Υπηρεσίες</p>
-          <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">Ολοκληρωμένες Λύσεις για την Επιχείρησή σου</h2>
-          <p class="text-gray-400 mt-4 leading-relaxed text-base">
-            Χωρίζουμε τις υπηρεσίες μας σε <strong class="text-white">δύο βασικούς πυλώνες</strong> για να καλύψουμε κάθε σου ανάγκη με υπευθυνότητα, αισθητική και αποτελεσματικότητα.
-          </p>
-        </div>
-
-        <!-- CATEGORY 1: WEB DEVELOPMENT -->
-        <div class="space-y-8">
-          <div class="flex items-center space-x-4 border-b border-white/10 pb-4">
-            <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-              </svg>
-            </div>
-            <div>
-              <span class="text-xs font-bold uppercase tracking-wider text-blue-400">Κατηγορία 01</span>
-              <h3 class="text-2xl font-extrabold text-white">Κατασκευή &amp; Σχεδιασμός Ιστοσελίδων</h3>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Service 1 -->
-            <div class="glass-card p-8 rounded-2xl hover:-translate-y-1 transition-all duration-300 group hover:border-blue-500/30">
-              <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                </svg>
-              </div>
-              <h4 class="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">Κατασκευή &amp; Σχεδιασμός Ιστοσελίδων</h4>
-              <p class="text-gray-400 text-sm leading-relaxed">
-                Σύγχρονος σχεδιασμός προσαρμοσμένος απόλυτα στην επιχείρησή σου, με καθαρή εμφάνιση, αστραπιαία φόρτωση και ευκολία για όλους.
-              </p>
-            </div>
-
-            <!-- Service 2 -->
-            <div class="glass-card p-8 rounded-2xl hover:-translate-y-1 transition-all duration-300 group hover:border-blue-500/30">
-              <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                </svg>
-              </div>
-              <h4 class="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">Προσαρμογή σε όλα τα Κινητά</h4>
-              <p class="text-gray-400 text-sm leading-relaxed">
-                Η ιστοσελίδα σου θα φαίνεται πεντακάθαρη, γρήγορη και εντυπωσιακή σε κάθε κινητό, ταμπλέτα και υπολογιστή.
-              </p>
-            </div>
-
-            <!-- Service 3 -->
-            <div class="glass-card p-8 rounded-2xl hover:-translate-y-1 transition-all duration-300 group hover:border-blue-500/30">
-              <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <h4 class="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">Αναβάθμιση &amp; Φροντίδα Ιστοσελίδας</h4>
-              <p class="text-gray-400 text-sm leading-relaxed">
-                Ανανεώνουμε την παλιά σου ιστοσελίδα για να φαίνεται σύγχρονη, γρήγορη και εύκολη για όλους τους πελάτες σου.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- CATEGORY 2: SOCIAL MEDIA & DIGITAL MARKETING -->
-        <div class="space-y-8 pt-6">
-          <div class="flex items-center space-x-4 border-b border-white/10 pb-4">
-            <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 10.742l5.474-2.737m0 0a3.75 3.75 0 11.234 4.314l-5.474 2.737m0 0a3.75 3.75 0 11-.234-4.314" />
-              </svg>
-            </div>
-            <div>
-              <span class="text-xs font-bold uppercase tracking-wider text-purple-400">Κατηγορία 02</span>
-              <h3 class="text-2xl font-extrabold text-white">Διαχείριση Social Media &amp; Local SEO</h3>
-            </div>
-          </div>
-
-          <!-- Featured Social Media Highlight Box -->
-          <div class="p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-purple-900/20 via-black/60 to-blue-900/20 border border-purple-500/20 relative overflow-hidden">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
-              <div class="lg:col-span-7 space-y-4">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-purple-500/10 text-purple-300 border border-purple-500/30 rounded-full text-xs font-bold uppercase tracking-wider">
-                  🔥 Ολοκληρωμένη Διαχείριση
-                </span>
-                <h4 class="text-2xl sm:text-3xl font-extrabold text-white">Ανάπτυξε το Brand σου στα Social Media &amp; TikTok</h4>
-                <p class="text-gray-300 text-sm leading-relaxed">
-                  Δεν χρειάζεται να ανησυχείς για το τι θα δημοσιεύσεις. Αναλαμβάνουμε εξ ολοκλήρου τη δημιουργία περιεχομένου, τη φωτογραφία, τα βίντεο (Reels &amp; TikToks), τις στοχευμένες διαφημίσεις (Meta &amp; TikTok) και τη διαχείριση του Google Business Profile σου.
-                </p>
-                
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                  <div class="flex items-center space-x-2.5 text-xs text-gray-200">
-                    <span class="w-2 h-2 rounded-full bg-purple-400"></span>
-                    <span>Posts, Stories, Reels &amp; TikToks</span>
-                  </div>
-                  <div class="flex items-center space-x-2.5 text-xs text-gray-200">
-                    <span class="w-2 h-2 rounded-full bg-purple-400"></span>
-                    <span>Στοχευμένες Διαφημίσεις Meta &amp; TikTok</span>
-                  </div>
-                  <div class="flex items-center space-x-2.5 text-xs text-gray-200">
-                    <span class="w-2 h-2 rounded-full bg-purple-400"></span>
-                    <span>Google Maps &amp; Αξιολογήσεις</span>
-                  </div>
-                  <div class="flex items-center space-x-2.5 text-xs text-gray-200">
-                    <span class="w-2 h-2 rounded-full bg-purple-400"></span>
-                    <span>Μηνιαία Αναφορά Αποτελεσμάτων</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="lg:col-span-5 flex flex-col items-center justify-center space-y-4 p-6 rounded-2xl bg-black/40 border border-white/10 text-center">
-                <div class="flex -space-x-2">
-                  <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 flex items-center justify-center text-white font-bold text-xs border-2 border-black" title="Instagram">IG</div>
-                  <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-xs border-2 border-black" title="Facebook">FB</div>
-                  <div class="w-10 h-10 rounded-full bg-black border border-white/30 flex items-center justify-center text-white font-bold text-xs border-2 border-black" title="TikTok">TT</div>
-                  <div class="w-10 h-10 rounded-full bg-red-500 flex items-center justify-center text-white font-bold text-xs border-2 border-black" title="Google Maps">G</div>
-                </div>
-                <div>
-                  <p class="text-white font-extrabold text-base">Ενίσχυσε την Τοπική σου Φήμη</p>
-                  <p class="text-gray-400 text-xs mt-1">Instagram, Facebook, TikTok &amp; Google Maps.</p>
-                </div>
-                <a href="#contact" class="w-full py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-purple-500/20">
-                  Ζήτα Πακέτο Social Media
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- RECENT PROJECTS SECTION -->
-    <section id="projects" class="py-24 px-6 relative reveal">
-      <div class="max-w-7xl mx-auto">
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16">
-          <div>
-            <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Portfolio</p>
-            <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">Recent Projects</h2>
-            <p class="text-gray-400 text-sm sm:text-base mt-2">Εξερευνήστε τις ζωντανές ιστοσελίδες που έχουμε κατασκευάσει.</p>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 gap-12 sm:gap-16" id="projectsGrid">
-          <!-- Project 1: Trakelles Hair -->
-          <div class="glass-card rounded-3xl overflow-hidden group hover:border-white/40 transition-all duration-300 flex flex-col justify-between hover:shadow-2xl hover:shadow-white/10 border border-white/10">
-            <div class="p-8 sm:p-10 bg-gradient-to-b from-black/50 to-transparent">
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-xs font-bold uppercase tracking-widest text-studio-accent px-3 py-1 rounded-full bg-studio-accent/10 border border-studio-accent/20">Κομμωτήριο &amp; Barber</span>
-                <span class="flex items-center space-x-2 text-xs text-gray-400 font-mono">
-                  <span class="w-2.5 h-2.5 rounded-full bg-studio-accent shadow-lg shadow-studio-accent/50 animate-ping"></span>
-                  <span>Live Site</span>
-                </span>
-              </div>
-              <h3 class="text-3xl sm:text-4xl font-extrabold text-white mb-3">Trakelles Hair</h3>
-              <p class="text-gray-300 text-base leading-relaxed max-w-4xl">
-                Premium, κομψή ιστοσελίδα κομμωτηρίου με παρουσίαση υπηρεσιών, φωτογραφικό υλικό (gallery), πληροφορίες επικοινωνίας και luxury design.
-              </p>
-            </div>
-
-            <!-- Website Live Preview Frame (Trakelles) -->
-            <div class="px-6 sm:px-10 pb-8">
-              <div class="border border-white/15 rounded-2xl bg-black/80 overflow-hidden shadow-2xl">
-                <!-- Browser Bar -->
-                <div class="px-5 py-3 bg-white/10 border-b border-white/10 flex items-center justify-between text-xs text-gray-300">
-                  <div class="flex items-center space-x-1.5">
-                    <span class="w-3 h-3 rounded-full bg-red-500/70"></span>
-                    <span class="w-3 h-3 rounded-full bg-yellow-500/70"></span>
-                    <span class="w-3 h-3 rounded-full bg-green-500/70"></span>
-                  </div>
-                  <span class="font-mono text-gray-400 font-semibold text-xs sm:text-sm">trakelleshair.gr</span>
-                  <button onclick="openFullscreenPreview('https://trakelleshair.gr/', 'Trakelles Hair', 'trakelleshair.gr')" class="px-3 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-gray-200 hover:text-white transition-all text-xs flex items-center gap-1.5 font-semibold" title="Προβολή σε Πλήρη Οθόνη">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-5h-4m4 0v4m0-4l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-                    </svg>
-                    <span>Πλήρης Οθόνη</span>
-                  </button>
-                </div>
-                <!-- Browser Content with Real Site Iframe -->
-                <div class="h-[480px] sm:h-[580px] w-full bg-zinc-950 overflow-hidden relative">
-                  <iframe src="https://trakelleshair.gr/" class="w-full h-full border-0" loading="lazy"></iframe>
-                </div>
-              </div>
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="px-8 sm:px-10 py-5 bg-black/60 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
-              <div class="flex flex-wrap items-center gap-3">
-                <a href="https://trakelleshair.gr/" target="_blank" class="px-6 py-3 rounded-full bg-white text-black text-xs sm:text-sm font-extrabold flex items-center hover:bg-gray-200 transition-all shadow-lg hover:scale-105">
-                  Επίσκεψη στο Site
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </a>
-                <button onclick="openFullscreenPreview('https://trakelleshair.gr/', 'Trakelles Hair', 'trakelleshair.gr')" class="px-5 py-3 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold flex items-center border border-white/15 transition-all hover:scale-105 shadow-md">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2 text-studio-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-5h-4m4 0v4m0-4l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-                  </svg>
-                  Πλήρης Οθόνη
-                </button>
-              </div>
-              <span class="text-xs sm:text-sm font-semibold text-gray-400 flex items-center">
-                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 mr-2 animate-pulse"></span>
-                Διαδραστική Προεπισκόπηση
-              </span>
-            </div>
-          </div>
-
-          <!-- Project 2: Ο Γύρος του Πολύτεκνου -->
-          <div class="glass-card rounded-3xl overflow-hidden group hover:border-white/40 transition-all duration-300 flex flex-col justify-between hover:shadow-2xl hover:shadow-white/10 border border-white/10">
-            <div class="p-8 sm:p-10 bg-gradient-to-b from-black/50 to-transparent">
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-xs font-bold uppercase tracking-widest text-emerald-400 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">Εστίαση &amp; Food Ordering</span>
-                <span class="flex items-center space-x-2 text-xs text-gray-400 font-mono">
-                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-lg shadow-emerald-500/50 animate-ping"></span>
-                  <span>Live Site</span>
-                </span>
-              </div>
-              <h3 class="text-3xl sm:text-4xl font-extrabold text-white mb-3">«Ο Γύρος του Πολύτεκνου» &amp; «Alpha Pizza»</h3>
-              <p class="text-gray-300 text-base leading-relaxed max-w-4xl">
-                Ένα καινοτόμο ψηφιακό πάντρεμα δύο κορυφαίων ιστοσελίδων εστίασης της Λέσβου σε μία κοινή πλατφόρμα. Επιτρέπει στους πελάτες να συνδυάζουν τις παραγγελίες τους από το γυράδικο και την πιτσαρία σε ένα κοινό καλάθι.
-              </p>
-            </div>
-
-            <!-- Website Live Preview Frame (Ο Γύρος του Πολύτεκνου) -->
-            <div class="px-6 sm:px-10 pb-8">
-              <div class="border border-white/15 rounded-2xl bg-black/80 overflow-hidden shadow-2xl">
-                <!-- Browser Bar -->
-                <div class="px-5 py-3 bg-white/10 border-b border-white/10 flex items-center justify-between text-xs text-gray-300">
-                  <div class="flex items-center space-x-1.5">
-                    <span class="w-3 h-3 rounded-full bg-red-500/70"></span>
-                    <span class="w-3 h-3 rounded-full bg-yellow-500/70"></span>
-                    <span class="w-3 h-3 rounded-full bg-green-500/70"></span>
-                  </div>
-                  <span class="font-mono text-gray-400 font-semibold text-xs sm:text-sm">polyteknoslesvos.gr</span>
-                  <button onclick="openFullscreenPreview('https://polyteknoslesvos.gr/', 'Ο Γύρος του Πολύτεκνου', 'polyteknoslesvos.gr')" class="px-3 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-gray-200 hover:text-white transition-all text-xs flex items-center gap-1.5 font-semibold" title="Προβολή σε Πλήρη Οθόνη">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-5h-4m4 0v4m0-4l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-                    </svg>
-                    <span>Πλήρης Οθόνη</span>
-                  </button>
-                </div>
-                <!-- Browser Content with Real Site Iframe -->
-                <div class="h-[480px] sm:h-[580px] w-full bg-zinc-950 overflow-hidden relative">
-                  <iframe src="https://polyteknoslesvos.gr/" class="w-full h-full border-0" loading="lazy"></iframe>
-                </div>
-              </div>
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="px-8 sm:px-10 py-5 bg-black/60 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
-              <div class="flex flex-wrap items-center gap-3">
-                <a href="https://polyteknoslesvos.gr/" target="_blank" class="px-6 py-3 rounded-full bg-white text-black text-xs sm:text-sm font-extrabold flex items-center hover:bg-gray-200 transition-all shadow-lg hover:scale-105">
-                  Επίσκεψη στο Site
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </a>
-                <button onclick="openFullscreenPreview('https://polyteknoslesvos.gr/', 'Ο Γύρος του Πολύτεκνου', 'polyteknoslesvos.gr')" class="px-5 py-3 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold flex items-center border border-white/15 transition-all hover:scale-105 shadow-md">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-5h-4m4 0v4m0-4l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-                  </svg>
-                  Πλήρης Οθόνη
-                </button>
-              </div>
-              <span class="text-xs sm:text-sm font-semibold text-gray-400 flex items-center">
-                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 mr-2 animate-pulse"></span>
-                Διαδραστική Προεπισκόπηση
-              </span>
-            </div>
-          </div>
-
-          <!-- Project 3: Kaitlyn Rooms -->
-          <div class="glass-card rounded-3xl overflow-hidden group hover:border-white/40 transition-all duration-300 flex flex-col justify-between hover:shadow-2xl hover:shadow-white/10 border border-white/10">
-            <div class="p-8 sm:p-10 bg-gradient-to-b from-black/50 to-transparent">
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-xs font-bold uppercase tracking-widest text-purple-400 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20">Φιλοξενία &amp; Διαμονή</span>
-                <span class="flex items-center space-x-2 text-xs text-gray-400 font-mono">
-                  <span class="w-2.5 h-2.5 rounded-full bg-purple-500 shadow-lg shadow-purple-500/50 animate-ping"></span>
-                  <span>Live Site</span>
-                </span>
-              </div>
-              <h3 class="text-3xl sm:text-4xl font-extrabold text-white mb-3">Kaitlyn Rooms</h3>
-              <p class="text-gray-300 text-base leading-relaxed max-w-4xl">
-                Μοντέρνα, κομψή ιστοσελίδα ενοικιαζόμενων δωματίων και τουριστικών καταλυμάτων με αναλυτική παρουσίαση δωματίων, φωτογραφικό υλικό, παροχές και φόρμα επικοινωνίας.
-              </p>
-            </div>
-
-            <!-- Website Live Preview Frame (Kaitlyn Rooms) -->
-            <div class="px-6 sm:px-10 pb-8">
-              <div class="border border-white/15 rounded-2xl bg-black/80 overflow-hidden shadow-2xl">
-                <!-- Browser Bar -->
-                <div class="px-5 py-3 bg-white/10 border-b border-white/10 flex items-center justify-between text-xs text-gray-300">
-                  <div class="flex items-center space-x-1.5">
-                    <span class="w-3 h-3 rounded-full bg-red-500/70"></span>
-                    <span class="w-3 h-3 rounded-full bg-yellow-500/70"></span>
-                    <span class="w-3 h-3 rounded-full bg-green-500/70"></span>
-                  </div>
-                  <span class="font-mono text-gray-400 font-semibold text-xs sm:text-sm">kaitlynrooms.gr</span>
-                  <button onclick="openFullscreenPreview('https://kaitlynrooms.gr/', 'Kaitlyn Rooms', 'kaitlynrooms.gr')" class="px-3 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-gray-200 hover:text-white transition-all text-xs flex items-center gap-1.5 font-semibold" title="Προβολή σε Πλήρη Οθόνη">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-5h-4m4 0v4m0-4l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-                    </svg>
-                    <span>Πλήρης Οθόνη</span>
-                  </button>
-                </div>
-                <!-- Browser Content with Real Site Iframe -->
-                <div class="h-[480px] sm:h-[580px] w-full bg-zinc-950 overflow-hidden relative">
-                  <iframe src="https://kaitlynrooms.gr/" class="w-full h-full border-0" loading="lazy"></iframe>
-                </div>
-              </div>
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="px-8 sm:px-10 py-5 bg-black/60 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
-              <div class="flex flex-wrap items-center gap-3">
-                <a href="https://kaitlynrooms.gr/" target="_blank" class="px-6 py-3 rounded-full bg-white text-black text-xs sm:text-sm font-extrabold flex items-center hover:bg-gray-200 transition-all shadow-lg hover:scale-105">
-                  Επίσκεψη στο Site
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </a>
-                <button onclick="openFullscreenPreview('https://kaitlynrooms.gr/', 'Kaitlyn Rooms', 'kaitlynrooms.gr')" class="px-5 py-3 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold flex items-center border border-white/15 transition-all hover:scale-105 shadow-md">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-5h-4m4 0v4m0-4l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-                  </svg>
-                  Πλήρης Οθόνη
-                </button>
-              </div>
-              <span class="text-xs sm:text-sm font-semibold text-gray-400 flex items-center">
-                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 mr-2 animate-pulse"></span>
-                Διαδραστική Προεπισκόπηση
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- WHY CHOOSE SECTION -->
-    <section id="why-choose" class="py-24 px-6 relative reveal">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center max-w-2xl mx-auto mb-16">
-          <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Η Υπεροχή Μας</p>
-          <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Γιατί να επιλέξεις το Skout Studio;</h2>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <!-- Point 1 -->
-          <div class="p-6 rounded-2xl border border-white/5 bg-white/2 hover:bg-white/5 transition-all duration-300">
-            <div class="text-studio-accent text-4xl font-extrabold mb-4">01</div>
-            <h3 class="text-lg font-bold text-white mb-2">Μοντέρνος σχεδιασμός</h3>
-            <p class="text-gray-400 text-xs leading-relaxed">Αισθητική που μαγνητίζει τα βλέμματα και αντανακλά την ποιότητα της επιχείρησής σας.</p>
-          </div>
-
-          <!-- Point 2 -->
-          <div class="p-6 rounded-2xl border border-white/5 bg-white/2 hover:bg-white/5 transition-all duration-300">
-            <div class="text-studio-violet text-4xl font-extrabold mb-4">02</div>
-            <h3 class="text-lg font-bold text-white mb-2">Γρήγορη φόρτωση</h3>
-            <p class="text-gray-400 text-xs leading-relaxed">Βέλτιστος κώδικας για αστραπιαίες ταχύτητες, βελτιώνοντας την εμπειρία του χρήστη και το SEO.</p>
-          </div>
-
-          <!-- Point 3 -->
-          <div class="p-6 rounded-2xl border border-white/5 bg-white/2 hover:bg-white/5 transition-all duration-300">
-            <div class="text-studio-emerald text-4xl font-extrabold mb-4">03</div>
-            <h3 class="text-lg font-bold text-white mb-2">Σωστή εμφάνιση σε κινητό</h3>
-            <p class="text-gray-400 text-xs leading-relaxed">Mobile-first σχεδιασμός ώστε η ιστοσελίδα σας να λειτουργεί άψογα σε κάθε smartphone.</p>
-          </div>
-
-          <!-- Point 4 -->
-          <div class="p-6 rounded-2xl border border-white/5 bg-white/2 hover:bg-white/5 transition-all duration-300">
-            <div class="text-orange-400 text-4xl font-extrabold mb-4">04</div>
-            <h3 class="text-lg font-bold text-white mb-2">Καθαρή εικόνα</h3>
-            <p class="text-gray-400 text-xs leading-relaxed">Χωρίς περιττή φλυαρία, εστιάζουμε σε ό,τι φέρνει πραγματικούς πελάτες και αποτελέσματα.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ SECTION -->
-    <section id="faq" class="py-24 px-6 relative reveal">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-center max-w-2xl mx-auto mb-14">
-          <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Συχνές Ερωτήσεις</p>
-          <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Απαντήσεις στις απορίες σας</h2>
-          <p class="text-gray-400 mt-4 leading-relaxed text-sm">Όλα όσα θέλετε να γνωρίζετε για τις ιστοσελίδες και τη διαχείριση των Social Media.</p>
-        </div>
-
-        <div class="space-y-10">
-          <!-- Web Development FAQs (4 Questions) -->
-          <div class="space-y-4">
-            <div class="flex items-center space-x-2 text-xs font-extrabold text-blue-400 uppercase tracking-wider px-1">
-              <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
-              <span>Ιστοσελίδες (4 Συχνές Ερωτήσεις)</span>
-            </div>
-
-            <!-- FAQ Web 1 -->
-            <div class="glass-card rounded-2xl border border-white/5 overflow-hidden transition-all duration-300 hover:border-white/10">
-              <details class="group">
-                <summary class="flex justify-between items-center p-6 text-white font-bold cursor-pointer select-none list-none">
-                  <span class="text-base sm:text-lg pr-4">1. Πόσος χρόνος χρειάζεται για την ολοκλήρωση μιας ιστοσελίδας;</span>
-                  <span class="transition-transform duration-300 group-open:rotate-180 text-gray-400 shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </span>
-                </summary>
-                <div class="px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-4">
-                  Για μια απλή επαγγελματική ιστοσελίδα παρουσίασης, ο χρόνος παράδοσης είναι συνήθως <strong>5 έως 7 ημέρες</strong>. Για πιο σύνθετες ιστοσελίδες με περισσότερες ενότητες, απαιτούνται <strong>10 έως 14 ημέρες</strong>.
-                </div>
-              </details>
-            </div>
-
-            <!-- FAQ Web 2 -->
-            <div class="glass-card rounded-2xl border border-white/5 overflow-hidden transition-all duration-300 hover:border-white/10">
-              <details class="group">
-                <summary class="flex justify-between items-center p-6 text-white font-bold cursor-pointer select-none list-none">
-                  <span class="text-base sm:text-lg pr-4">2. Ποια είναι η διαδικασία συνεργασίας μας για την ιστοσελίδα;</span>
-                  <span class="transition-transform duration-300 group-open:rotate-180 text-gray-400 shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </span>
-                </summary>
-                <div class="px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-4">
-                  Η διαδικασία μας χωρίζεται σε 3 απλά βήματα:
-                  <ul class="list-disc pl-5 mt-2 space-y-2">
-                    <li><strong>1. Συζήτηση &amp; Στόχοι:</strong> Μας περιγράφετε την επιχείρησή σας και τι θέλετε να προβάλετε.</li>
-                    <li><strong>2. Σχεδιασμός:</strong> Ετοιμάζουμε την εμφάνιση και τη δομή της ιστοσελίδας σας.</li>
-                    <li><strong>3. Κατασκευή &amp; Παράδοση:</strong> Υλοποιούμε την ιστοσελίδα, κάνουμε δοκιμές και σας την παραδίδουμε έτοιμη.</li>
-                  </ul>
-                </div>
-              </details>
-            </div>
-
-            <!-- FAQ Web 3 -->
-            <div class="glass-card rounded-2xl border border-white/5 overflow-hidden transition-all duration-300 hover:border-white/10">
-              <details class="group">
-                <summary class="flex justify-between items-center p-6 text-white font-bold cursor-pointer select-none list-none">
-                  <span class="text-base sm:text-lg pr-4">3. Τι γίνεται με το Hosting (Φιλοξενία) και το Domain Name;</span>
-                  <span class="transition-transform duration-300 group-open:rotate-180 text-gray-400 shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </span>
-                </summary>
-                <div class="px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-4">
-                  Σας καθοδηγούμε πλήρως για την επιλογή του κατάλληλου πακέτου φιλοξενίας (hosting) και την κατοχύρωση του domain name σας (π.χ. .gr). Η ιστοσελίδα σχεδιάζεται ώστε να είναι εύκολη στη μεταφορά και απόλυτα συμβατή με όλους τους κορυφαίους παρόχους.
-                </div>
-              </details>
-            </div>
-
-            <!-- FAQ Web 4 -->
-            <div class="glass-card rounded-2xl border border-white/5 overflow-hidden transition-all duration-300 hover:border-white/10">
-              <details class="group">
-                <summary class="flex justify-between items-center p-6 text-white font-bold cursor-pointer select-none list-none">
-                  <span class="text-base sm:text-lg pr-4">4. Η ιστοσελίδα θα εμφανίζεται σωστά σε κινητά και tablet;</span>
-                  <span class="transition-transform duration-300 group-open:rotate-180 text-gray-400 shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </span>
-                </summary>
-                <div class="px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-4">
-                  Απόλυτα! Κάθε ιστοσελίδα που δημιουργούμε σχεδιάζεται με τη φιλοσοφία <strong>Mobile-First</strong>. Αυτό σημαίνει ότι θα λειτουργεί άψογα, θα προσαρμόζεται αυτόματα σε κάθε μέγεθος οθόνης και θα είναι εξαιρετικά γρήγορη σε όλα τα smartphone, tablet και υπολογιστές.
-                </div>
-              </details>
-            </div>
-          </div>
-
-          <!-- Social Media FAQs (2 Questions) -->
-          <div class="space-y-4">
-            <div class="flex items-center space-x-2 text-xs font-extrabold text-purple-400 uppercase tracking-wider px-1">
-              <span class="w-2 h-2 rounded-full bg-purple-400 animate-pulse"></span>
-              <span>Social Media (2 Συχνές Ερωτήσεις)</span>
-            </div>
-
-            <!-- FAQ Social 1 -->
-            <div class="glass-card rounded-2xl border border-white/5 overflow-hidden transition-all duration-300 hover:border-purple-500/30">
-              <details class="group">
-                <summary class="flex justify-between items-center p-6 text-white font-bold cursor-pointer select-none list-none">
-                  <span class="text-base sm:text-lg pr-4">1. Τι περιλαμβάνει η διαχείριση Social Media (Instagram, Facebook, TikTok, Google Maps);</span>
-                  <span class="transition-transform duration-300 group-open:rotate-180 text-gray-400 shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </span>
-                </summary>
-                <div class="px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-4">
-                  Αναλαμβάνουμε εξ ολοκλήρου τη δημιουργία περιεχομένου (Posts, Stories, βίντεο Reels &amp; TikToks), τον προγραμματισμό δημοσιεύσεων, τις στοχευμένες διαφημίσεις Meta/TikTok Ads και τη φροντίδα του Google Business Profile &amp; των αξιολογήσεων της επιχείρησής σου.
-                </div>
-              </details>
-            </div>
-
-            <!-- FAQ Social 2 -->
-            <div class="glass-card rounded-2xl border border-white/5 overflow-hidden transition-all duration-300 hover:border-purple-500/30">
-              <details class="group">
-                <summary class="flex justify-between items-center p-6 text-white font-bold cursor-pointer select-none list-none">
-                  <span class="text-base sm:text-lg pr-4">2. Πόσο συχνά γίνονται δημοσιεύσεις και πότε θα δω αποτελέσματα;</span>
-                  <span class="transition-transform duration-300 group-open:rotate-180 text-gray-400 shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </span>
-                </summary>
-                <div class="px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-4">
-                  Ορίζουμε ένα σταθερό μηνιαίο πλάνο δημοσιεύσεων (π.χ. 3-4 φορές την εβδομάδα) προσαρμοσμένο στις ανάγκες της επιχείρησής σου. Η αναγνωρισιμότητα, οι αλληλεπιδράσεις (likes, views) και τα μηνύματα νέων πελατών αυξάνονται σταθερά από τις πρώτες κιόλας εβδομάδες!
-                </div>
-              </details>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section id="contact" class="py-24 px-6 relative reveal bg-studio-card/30">
-      <div class="max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          <!-- Left: Contact info -->
-          <div class="lg:col-span-5 flex flex-col justify-between space-y-10">
-            <div class="space-y-6">
-              <p class="text-xs font-bold text-gray-500 uppercase tracking-widest">Επικοινωνία</p>
-              <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Ας χτίσουμε κάτι σπουδαίο μαζί.</h2>
-              <p class="text-gray-400 leading-relaxed text-sm">
-                Θέλεις μια ιστοσελίδα που να δείχνει επαγγελματική από την πρώτη ματιά; Συμπλήρωσε τη φόρμα επικοινωνίας ή στείλε μας email και θα επικοινωνήσουμε άμεσα μαζί σου!
-              </p>
-            </div>
-
-            <!-- Contact Details -->
-            <div class="space-y-6">
-              <a href="mailto:info@skoutstudio.gr" class="flex items-center space-x-4 p-4 rounded-xl border border-white/5 hover:border-studio-accent/20 transition-all bg-black/20 group">
-                <div class="w-10 h-10 rounded-lg bg-studio-accent/10 text-studio-accent flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <div>
-                  <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Email</p>
-                  <p class="text-white text-sm font-semibold">info@skoutstudio.gr</p>
-                </div>
-              </a>
-
-              <a href="https://instagram.com" target="_blank" class="flex items-center space-x-4 p-4 rounded-xl border border-white/5 hover:border-studio-accent/20 transition-all bg-black/20 group">
-                <div class="w-10 h-10 rounded-lg bg-studio-accent/10 text-studio-accent flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01" />
-                  </svg>
-                </div>
-                <div>
-                  <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Instagram</p>
-                  <p class="text-white text-sm font-semibold">@skoutstudio.gr</p>
-                </div>
-              </a>
-            </div>
-          </div>
-
-          <!-- Right: Contact Form -->
-          <div class="lg:col-span-7">
-            <div class="glass-card p-8 rounded-3xl border border-white/5 space-y-6">
-              <div>
-                <h3 class="text-2xl font-extrabold text-white">Στείλτε μας Μήνυμα</h3>
-                <p class="text-gray-400 text-xs mt-1">Συμπληρώστε τα στοιχεία σας και θα επικοινωνήσουμε μαζί σας το συντομότερο δυνατόν.</p>
-              </div>
-
-              <form id="contactForm" onsubmit="submitContactForm(event)" class="space-y-4">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label class="text-xs font-bold uppercase tracking-wider text-gray-400 block mb-2">Όνομα / Επωνυμία</label>
-                    <input type="text" id="contactName" name="name" required placeholder="π.χ. Γιώργος Παπαδόπουλος" class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-studio-accent/50 transition-all">
-                  </div>
-                  <div>
-                    <label class="text-xs font-bold uppercase tracking-wider text-gray-400 block mb-2">Email Επικοινωνίας</label>
-                    <input type="email" id="contactEmail" name="email" required placeholder="name@domain.gr" class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-studio-accent/50 transition-all">
-                  </div>
-                </div>
-
-                <div>
-                  <label class="text-xs font-bold uppercase tracking-wider text-gray-400 block mb-2">Το Μήνυμά σας</label>
-                  <textarea id="contactMessage" name="message" rows="4" required placeholder="Περιγράψτε μας τις ανάγκες του project σας..." class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-studio-accent/50 transition-all resize-none"></textarea>
-                </div>
-
-                <div id="contactStatus" class="hidden p-4 rounded-xl text-xs font-bold text-center transition-all"></div>
-
-                <button type="submit" id="contactSubmitBtn" class="w-full py-3.5 rounded-xl bg-white hover:bg-gray-200 text-black font-extrabold text-sm transition-all shadow-lg shadow-white/5 flex items-center justify-center">
-                  <span>Αποστολή Μηνύματος</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="pt-20 pb-12 border-t border-white/10 bg-black/80 text-sm text-gray-400 px-6 relative overflow-hidden">
-      <!-- Ambient Glow in Footer -->
-      <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-gradient-to-r from-blue-600/10 via-purple-600/15 to-emerald-600/10 blur-3xl pointer-events-none"></div>
-
-      <div class="max-w-7xl mx-auto relative z-10">
-        <!-- Top Main Footer Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-16 border-b border-white/10">
-          
-          <!-- Column 1 & 2: Brand Info & Status (Spans 2 cols on LG) -->
-          <div class="lg:col-span-2 space-y-6">
-            <div class="flex items-center space-x-3">
-              <div class="w-9 h-9 bg-gradient-to-br from-white via-gray-200 to-gray-400 rounded-xl flex items-center justify-center text-black text-sm font-black shadow-lg shadow-white/10">S</div>
-              <span class="text-white text-xl font-extrabold tracking-tight">SKOUT <span class="text-gray-400 font-medium">STUDIO</span></span>
-            </div>
-            
-            <p class="text-gray-400 text-sm leading-relaxed max-w-sm">
-              Δημιουργούμε υψηλής αισθητικής ιστοσελίδες &amp; στρατηγική διαχείριση Social Media για επιχειρήσεις που θέλουν να ξεχωρίζουν και να προσελκύουν νέους πελάτες.
-            </p>
-
-            <div class="inline-flex items-center space-x-2.5 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-semibold text-emerald-400">
-              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span>Διαθέσιμοι για νέα Projects</span>
-            </div>
-          </div>
-
-          <!-- Column 3: Υπηρεσίες -->
-          <div class="space-y-4">
-            <h4 class="text-white font-extrabold text-sm uppercase tracking-wider">Υπηρεσίες</h4>
-            <ul class="space-y-2.5 text-xs">
-              <li><a href="#services" class="hover:text-white transition-colors flex items-center gap-1.5"><span class="text-studio-accent">›</span> Κατασκευή Ιστοσελίδων</a></li>
-              <li><a href="#services" class="hover:text-white transition-colors flex items-center gap-1.5"><span class="text-studio-accent">›</span> Social Media &amp; TikTok</a></li>
-              <li><a href="#services" class="hover:text-white transition-colors flex items-center gap-1.5"><span class="text-studio-accent">›</span> Google Business Profile</a></li>
-              <li><a href="#services" class="hover:text-white transition-colors flex items-center gap-1.5"><span class="text-studio-accent">›</span> E-commerce &amp; Food Ordering</a></li>
-              <li><a href="#services" class="hover:text-white transition-colors flex items-center gap-1.5"><span class="text-studio-accent">›</span> UI/UX &amp; Web Design</a></li>
-            </ul>
-          </div>
-
-          <!-- Column 4: Πλοήγηση -->
-          <div class="space-y-4">
-            <h4 class="text-white font-extrabold text-sm uppercase tracking-wider">Πλοήγηση</h4>
-            <ul class="space-y-2.5 text-xs">
-              <li><a href="#home" class="hover:text-white transition-colors">Αρχική</a></li>
-              <li><a href="#services" class="hover:text-white transition-colors">Υπηρεσίες</a></li>
-              <li><a href="#projects" class="hover:text-white transition-colors">Recent Projects</a></li>
-              <li><a href="#faq" class="hover:text-white transition-colors">Συχνές Ερωτήσεις</a></li>
-              <li><a href="#contact" class="hover:text-white transition-colors">Επικοινωνία</a></li>
-            </ul>
-          </div>
-
-          <!-- Column 5: Επικοινωνία & Social -->
-          <div class="space-y-4">
-            <h4 class="text-white font-extrabold text-sm uppercase tracking-wider">Επικοινωνία</h4>
-            <div class="space-y-3 text-xs">
-              <div>
-                <p class="text-gray-500 font-bold uppercase text-[10px]">Email</p>
-                <a href="mailto:info@skoutstudio.gr" class="text-white font-medium hover:text-studio-accent transition-colors">info@skoutstudio.gr</a>
-              </div>
-              <div>
-                <p class="text-gray-500 font-bold uppercase text-[10px]">Domain</p>
-                <a href="https://skoutstudio.gr" target="_blank" class="text-white font-medium hover:text-studio-accent transition-colors">skoutstudio.gr</a>
-              </div>
-            </div>
-
-            <div class="pt-2">
-              <p class="text-gray-500 font-bold uppercase text-[10px] mb-2">Social Media</p>
-              <div class="flex items-center space-x-2">
-                <a href="https://instagram.com" target="_blank" title="Instagram" class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 hover:border-purple-500 hover:bg-purple-500/20 text-gray-300 hover:text-white flex items-center justify-center transition-all">
-                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                </a>
-                <a href="https://facebook.com" target="_blank" title="Facebook" class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 hover:border-blue-500 hover:bg-blue-500/20 text-gray-300 hover:text-white flex items-center justify-center transition-all">
-                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.592 0 9 1.847 9 5.052V8z"/></svg>
-                </a>
-                <a href="https://tiktok.com" target="_blank" title="TikTok" class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 hover:border-pink-500 hover:bg-pink-500/20 text-gray-300 hover:text-white flex items-center justify-center transition-all">
-                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.82.56-1.31 1.56-1.27 2.56.02.82.42 1.61 1.08 2.1 1.01.78 2.43.83 3.51.15.82-.5 1.34-1.41 1.37-2.37.03-3.87.01-7.75.02-11.63z"/></svg>
-                </a>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Bottom Copyright Bar -->
-        <div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-gray-500">
-          <p>© 2026 Skout Studio. All rights reserved. | <a href="https://skoutstudio.gr" class="text-gray-400 hover:text-white transition-colors font-medium">skoutstudio.gr</a></p>
-          <div class="flex items-center space-x-6">
-            <span>Designed &amp; Built with Precision in Greece 🇬🇷</span>
-          </div>
-        </div>
-      </div>
+    <footer class="bar">
+      <svg class="bar__mark"><use href="#i-mark"/></svg>
+      <button class="bar__btn" type="button" id="back">‹ <span>Πίσω στο γραφείο</span></button>
+      <button class="bar__btn bar__btn--cta" type="button" data-win="contact">Ας μιλήσουμε!</button>
+      <div class="bar__tabs" id="tabs"></div>
+      <time class="bar__clock" id="clock">--:--</time>
     </footer>
-
-    <!-- FULLSCREEN WEBSITE PREVIEW MODAL -->
-    <div id="fullscreenModal" class="fixed inset-0 z-[100] bg-black/95 backdrop-blur-2xl hidden flex-col transition-all duration-300">
-      <!-- Modal Top Header Bar -->
-      <div class="px-6 py-3.5 bg-zinc-900/95 border-b border-white/10 flex items-center justify-between shrink-0 text-gray-300">
-        <!-- Left Info -->
-        <div class="flex items-center space-x-4">
-          <div class="flex items-center space-x-1.5">
-            <button onclick="closeFullscreenPreview()" class="w-3.5 h-3.5 rounded-full bg-red-500 hover:bg-red-600 transition-colors" title="Κλείσιμο (ESC)"></button>
-            <span class="w-3.5 h-3.5 rounded-full bg-yellow-500/80"></span>
-            <span class="w-3.5 h-3.5 rounded-full bg-green-500/80"></span>
-          </div>
-          <div class="hidden sm:flex items-center space-x-2 border-l border-white/10 pl-4">
-            <span id="fsModalTitle" class="text-white font-extrabold text-sm sm:text-base">Website Title</span>
-            <span id="fsModalDomain" class="px-2.5 py-0.5 rounded-md bg-white/10 text-gray-300 font-mono text-xs">domain.gr</span>
-          </div>
-        </div>
-
-        <!-- Center Viewport Switcher (Desktop / Tablet / Mobile) -->
-        <div class="flex items-center bg-black/60 border border-white/10 rounded-xl p-1 text-xs">
-          <button id="viewBtnDesktop" onclick="setFsViewport('desktop')" class="px-3 py-1.5 rounded-lg bg-white/20 text-white font-bold transition-all flex items-center gap-1.5">
-            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-            <span class="hidden md:inline">Desktop</span>
-          </button>
-          <button id="viewBtnTablet" onclick="setFsViewport('tablet')" class="px-3 py-1.5 rounded-lg text-gray-400 hover:text-white font-bold transition-all flex items-center gap-1.5">
-            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
-            <span class="hidden md:inline">Tablet</span>
-          </button>
-          <button id="viewBtnMobile" onclick="setFsViewport('mobile')" class="px-3 py-1.5 rounded-lg text-gray-400 hover:text-white font-bold transition-all flex items-center gap-1.5">
-            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
-            <span class="hidden md:inline">Mobile</span>
-          </button>
-        </div>
-
-        <!-- Right Actions -->
-        <div class="flex items-center space-x-3">
-          <a id="fsModalLink" href="#" target="_blank" class="px-3.5 py-1.5 rounded-xl bg-white text-black text-xs font-extrabold hover:bg-gray-200 transition-all flex items-center gap-1.5 shadow-md">
-            <span>Επίσκεψη στο Site</span>
-            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-          </a>
-          <button onclick="closeFullscreenPreview()" class="w-8 h-8 rounded-xl bg-white/10 hover:bg-red-500/30 text-gray-300 hover:text-white flex items-center justify-center transition-all font-bold">
-            ✕
-          </button>
-        </div>
-      </div>
-
-      <!-- Modal Frame Container -->
-      <div class="flex-1 bg-zinc-950 flex items-center justify-center p-2 sm:p-4 overflow-hidden relative">
-        <div id="fsIframeWrapper" class="w-full h-full transition-all duration-300 rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-black">
-          <iframe id="fsIframe" src="" class="w-full h-full border-0" loading="lazy"></iframe>
-        </div>
-      </div>
-    </div>
-
-    <!-- INTERACTIVE DEMO PREVIEW MODAL -->
-    <div class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden flex-col justify-center items-center p-4 md:p-8" id="demoModal">
-      <!-- Modal Canvas Wrapper -->
-      <div class="w-full max-w-5xl h-[85vh] bg-studio-bg rounded-2xl border border-white/10 overflow-hidden flex flex-col shadow-2xl">
-        <!-- Modal Toolbar -->
-        <div class="px-6 py-4 bg-black/60 border-b border-white/5 flex items-center justify-between">
-          <div class="flex items-center space-x-4">
-            <!-- Close Button -->
-            <button onclick="closeDemo()" class="p-1.5 rounded-lg bg-white/5 hover:bg-red-500/20 text-gray-400 hover:text-white transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-            <span class="text-white font-bold text-sm" id="modalTitle">Website Preview</span>
-          </div>
-
-          <!-- Desktop / Mobile Frame toggles -->
-          <div class="flex items-center space-x-2 bg-white/5 rounded-lg p-1">
-            <button id="toggleDesktop" class="px-3 py-1.5 rounded text-xs font-bold text-white bg-white/10 transition-all flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-              Desktop
-            </button>
-            <button id="toggleMobile" class="px-3 py-1.5 rounded text-xs font-bold text-gray-400 hover:text-white transition-all flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-              </svg>
-              Mobile
-            </button>
-          </div>
-
-          <!-- Dummy browser top indicators -->
-          <div class="hidden sm:flex items-center space-x-1 border border-white/10 rounded-md bg-white/2 px-3 py-1 text-[10px] text-gray-500">
-            <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
-            <span id="modalDomain" class="font-mono">demo.skoutstudio.gr</span>
-          </div>
-        </div>
-
-        <!-- Dynamic Website Preview Screen Container -->
-        <div class="flex-1 bg-neutral-900/40 overflow-y-auto p-4 md:p-8 flex items-center justify-center transition-all duration-300" id="previewContainer">
-          <!-- Frame simulation -->
-          <div id="mockFrame" class="w-full max-w-md bg-black/80 border border-white/10 rounded-2xl p-4 space-y-4 shadow-2xl transition-all duration-300 min-h-[400px]">
-            <!-- Dynamic demo content injects here -->
-            <div id="mockContent" class="space-y-4 text-white"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <script>
-      // Spotlight follow cursor
-      const spotlight = document.getElementById('spotlight');
-      if (spotlight) {
-        document.addEventListener('mousemove', (e) => {
-          spotlight.style.left = `${e.clientX}px`;
-          spotlight.style.top = `${e.clientY}px`;
-        });
-      }
-
-      // Mobile Menu Drawer logic
-      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-      const mobileMenu = document.getElementById('mobileMenu');
-      const bar1 = document.getElementById('bar1');
-      const bar2 = document.getElementById('bar2');
-      const bar3 = document.getElementById('bar3');
-
-      if (mobileMenuBtn && mobileMenu) {
-        mobileMenuBtn.addEventListener('click', () => {
-          const isHidden = mobileMenu.classList.contains('hidden');
-          if (isHidden) {
-            mobileMenu.classList.remove('hidden');
-            mobileMenu.classList.add('flex');
-            document.body.style.overflow = 'hidden';
-            
-            // Hamburger to X
-            bar1.classList.add('rotate-45', 'translate-y-2');
-            bar2.classList.add('opacity-0');
-            bar3.classList.add('-rotate-45', '-translate-y-2');
-          } else {
-            mobileMenu.classList.add('hidden');
-            mobileMenu.classList.remove('flex');
-            document.body.style.overflow = '';
-            
-            // X to Hamburger
-            bar1.classList.remove('rotate-45', 'translate-y-2');
-            bar2.classList.remove('opacity-0');
-            bar3.classList.remove('-rotate-45', '-translate-y-2');
-          }
-        });
-
-        // Close drawer on links click
-        const mobileLinks = document.querySelectorAll('.mobile-nav-link');
-        mobileLinks.forEach(link => {
-          link.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
-            mobileMenu.classList.remove('flex');
-            document.body.style.overflow = '';
-            bar1.classList.remove('rotate-45', 'translate-y-2');
-            bar2.classList.remove('opacity-0');
-            bar3.classList.remove('-rotate-45', '-translate-y-2');
-          });
-        });
-      }
-
-      // Scroll Reveal logic (Intersection Observer)
-      const revealElements = document.querySelectorAll('.reveal');
-      if (revealElements.length > 0) {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('active');
-            }
-          });
-        }, {
-          threshold: 0.1,
-          rootMargin: '0px 0px -50px 0px'
-        });
-
-        revealElements.forEach(el => observer.observe(el));
-      }
-
-      // Desktop / Mobile preview toggle logic
-      const toggleDesktopBtn = document.getElementById('toggleDesktop');
-      const toggleMobileBtn = document.getElementById('toggleMobile');
-      const mockFrameEl = document.getElementById('mockFrame');
-
-      if (toggleDesktopBtn && toggleMobileBtn && mockFrameEl) {
-        toggleDesktopBtn.addEventListener('click', () => {
-          toggleDesktopBtn.classList.add('bg-white/10', 'text-white');
-          toggleDesktopBtn.classList.remove('text-gray-400');
-          toggleMobileBtn.classList.remove('bg-white/10', 'text-white');
-          toggleMobileBtn.classList.add('text-gray-400');
-          
-          mockFrameEl.classList.remove('max-w-md', 'min-h-[400px]');
-          mockFrameEl.classList.add('max-w-none', 'w-full', 'h-full');
-        });
-
-        toggleMobileBtn.addEventListener('click', () => {
-          toggleMobileBtn.classList.add('bg-white/10', 'text-white');
-          toggleMobileBtn.classList.remove('text-gray-400');
-          toggleDesktopBtn.classList.remove('bg-white/10', 'text-white');
-          toggleDesktopBtn.classList.add('text-gray-400');
-          
-          mockFrameEl.classList.remove('max-w-none', 'w-full');
-          mockFrameEl.classList.add('max-w-md', 'w-full', 'min-h-[400px]');
-        });
-      }
-
-      // Contact Form Submission
-      window.submitContactForm = function(e) {
-        e.preventDefault();
-        
-        let toast = document.getElementById('contactToast');
-        if (!toast) {
-          toast = document.createElement('div');
-          toast.id = 'contactToast';
-          toast.className = 'fixed bottom-6 right-6 px-6 py-4 bg-white text-black font-semibold rounded-2xl shadow-2xl transition-all duration-500 transform translate-y-20 opacity-0 z-50 text-sm';
-          document.body.appendChild(toast);
-        }
-        
-        toast.innerHTML = `🌟 Ευχαριστούμε! Το μήνυμά σας στάλθηκε επιτυχώς. Θα επικοινωνήσουμε μαζί σας σύντομα!`;
-        toast.classList.remove('translate-y-20', 'opacity-0');
-        toast.classList.add('translate-y-0', 'opacity-100');
-        
-        if (e.target) {
-          e.target.reset();
-        }
-
-        setTimeout(() => {
-          toast.classList.add('translate-y-20', 'opacity-0');
-          toast.classList.remove('translate-y-0', 'opacity-100');
-        }, 5000);
-      }
-
-      function openDemo(projectKey) {
-        demoModal.classList.remove('hidden');
-        demoModal.classList.add('flex');
-        document.body.style.overflow = 'hidden';
-
-        if (projectKey === 'trakelles') {
-          modalTitle.innerText = 'Trakelles Hair - Live Demo';
-          modalDomain.innerText = 'trakelleshair.gr';
-          renderTrakellesDemo();
-        } else if (projectKey === 'polyteknos') {
-          modalTitle.innerText = 'Σύλλογος Πολυτέκνων Λέσβου - Live Demo';
-          modalDomain.innerText = 'polyteknoslesvos.gr';
-          renderPolyteknosDemo();
-        } else if (projectKey === 'apizza') {
-          modalTitle.innerText = 'A Pizza Pizzeria - Live Demo';
-          modalDomain.innerText = 'apizza.skoutstudio.gr';
-          renderAPizzaDemo();
-        } else if (projectKey === 'historic') {
-          modalTitle.innerText = 'Historic Lounge - Live Demo';
-          modalDomain.innerText = 'historic.skoutstudio.gr';
-          renderHistoricDemo();
-        }
-      }
-
-      function closeDemo() {
-        demoModal.classList.add('hidden');
-        demoModal.classList.remove('flex');
-        document.body.style.overflow = 'auto';
-      }
-
-      function renderTrakellesDemo() {
-        mockContent.innerHTML = `
-          <!-- Header -->
-          <div class="flex justify-between items-center border-b border-white/5 pb-4">
-            <h1 class="text-xl font-bold tracking-widest text-white uppercase">TRAKELLES HAIR SALON</h1>
-            <span class="px-2 py-1 bg-amber-500/10 border border-amber-500/30 text-[10px] rounded text-amber-400">Luxury Barber</span>
-          </div>
-
-          <!-- Hero Banner -->
-          <div class="rounded-xl bg-gradient-to-tr from-neutral-950 to-neutral-900 p-6 text-center border border-white/5 relative overflow-hidden mt-4">
-            <h2 class="text-xl font-extrabold text-white">The Ultimate Styling Experience</h2>
-            <p class="text-[11px] text-gray-400 mt-2">Σύγχρονες τεχνικές, κλασική φινέτσα και απόλυτη φροντίδα.</p>
-          </div>
-
-          <!-- Interactive Pricing Service list -->
-          <div class="space-y-3 mt-4">
-            <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400">Premium Υπηρεσίες</h3>
-            <div class="grid grid-cols-1 gap-2">
-              <div class="flex justify-between items-center p-3 rounded-lg bg-white/2 hover:bg-white/5 transition-colors border border-white/5">
-                <span class="text-xs font-bold text-white">Κούρεμα & Styling (Classic)</span>
-                <span class="text-xs text-amber-400 font-bold">18€</span>
-              </div>
-              <div class="flex justify-between items-center p-3 rounded-lg bg-white/2 hover:bg-white/5 transition-colors border border-white/5">
-                <span class="text-xs font-bold text-white">Παραδοσιακό Ξύρισμα με Φαλτσέτα</span>
-                <span class="text-xs text-amber-400 font-bold">12€</span>
-              </div>
-              <div class="flex justify-between items-center p-3 rounded-lg bg-white/2 hover:bg-white/5 transition-colors border border-white/5">
-                <span class="text-xs font-bold text-white">Βαφή & Αναδόμηση Μαλλιών</span>
-                <span class="text-xs text-amber-400 font-bold">35€</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Opening Hours & Contact Information (No Booking Program) -->
-          <div class="glass-card p-4 rounded-xl space-y-4 mt-4">
-            <h3 class="text-xs font-bold uppercase tracking-wider text-white">Ωράριο & Επικοινωνία</h3>
-            <div class="space-y-2 text-xs text-gray-400">
-              <div class="flex justify-between border-b border-white/5 pb-1">
-                <span>Τρίτη - Παρασκευή</span>
-                <span class="text-white font-semibold">09:00 - 20:00</span>
-              </div>
-              <div class="flex justify-between border-b border-white/5 pb-1">
-                <span>Σάββατο</span>
-                <span class="text-white font-semibold">09:00 - 17:00</span>
-              </div>
-              <div class="flex justify-between">
-                <span>Κυριακή & Δευτέρα</span>
-                <span class="text-red-400 font-semibold">Κλειστά</span>
-              </div>
-            </div>
-            <div class="pt-2">
-              <a href="mailto:info@skoutstudio.gr" class="w-full py-2.5 bg-amber-500 text-black font-extrabold text-xs rounded-lg hover:bg-amber-400 transition-colors text-center block">Επικοινωνία (Email)</a>
-            </div>
-          </div>
-        `;
-      }
-
-      function renderPolyteknosDemo() {
-        mockContent.innerHTML = `
-          <!-- Header -->
-          <div class="flex justify-between items-center border-b border-white/5 pb-4">
-            <h1 class="text-sm font-extrabold tracking-tight text-white uppercase flex items-center">
-              <span class="w-2.5 h-2.5 bg-blue-500 mr-2 rounded-sm"></span>ΣΥΛΛΟΓΟΣ ΠΟΛΥΤΕΚΝΩΝ ΛΕΣΒΟΥ
-            </h1>
-            <span class="text-[9px] font-bold text-blue-400">Επίσημη Πύλη</span>
-          </div>
-
-          <!-- Hero Announcement -->
-          <div class="rounded-xl bg-gradient-to-tr from-neutral-950 to-neutral-900 border border-white/5 p-4 text-center mt-4">
-            <span class="px-2 py-0.5 bg-blue-500/10 border border-blue-500/20 text-[9px] rounded text-blue-400 font-bold">ΝΕΑ ΑΝΑΚΟΙΝΩΣΗ</span>
-            <h3 class="text-xs font-bold text-white mt-2">Διανομή Τροφίμων &amp; Παροχές 2026</h3>
-            <p class="text-[9px] text-gray-500 mt-1">Ενημερωθείτε για τις ημερομηνίες και τα απαραίτητα δικαιολογητικά για το νέο έτος.</p>
-          </div>
-
-          <!-- Tabs or Announcements List -->
-          <div class="space-y-3 mt-4">
-            <div class="flex justify-between items-center">
-              <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400">Έγγραφα &amp; Ανακοινώσεις</h3>
-              <div class="flex space-x-1" id="mockProjFilter">
-                <button onclick="filterMockAnnounce('all')" class="px-2 py-1 bg-blue-500 text-black text-[9px] font-bold rounded">Όλα</button>
-                <button onclick="filterMockAnnounce('docs')" class="px-2 py-1 bg-white/5 hover:bg-white/10 text-white text-[9px] font-bold rounded">Δικαιολογητικά</button>
-                <button onclick="filterMockAnnounce('news')" class="px-2 py-1 bg-white/5 hover:bg-white/10 text-white text-[9px] font-bold rounded">Νέα</button>
-              </div>
-            </div>
-
-            <!-- Documents Grid -->
-            <div class="grid grid-cols-1 gap-2" id="mockAnnounceGrid">
-              <div class="p-3 bg-white/2 border border-white/5 rounded-lg flex justify-between items-center" data-mock-cat="docs">
-                <div>
-                  <h4 class="text-xs font-bold text-white">Αίτηση Νέου Μέλους</h4>
-                  <p class="text-[9px] text-gray-400">Έγγραφα για εγγραφή νέων πολυτέκνων.</p>
-                </div>
-                <span class="text-[10px] text-blue-400 font-bold uppercase">PDF 📄</span>
-              </div>
-              <div class="p-3 bg-white/2 border border-white/5 rounded-lg flex justify-between items-center" data-mock-cat="docs">
-                <div>
-                  <h4 class="text-xs font-bold text-white">Πιστοποιητικό Πολυτεκνίας</h4>
-                  <p class="text-[9px] text-gray-400">Απαιτούμενα δικαιολογητικά έκδοσης.</p>
-                </div>
-                <span class="text-[10px] text-blue-400 font-bold uppercase">PDF 📄</span>
-              </div>
-              <div class="p-3 bg-white/2 border border-white/5 rounded-lg flex justify-between items-center" data-mock-cat="news">
-                <div>
-                  <h4 class="text-xs font-bold text-white">Εκπτώσεις &amp; Απαλλαγές</h4>
-                  <p class="text-[9px] text-gray-400">Πληροφορίες για μειωμένα εισιτήρια &amp; ΔΕΗ.</p>
-                </div>
-                <span class="text-[10px] text-blue-400 font-bold uppercase">ΝΕΑ 📣</span>
-              </div>
-            </div>
-          </div>
-        `;
-      }
-
-      window.filterMockAnnounce = function(category) {
-        const items = document.querySelectorAll('#mockAnnounceGrid > div');
-        const filters = document.querySelectorAll('#mockProjFilter button');
-        
-        // Button highlight
-        filters.forEach(f => {
-          f.classList.remove('bg-blue-500', 'text-black');
-          f.classList.add('bg-white/5', 'text-white');
-        });
-        
-        if (window.event && window.event.target) {
-          window.event.target.classList.add('bg-blue-500', 'text-black');
-          window.event.target.classList.remove('bg-white/5', 'text-white');
-        }
-
-        items.forEach(item => {
-          if (category === 'all' || item.getAttribute('data-mock-cat') === category) {
-            item.style.display = 'flex';
-          } else {
-            item.style.display = 'none';
-          }
-        });
-      }
-
-      function renderAPizzaDemo() {
-        mockContent.innerHTML = `
-          <!-- Header -->
-          <div class="flex justify-between items-center border-b border-white/5 pb-4">
-            <h1 class="text-xl font-extrabold tracking-tight text-white flex items-center">
-              🍕 A PIZZA
-            </h1>
-            <span class="text-[10px] font-bold text-emerald-400 uppercase">QR MENU SYSTEM</span>
-          </div>
-
-          <!-- Interactive Menu -->
-          <div class="space-y-4 mt-4">
-            <div class="flex justify-between items-center">
-              <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400">Παράγγειλε τώρα</h3>
-              <span class="px-2 py-0.5 bg-emerald-500/10 border border-emerald-500/20 text-[10px] rounded text-emerald-400 font-bold" id="cartCounter">Καλάθι: 0 είδη</span>
-            </div>
-
-            <div class="grid grid-cols-1 gap-3">
-              <!-- Item 1 -->
-              <div class="p-3 rounded-xl bg-white/2 border border-white/5 flex justify-between items-center">
-                <div>
-                  <h4 class="text-xs font-bold text-white">Pizza Margherita</h4>
-                  <p class="text-[9px] text-gray-400 mt-1">Σάλτσα ντομάτας, μοτσαρέλα, φρέσκος βασιλικός.</p>
-                  <p class="text-xs font-bold text-emerald-400 mt-1.5">8.50€</p>
-                </div>
-                <button onclick="addToCart('Margherita', 8.50)" class="px-3 py-1.5 rounded-lg bg-emerald-500 text-black text-[10px] font-extrabold hover:bg-emerald-400 transition-colors">Προσθήκη</button>
-              </div>
-
-              <!-- Item 2 -->
-              <div class="p-3 rounded-xl bg-white/2 border border-white/5 flex justify-between items-center">
-                <div>
-                  <h4 class="text-xs font-bold text-white">Pizza Special Skout</h4>
-                  <p class="text-[9px] text-gray-400 mt-1">Μπέικον, μανιτάρια, πιπεριές, σάλτσα, τυριά.</p>
-                  <p class="text-xs font-bold text-emerald-400 mt-1.5">12.00€</p>
-                </div>
-                <button onclick="addToCart('Special Skout', 12.00)" class="px-3 py-1.5 rounded-lg bg-emerald-500 text-black text-[10px] font-extrabold hover:bg-emerald-400 transition-colors">Προσθήκη</button>
-              </div>
-
-              <!-- Item 3 -->
-              <div class="p-3 rounded-xl bg-white/2 border border-white/5 flex justify-between items-center">
-                <div>
-                  <h4 class="text-xs font-bold text-white">Tiramisu</h4>
-                  <p class="text-[9px] text-gray-400 mt-1">Αυθεντική ιταλική συνταγή με μασκαρπόνε & εσπρέσο.</p>
-                  <p class="text-xs font-bold text-emerald-400 mt-1.5">5.00€</p>
-                </div>
-                <button onclick="addToCart('Tiramisu', 5.00)" class="px-3 py-1.5 rounded-lg bg-emerald-500 text-black text-[10px] font-extrabold hover:bg-emerald-400 transition-colors">Προσθήκη</button>
-              </div>
-            </div>
-            
-            <button onclick="checkoutAPizza()" class="w-full py-2.5 bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold text-xs rounded-lg transition-colors">Ολοκλήρωση Παραγγελίας</button>
-            <div id="cartResult" class="hidden p-3 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-center text-xs"></div>
-          </div>
-        `;
-      }
-
-      let cart = [];
-      window.addToCart = function(name, price) {
-        cart.push({ name, price });
-        const counterEl = document.getElementById('cartCounter');
-        if (counterEl) {
-          counterEl.innerText = `Καλάθι: ${cart.length} είδη`;
-        }
-      }
-
-      window.checkoutAPizza = function() {
-        if (cart.length === 0) {
-          alert('Το καλάθι σας είναι άδειο!');
-          return;
-        }
-        const total = cart.reduce((acc, item) => acc + item.price, 0).toFixed(2);
-        const res = document.getElementById('cartResult');
-        if (res) {
-          res.classList.remove('hidden');
-          res.innerText = `Η παραγγελία σας καταχωρήθηκε επιτυχώς! Συνολικό ποσό: ${total}€. Η πίτσα σας ετοιμάζεται!`;
-        }
-        cart = [];
-        const counterEl = document.getElementById('cartCounter');
-        if (counterEl) {
-          counterEl.innerText = `Καλάθι: 0 είδη`;
-        }
-      }
-
-      function renderHistoricDemo() {
-        mockContent.innerHTML = `
-          <!-- Header -->
-          <div class="flex justify-between items-center border-b border-white/5 pb-4">
-            <h1 class="text-xl font-extrabold tracking-wider text-white uppercase">HISTORIC LOUNGE</h1>
-            <span class="px-2 py-1 bg-red-500/10 border border-red-500/30 text-[9px] rounded text-red-400">Café & Cocktail Bar</span>
-          </div>
-
-          <!-- Hero Promo -->
-          <div class="rounded-xl bg-gradient-to-tr from-neutral-950 to-neutral-900 border border-white/5 p-4 text-center">
-            <h3 class="text-sm font-bold text-white">Atmospheric DJ Sets Every Weekend</h3>
-            <p class="text-[9px] text-gray-500 mt-1">Απόλαυσε τα καλύτερα cocktails της πόλης κάτω από τους ήχους lounge μουσικής.</p>
-          </div>
-
-          <!-- Signature Cocktails List -->
-          <div class="space-y-3">
-            <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400">Signature Cocktails</h3>
-            <div class="grid grid-cols-2 gap-3">
-              <div class="p-3 rounded-xl bg-white/2 border border-white/5 text-center space-y-1">
-                <span class="text-xl block">🥃</span>
-                <h4 class="text-xs font-bold text-white">Mystic Smoke</h4>
-                <p class="text-[9px] text-gray-500">Premium mezcal, lime, secret spices.</p>
-                <span class="text-[11px] text-red-400 font-extrabold block mt-1">11.00€</span>
-              </div>
-              <div class="p-3 rounded-xl bg-white/2 border border-white/5 text-center space-y-1">
-                <span class="text-xl block">🍸</span>
-                <h4 class="text-xs font-bold text-white">Emerald Glow</h4>
-                <p class="text-[9px] text-gray-500">Gin, basil infusion, fresh cucumber.</p>
-                <span class="text-[11px] text-red-400 font-extrabold block mt-1">10.00€</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Reservation system -->
-          <div class="glass-card p-4 rounded-xl space-y-3">
-            <h3 class="text-xs font-bold uppercase tracking-wider text-white">Κράτηση Τραπεζιού</h3>
-            <div class="grid grid-cols-2 gap-2 text-[10px]">
-              <div>
-                <label class="text-gray-500 block mb-0.5">Ώρα</label>
-                <select id="resTime" class="w-full p-2 rounded bg-black border border-white/10 text-white focus:outline-none">
-                  <option>21:00</option>
-                  <option>22:30</option>
-                  <option>23:30</option>
-                </select>
-              </div>
-              <div>
-                <label class="text-gray-500 block mb-0.5">Άτομα</label>
-                <select id="resPeople" class="w-full p-2 rounded bg-black border border-white/10 text-white focus:outline-none">
-                  <option>2 Άτομα</option>
-                  <option>4 Άτομα</option>
-                  <option>6+ Άτομα</option>
-                </select>
-              </div>
-            </div>
-            <button onclick="confirmLoungeBooking()" class="w-full py-2 bg-red-500 hover:bg-red-400 text-black font-extrabold text-xs rounded-lg transition-colors">Κάνε Κράτηση</button>
-            <div id="loungeResult" class="hidden p-3 rounded bg-red-500/10 border border-red-500/30 text-red-400 text-center text-xs"></div>
-          </div>
-        `;
-      }
-
-      window.confirmLoungeBooking = function() {
-        const time = document.getElementById('resTime').value;
-        const people = document.getElementById('resPeople').value;
-        const res = document.getElementById('loungeResult');
-        res.classList.remove('hidden');
-        res.innerText = `Το τραπέζι σας επιβεβαιώθηκε για τις ${time} (${people})! Σας περιμένουμε.`;
-      }
-
-      // State and helpers for the combined food-ordering inline preview
-      let combinedCart = [];
-
-      window.switchFoodTab = function(tab) {
-        const polyMenu = document.getElementById('polyFoodMenu');
-        const pizzaMenu = document.getElementById('pizzaFoodMenu');
-        const polyBtn = document.getElementById('tabPolyteknosBtn');
-        const pizzaBtn = document.getElementById('tabAlphaPizzaBtn');
-
-        if (tab === 'polyteknos') {
-          if (polyMenu) polyMenu.classList.remove('hidden');
-          if (pizzaMenu) pizzaMenu.classList.add('hidden');
-          if (polyBtn) {
-            polyBtn.classList.add('bg-emerald-500', 'text-black');
-            polyBtn.classList.remove('text-gray-400');
-          }
-          if (pizzaBtn) {
-            pizzaBtn.classList.remove('bg-emerald-500', 'text-black');
-            pizzaBtn.classList.add('text-gray-400');
-          }
-        } else {
-          if (pizzaMenu) pizzaMenu.classList.remove('hidden');
-          if (polyMenu) polyMenu.classList.add('hidden');
-          if (pizzaBtn) {
-            pizzaBtn.classList.add('bg-emerald-500', 'text-black');
-            pizzaBtn.classList.remove('text-gray-400');
-          }
-          if (polyBtn) {
-            polyBtn.classList.remove('bg-emerald-500', 'text-black');
-            polyBtn.classList.add('text-gray-400');
-          }
-        }
-      }
-
-      window.addCombinedFood = function(name, price) {
-        combinedCart.push({ name, price });
-        updateCombinedCartUI();
-      }
-
-      function updateCombinedCartUI() {
-        const counter = document.getElementById('combinedCartCounter');
-        if (!counter) return;
-        const total = combinedCart.reduce((sum, item) => sum + item.price, 0).toFixed(2);
-        counter.innerText = `${combinedCart.length} είδη - ${total}€`;
-      }
-
-      window.checkoutCombinedFood = function() {
-        const result = document.getElementById('combinedCartResult');
-        if (!result) return;
-        if (combinedCart.length === 0) {
-          result.classList.remove('hidden', 'bg-emerald-500/15', 'text-emerald-400');
-          result.classList.add('bg-red-500/15', 'text-red-400');
-          result.innerText = '❌ Το καλάθι σας είναι άδειο!';
-          result.classList.remove('hidden');
-          setTimeout(() => { result.classList.add('hidden'); }, 3000);
-          return;
-        }
-
-        const total = combinedCart.reduce((sum, item) => sum + item.price, 0).toFixed(2);
-        result.classList.remove('hidden', 'bg-red-500/15', 'text-red-400');
-        result.classList.add('bg-emerald-500/15', 'text-emerald-400');
-        result.innerHTML = `🎉 Η παραγγελία ύψους <strong>${total}€</strong> στάλθηκε! Παντρέψατε με επιτυχία τον <strong>Γύρο του Πολύτεκνου</strong> & την <strong>Alpha Pizza</strong> σε μία παράδοση!`;
-        result.classList.remove('hidden');
-
-        combinedCart = [];
-        updateCombinedCartUI();
-      }
-
-      // Hero Tab Switcher (Web vs Social Media)
-      window.switchHeroTab = function(tab) {
-        const webTab = document.getElementById('heroTabWeb');
-        const socialTab = document.getElementById('heroTabSocial');
-        const webBtn = document.getElementById('tabWebBtn');
-        const socialBtn = document.getElementById('tabSocialBtn');
-
-        if (!webTab || !socialTab || !webBtn || !socialBtn) return;
-
-        if (tab === 'web') {
-          webTab.classList.remove('hidden');
-          socialTab.classList.add('hidden');
-
-          webBtn.className = 'flex-1 py-2 px-3 rounded-xl text-xs font-bold transition-all bg-white/15 text-white shadow-sm flex items-center justify-center space-x-1.5';
-          socialBtn.className = 'flex-1 py-2 px-3 rounded-xl text-xs font-bold transition-all text-gray-400 hover:text-white flex items-center justify-center space-x-1.5';
-        } else {
-          socialTab.classList.remove('hidden');
-          webTab.classList.add('hidden');
-
-          socialBtn.className = 'flex-1 py-2 px-3 rounded-xl text-xs font-bold transition-all bg-purple-600/80 text-white shadow-sm flex items-center justify-center space-x-1.5';
-          webBtn.className = 'flex-1 py-2 px-3 rounded-xl text-xs font-bold transition-all text-gray-400 hover:text-white flex items-center justify-center space-x-1.5';
-        }
-      }
-
-      // Scroll Progress Bar logic
-      window.addEventListener('scroll', () => {
-        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
-        const progressBar = document.getElementById('scrollProgressBar');
-        if (progressBar) {
-          progressBar.style.width = scrolled + '%';
-        }
-      });
-
-      // Contact Form Handler (Background Email via FormSubmit AJAX)
-      window.submitContactForm = async function(e) {
-        e.preventDefault();
-        const nameInput = document.getElementById('contactName');
-        const emailInput = document.getElementById('contactEmail');
-        const msgInput = document.getElementById('contactMessage');
-        const statusDiv = document.getElementById('contactStatus');
-        const submitBtn = document.getElementById('contactSubmitBtn');
-
-        if (!nameInput || !emailInput || !msgInput || !statusDiv || !submitBtn) return;
-
-        const name = nameInput.value.trim();
-        const email = emailInput.value.trim();
-        const message = msgInput.value.trim();
-
-        // UI Loading State
-        submitBtn.disabled = true;
-        submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
-        submitBtn.innerHTML = `
-          <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-          </svg>
-          <span>Γίνεται αποστολή...</span>
-        `;
-
-        statusDiv.classList.add('hidden');
-
-        try {
-          // Send background POST to FormSubmit AJAX endpoint for info@skoutstudio.gr
-          await fetch('https://formsubmit.co/ajax/info@skoutstudio.gr', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-            },
-            body: JSON.stringify({
-              name: name,
-              email: email,
-              message: message,
-              _subject: `Νέο Μήνυμα Ιστοσελίδας από: ${name}`
-            })
-          });
-
-          statusDiv.classList.remove('hidden', 'bg-red-500/10', 'border-red-500/30', 'text-red-400');
-          statusDiv.classList.add('bg-emerald-500/15', 'border', 'border-emerald-500/30', 'text-emerald-400');
-          statusDiv.innerHTML = `
-            <div class="space-y-1">
-              <p class="text-sm font-extrabold flex items-center justify-center gap-1.5">
-                <span>🎉</span> Το μήνυμά σας στάλθηκε με επιτυχία!
-              </p>
-              <p class="text-xs text-gray-300 font-normal">
-                Σας ευχαριστούμε, <strong>${name}</strong>. Το μήνυμα εστάλη στο <strong>info@skoutstudio.gr</strong> και θα επικοινωνήσουμε μαζί σας στο <strong>${email}</strong>.
-              </p>
-            </div>
-          `;
-
-          nameInput.value = '';
-          emailInput.value = '';
-          msgInput.value = '';
-        } catch (err) {
-          statusDiv.classList.remove('hidden', 'bg-red-500/10', 'border-red-500/30', 'text-red-400');
-          statusDiv.classList.add('bg-emerald-500/15', 'border', 'border-emerald-500/30', 'text-emerald-400');
-          statusDiv.innerHTML = `
-            <div class="space-y-1">
-              <p class="text-sm font-extrabold flex items-center justify-center gap-1.5">
-                <span>🎉</span> Το μήνυμά σας καταχωρήθηκε!
-              </p>
-              <p class="text-xs text-gray-300 font-normal">
-                Σας ευχαριστούμε, <strong>${name}</strong>. Θα επικοινωνήσουμε μαζί σας στο <strong>${email}</strong> το συντομότερο.
-              </p>
-            </div>
-          `;
-
-          nameInput.value = '';
-          emailInput.value = '';
-          msgInput.value = '';
-        } finally {
-          submitBtn.disabled = false;
-          submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
-          submitBtn.innerHTML = `
-            <span>Αποστολή Μηνύματος</span>
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          `;
-        }
-      };
-
-      // Fullscreen Website Preview Handlers
-      window.openFullscreenPreview = function(url, title, domain) {
-        const modal = document.getElementById('fullscreenModal');
-        const iframe = document.getElementById('fsIframe');
-        const modalTitle = document.getElementById('fsModalTitle');
-        const modalDomain = document.getElementById('fsModalDomain');
-        const modalLink = document.getElementById('fsModalLink');
-
-        if (!modal || !iframe) return;
-
-        iframe.src = url;
-        if (modalTitle) modalTitle.innerText = title;
-        if (modalDomain) modalDomain.innerText = domain;
-        if (modalLink) modalLink.href = url;
-
-        // Reset to desktop view by default
-        setFsViewport('desktop');
-
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-        document.body.style.overflow = 'hidden';
-      };
-
-      window.closeFullscreenPreview = function() {
-        const modal = document.getElementById('fullscreenModal');
-        const iframe = document.getElementById('fsIframe');
-        if (!modal) return;
-
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-        if (iframe) iframe.src = '';
-        document.body.style.overflow = '';
-      };
-
-      window.setFsViewport = function(device) {
-        const wrapper = document.getElementById('fsIframeWrapper');
-        const btnD = document.getElementById('viewBtnDesktop');
-        const btnT = document.getElementById('viewBtnTablet');
-        const btnM = document.getElementById('viewBtnMobile');
-
-        if (!wrapper) return;
-
-        const activeClass = 'px-3 py-1.5 rounded-lg bg-white/20 text-white font-bold transition-all flex items-center gap-1.5';
-        const inactiveClass = 'px-3 py-1.5 rounded-lg text-gray-400 hover:text-white font-bold transition-all flex items-center gap-1.5';
-
-        if (device === 'desktop') {
-          wrapper.style.maxWidth = '100%';
-          wrapper.style.maxHeight = '100%';
-          if (btnD) btnD.className = activeClass;
-          if (btnT) btnT.className = inactiveClass;
-          if (btnM) btnM.className = inactiveClass;
-        } else if (device === 'tablet') {
-          wrapper.style.maxWidth = '768px';
-          wrapper.style.maxHeight = '92%';
-          if (btnD) btnD.className = inactiveClass;
-          if (btnT) btnT.className = activeClass;
-          if (btnM) btnM.className = inactiveClass;
-        } else if (device === 'mobile') {
-          wrapper.style.maxWidth = '375px';
-          wrapper.style.maxHeight = '88%';
-          if (btnD) btnD.className = inactiveClass;
-          if (btnT) btnT.className = inactiveClass;
-          if (btnM) btnM.className = activeClass;
-        }
-      };
-
-      // Keyboard Shortcut (ESC to close full screen)
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          closeFullscreenPreview();
-        }
-      });
-
-    </script>
-  </body>
+  </div>
+</div>
+
+<noscript><div class="nojs"><b>Skout Studio</b> — Digital studio για τοπικές επιχειρήσεις, Μυτιλήνη. Ιστοσελίδες, social media &amp; βίντεο.<br>Επικοινωνία: <a href="mailto:info@skoutstudio.gr">info@skoutstudio.gr</a> · Instagram @skoutstudio</div></noscript>
+<div class="grain" aria-hidden="true"></div>
+<script src="main.js" defer></script>
+</body>
 </html>

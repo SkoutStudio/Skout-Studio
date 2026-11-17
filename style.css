@@ -1,0 +1,387 @@
+/* ---------- Fonts (self-hosted, με ελληνικά) ---------- */
+@font-face{font-family:"Sofia X";font-weight:800;font-display:swap;src:url(fonts/sofia-sans-extra-condensed-greek-800-normal.woff2) format("woff2");unicode-range:U+0370-03FF}
+@font-face{font-family:"Sofia X";font-weight:800;font-display:swap;src:url(fonts/sofia-sans-extra-condensed-latin-800-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+2000-206F,U+20AC,U+2190-2199}
+@font-face{font-family:"Manrope";font-weight:400;font-display:swap;src:url(fonts/manrope-greek-400-normal.woff2) format("woff2");unicode-range:U+0370-03FF}
+@font-face{font-family:"Manrope";font-weight:400;font-display:swap;src:url(fonts/manrope-latin-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+2000-206F,U+20AC,U+2190-2199}
+@font-face{font-family:"Manrope";font-weight:600;font-display:swap;src:url(fonts/manrope-greek-600-normal.woff2) format("woff2");unicode-range:U+0370-03FF}
+@font-face{font-family:"Manrope";font-weight:600;font-display:swap;src:url(fonts/manrope-latin-600-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+2000-206F,U+20AC,U+2190-2199}
+
+:root{
+  --ink:#0b0a09;      /* μαύρο του logo */
+  --paper:#e9e5d9;    /* κρεμ */
+  --light:#f6f3ec;
+  --mid:#c3b8a8;      /* μπεζ */
+  --shade:#857b6e;    /* σκιά */
+  --accent:#dac1a7;   /* σαμπανιζέ της καρδιάς */
+  --screen:#1a1815;
+  --body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --display:"Sofia X","Arial Narrow",Impact,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{overscroll-behavior:none;background:var(--ink);color:var(--paper);font-family:var(--body);font-size:15px;line-height:1.55;overflow:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+ul,ol{list-style:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+[hidden]{display:none!important}
+
+.grain{position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.2;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ---------- Κουμπιά ---------- */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:7px;font-weight:600;font-size:14px;background:var(--paper);color:var(--ink);border:1px solid var(--ink);box-shadow:3px 3px 0 var(--shade);transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--shade)}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--shade)}
+.btn--dark{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+/* ---------- Γραφείο ---------- */
+.room{position:fixed;inset:0;overflow:hidden;background:var(--ink);touch-action:none}
+.room__head{position:absolute;inset:0 0 auto 0;z-index:5;display:flex;justify-content:space-between;align-items:flex-start;padding:26px 28px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand__mark{width:30px;height:38px;color:var(--paper);flex:none}
+.brand b{display:block;font-weight:600;font-size:17px;line-height:1.2}
+.brand i{display:block;font-style:normal;font-size:13.5px;color:var(--mid);opacity:.8}
+@keyframes pulse{50%{opacity:.45}}
+.desk{position:absolute;inset:0}
+#scene{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+#scene .o{stroke:var(--ink);stroke-width:.9;stroke-linejoin:round}
+#pc{cursor:pointer;outline:none}
+#pc .glow{opacity:0;transition:opacity .25s}
+#pc:hover .glow,#pc:focus-visible .glow{opacity:1}
+#pc .scr{transition:fill .25s}
+#pc:hover .scr{fill:#1a1815}
+.blink{animation:blink 1.1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.room__foot{position:absolute;left:0;right:0;bottom:0;z-index:5;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding:24px 28px;pointer-events:none}
+.room__foot>*{pointer-events:auto}
+.room__slogan{font:800 clamp(1.6rem,3.2vw,2.6rem)/1 var(--display);letter-spacing:.04em;text-transform:uppercase;color:var(--ink)}
+.room__slogan em{font-style:normal;color:var(--shade)}
+.is-os .room{visibility:hidden}
+
+/* ---------- Οθόνη CRT ---------- */
+.os{position:fixed;inset:0;z-index:20;padding:clamp(8px,1.6vw,22px);background:#000;animation:crt .55s cubic-bezier(.2,.8,.2,1)}
+@keyframes crt{0%{transform:scale(1,.004);filter:brightness(4)}45%{transform:scale(1,.004);filter:brightness(4)}100%{transform:none;filter:none}}
+.os.is-off{animation:crtoff .35s forwards}
+@keyframes crtoff{to{transform:scale(1,.004);filter:brightness(4);opacity:0}}
+.os__screen{position:relative;height:100%;border-radius:clamp(10px,1.6vw,22px);overflow:hidden;background:#0d0c0b;display:flex;flex-direction:column;box-shadow:inset 0 0 90px rgba(0,0,0,.75)}
+.os__screen::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:60;background:repeating-linear-gradient(rgba(0,0,0,.07) 0 1px,transparent 1px 3px);border-radius:inherit;box-shadow:inset 0 0 70px rgba(0,0,0,.6)}
+.os__icons{position:absolute;inset:14px auto 62px 10px;display:flex;flex-direction:column;flex-wrap:wrap;align-content:flex-start;gap:6px 4px;z-index:1}
+.os__icons>*{display:flex;flex-direction:column;align-items:center;gap:6px;width:96px;padding:9px 4px;border-radius:6px;text-align:center;font-size:12.5px;font-weight:600;line-height:1.2;color:var(--paper);border:1px solid transparent}
+.os__icons svg{width:56px;height:44px}
+.os__icons>*:hover,.os__icons>*:focus-visible{background:rgba(233,229,217,.12);border-color:rgba(233,229,217,.35)}
+.os__wins{position:absolute;inset:0 0 50px 0;z-index:2;pointer-events:none}
+
+/* ---------- Παράθυρα ---------- */
+.win{position:absolute;display:flex;flex-direction:column;max-width:calc(100% - 20px);max-height:calc(100% - 20px);background:var(--paper);color:var(--ink);border:2px solid var(--ink);border-radius:8px;box-shadow:6px 6px 0 rgba(0,0,0,.55),0 0 0 1px rgba(233,229,217,.25);pointer-events:auto;animation:pop .22s cubic-bezier(.2,.9,.3,1.2)}
+@keyframes pop{from{transform:scale(.9);opacity:0}}
+.win__bar{display:flex;align-items:center;gap:10px;padding:7px 8px 7px 12px;background:var(--ink);color:var(--paper);border-radius:5px 5px 0 0;cursor:grab;user-select:none;touch-action:none;flex:none}
+.win__bar:active{cursor:grabbing}
+.win:not(.is-top) .win__bar{background:var(--shade)}
+.win__title{flex:1;font-weight:600;font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.win__x{display:grid;place-items:center;width:26px;height:24px;border-radius:4px;background:var(--paper);color:var(--ink);font-weight:600;font-size:15px;line-height:1;border:1px solid var(--ink);box-shadow:inset -2px -2px 0 var(--mid)}
+.win__x:hover{background:var(--accent)}
+.win__body{padding:20px;overflow:auto;overscroll-behavior:contain}
+.win h2{font:800 clamp(1.9rem,3.4vw,2.6rem)/1 var(--display);letter-spacing:.02em;text-transform:uppercase;margin-bottom:10px}
+.win h3{font:800 1.55rem/1.05 var(--display);letter-spacing:.03em;text-transform:uppercase}
+.kicker{font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--shade);margin-bottom:8px}
+.row{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.row--center{justify-content:center}
+.note{margin-top:16px;text-align:center;font-size:14px;color:#4b443c}
+
+.about{display:grid;grid-template-columns:170px 1fr;gap:20px;align-items:center}
+.about__logo{background:var(--ink);border-radius:6px;border:2px solid var(--ink);overflow:hidden;line-height:0}
+.about__logo img{width:100%;height:auto}
+.slogan{margin-top:12px;font:800 1.5rem/1 var(--display);letter-spacing:.05em;text-transform:uppercase;color:var(--shade)}
+
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.card{padding:16px;border:2px solid var(--ink);border-radius:6px;background:var(--light);box-shadow:3px 3px 0 var(--mid)}
+.card__no{display:inline-block;padding:1px 8px;margin-bottom:12px;background:var(--ink);color:var(--paper);font-weight:600;font-size:12px;border-radius:3px}
+.card>p{margin-top:8px;font-size:14px;color:#4b443c}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.tags li{padding:3px 9px;border:1px solid var(--shade);border-radius:99px;font-size:12px;font-weight:600;background:var(--paper)}
+.plan{text-align:center}
+.plan h3{font-size:1.2rem;letter-spacing:.16em;color:var(--shade)}
+.plan .plan__big{font:800 4.6rem/.95 var(--display);margin-top:8px!important;color:var(--ink)!important}
+.plan__sub{font-size:13px!important;font-weight:600}
+.plan--pro{background:var(--ink);color:var(--paper);box-shadow:3px 3px 0 var(--accent)}
+.plan--pro h3{color:var(--accent)}
+.plan--pro .plan__big{color:var(--paper)!important}
+.plan--pro .plan__sub{color:var(--mid)!important}
+
+.files li+li{margin-top:8px}
+.files a,.files div{display:flex;align-items:center;gap:14px;padding:12px 14px;border:2px solid var(--ink);border-radius:6px;background:var(--light);box-shadow:3px 3px 0 var(--mid);transition:transform .12s,background .15s}
+.files a:hover{background:var(--accent);transform:translate(-1px,-1px)}
+.files svg{width:44px;height:34px;flex:none}
+.files span{flex:1;min-width:0}
+.files b{display:block;font:800 1.5rem/1 var(--display);letter-spacing:.03em;text-transform:uppercase}
+.files i{font-style:normal;font-size:12.5px;color:var(--shade);font-weight:600}
+.files u{text-decoration:none;font-weight:600;font-size:13px;white-space:nowrap}
+
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat{padding:18px 14px;border:2px solid var(--ink);border-radius:6px;background:var(--ink);color:var(--paper);text-align:center}
+.stat__num{font:800 clamp(3rem,7vw,4.4rem)/.9 var(--display);letter-spacing:.01em}
+.stat__label{margin-top:6px;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--mid)}
+.stat__delta{display:inline-block;margin-top:12px;padding:3px 12px;border-radius:99px;background:var(--accent);color:var(--ink);font-weight:600;font-size:14px}
+
+.steps li{display:flex;align-items:center;gap:16px;padding:14px 0}
+.steps li+li{border-top:2px dashed var(--mid)}
+.steps span{display:grid;place-items:center;width:44px;height:44px;flex:none;border:2px solid var(--ink);border-radius:6px;background:var(--ink);color:var(--paper);font:800 1.7rem/1 var(--display);box-shadow:3px 3px 0 var(--mid)}
+
+.faq details{border:2px solid var(--ink);border-radius:6px;background:var(--light)}
+.faq details+details{margin-top:8px}
+.faq summary{display:flex;justify-content:space-between;gap:12px;padding:12px 14px;font-weight:600;cursor:pointer;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:18px;line-height:1.2}
+.faq details[open] summary::after{content:"–"}
+.faq details[open] summary{border-bottom:2px dashed var(--mid)}
+.faq details p{padding:12px 14px}
+
+.contact__row{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:10px;padding:13px 14px;border:2px solid var(--ink);border-radius:6px;background:var(--light);box-shadow:3px 3px 0 var(--mid);transition:background .15s,transform .12s}
+.contact__row:hover{background:var(--accent);transform:translate(-1px,-1px)}
+.contact__row span{font-size:11.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--shade)}
+.contact__row b{font-weight:600;font-size:16px}
+.contact__foot{margin-top:18px;font-size:12.5px;color:var(--shade);text-align:center}
+
+/* ---------- Γραμμή εργασιών ---------- */
+.bar{position:absolute;left:0;right:0;bottom:0;z-index:50;height:50px;display:flex;align-items:center;gap:8px;padding:0 12px;background:var(--paper);color:var(--ink);border-top:2px solid var(--ink)}
+.bar__mark{width:24px;height:30px;flex:none;margin-right:4px}
+.bar__btn{flex:none;padding:6px 12px;border:1px solid var(--ink);border-radius:5px;font-weight:600;font-size:13.5px;background:var(--light);box-shadow:inset -2px -2px 0 var(--mid);white-space:nowrap}
+.bar__btn:hover{background:var(--accent)}
+.bar__btn--cta{background:var(--ink);color:var(--paper);box-shadow:inset -2px -2px 0 #3a352f}
+.bar__btn--cta:hover{background:#2b2722}
+.bar__tabs{flex:1;display:flex;gap:6px;min-width:0;overflow:hidden}
+.bar__tabs button{flex:0 1 150px;min-width:0;padding:6px 10px;border:1px solid var(--shade);border-radius:5px;font-size:12.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left}
+.bar__tabs button.is-top{background:var(--mid);border-color:var(--ink)}
+.bar__clock{flex:none;font-weight:600;font-size:13.5px;font-variant-numeric:tabular-nums;padding-left:8px}
+
+/* ---------- Κινητό ---------- */
+@media (max-width:760px){
+  .room__head{padding:18px 16px}
+  .brand i{font-size:12px}
+  .room__foot{flex-direction:column;align-items:center;text-align:center;padding:20px 16px calc(20px + env(safe-area-inset-bottom))}
+  .os{padding:6px}
+  .os__icons{inset:12px 6px 60px 6px;flex-direction:row;align-content:flex-start;justify-content:flex-start}
+  .os__icons>*{width:calc(33.33% - 3px)}
+  .win{left:6px!important;top:6px!important;width:calc(100% - 12px)!important;max-height:calc(100% - 12px)}
+  .win__body{padding:16px}
+  .cards{grid-template-columns:1fr}
+  .cards--3{grid-template-columns:repeat(3,1fr);gap:8px}
+  .cards--3 .card{padding:12px 6px}
+  .plan .plan__big{font-size:3.2rem}
+  .plan__sub{font-size:11px!important}
+  .about{grid-template-columns:1fr}
+  .about__logo{max-width:170px;margin:0 auto}
+  .about{text-align:center}
+  .about .row{justify-content:center}
+  .files u{display:none}
+  .bar__btn span,.bar__tabs,.bar__mark{display:none}
+  .bar{gap:8px}
+  .bar__clock{margin-left:auto}
+  .stat__num{font-size:2.7rem}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
+}
+
+/* ---------- Πρόοδος εισόδου ---------- */
+
+/* ---------- Βασικές πληροφορίες στην επιφάνεια εργασίας ---------- */
+.os__info{position:absolute;inset:0 0 50px 120px;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;pointer-events:none}
+.win__lead{margin-bottom:14px;text-align:center}
+
+/* ---------- Προεπισκόπηση projects ---------- */
+.pv{display:grid;grid-template-columns:210px 1fr;gap:14px;align-items:start}
+.pv__tabs{display:flex;flex-direction:column;gap:8px}
+.pv__tabs button{text-align:left;padding:11px 12px;border:2px solid var(--ink);border-radius:6px;background:var(--light);box-shadow:3px 3px 0 var(--mid)}
+.pv__tabs button:hover{background:var(--accent)}
+.pv__tabs button.is-on{background:var(--ink);color:var(--paper);box-shadow:3px 3px 0 var(--accent)}
+.pv__tabs b{display:block;font:800 1.3rem/1.05 var(--display);letter-spacing:.03em;text-transform:uppercase}
+.pv__tabs i{display:block;margin-top:4px;font-style:normal;font-size:12px;font-weight:600;opacity:.7}
+.pv__view{border:2px solid var(--ink);border-radius:6px;overflow:hidden;background:var(--ink);min-width:0}
+.pv__chrome{display:flex;align-items:center;gap:10px;padding:7px 8px;background:var(--mid);border-bottom:2px solid var(--ink)}
+.pv__dots{display:flex;gap:5px}
+.pv__dots i{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--ink);background:var(--paper)}
+.pv__url{flex:1;min-width:0;padding:4px 10px;border:1.5px solid var(--ink);border-radius:99px;background:var(--light);font-size:12.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pv__chrome .btn{padding:5px 11px;font-size:12.5px;box-shadow:none}
+@media (max-width:760px){
+  .os__info{inset:auto 0 56px 0;padding:10px 14px 14px}
+  .pv{grid-template-columns:1fr}
+  .pv__tabs{flex-direction:row;overflow-x:auto;padding-bottom:4px}
+  .pv__tabs button{flex:0 0 auto;max-width:200px}
+  .pv__tabs b{font-size:1.1rem}
+}
+
+/* ---------- Ρετρό επιφάνεια εργασίας ---------- */
+.os{--mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono","Courier New",monospace}
+.os__screen{font-family:var(--mono);background-color:#0d0c0b;background-image:radial-gradient(rgba(233,229,217,.2) 1px,transparent 1.3px);background-size:4px 4px;animation:flicker 5s steps(1) infinite}
+@keyframes flicker{0%,100%{filter:none}48%{filter:brightness(1.05)}50%{filter:brightness(.97)}52%{filter:none}}
+.os__screen::after{background:repeating-linear-gradient(rgba(0,0,0,.2) 0 1px,transparent 1px 3px)}
+.os__icons>*{font-family:var(--mono);font-size:12px;font-weight:400;border-radius:0;text-shadow:0 0 6px rgba(233,229,217,.45)}
+.os__icons>* span{padding:1px 5px}
+.os__icons>*:hover,.os__icons>*:focus-visible{background:none;border-color:transparent}
+.os__icons>*:hover span,.os__icons>*:focus-visible span{background:var(--paper);color:var(--ink);text-shadow:none}
+.os__icons svg{filter:drop-shadow(0 0 5px rgba(233,229,217,.25))}
+.os__info{color:var(--paper);text-shadow:0 0 8px rgba(233,229,217,.45)}
+.os__logo{width:auto;height:min(30vh,250px);flex:none;color:var(--paper);filter:drop-shadow(0 0 8px rgba(233,229,217,.35));overflow:visible}
+.os__name{margin-top:14px;font:400 clamp(2.4rem,6vw,4.6rem)/1 var(--mono);letter-spacing:.34em;margin-right:-.34em;text-transform:uppercase}
+.os__sub{margin-top:6px;font:400 clamp(.9rem,1.6vw,1.2rem)/1 var(--mono);letter-spacing:.7em;margin-right:-.7em;text-transform:uppercase;color:var(--accent)}
+.os__term{margin-top:26px;padding:12px 18px;border:1px dashed rgba(233,229,217,.45);text-align:left;font-size:14px;line-height:1.7}
+.os__term p::before{content:"> ";color:var(--accent)}
+.os__slogan{color:var(--accent)}
+.os__ver{position:absolute;right:14px;bottom:60px;z-index:1;font-size:11px;letter-spacing:.14em;color:var(--shade)}
+.win{border-radius:0;box-shadow:6px 6px 0 rgba(0,0,0,.7),0 0 0 1px var(--paper);font-family:var(--body)}
+.win__bar{border-radius:0;gap:0;padding:6px 8px;background:var(--ink)}
+.win:not(.is-top) .win__bar{background:var(--shade)}
+.win__title{flex:none;max-width:70%;padding:0 10px 0 4px;font-family:var(--mono);font-size:13px;font-weight:400;text-transform:uppercase;letter-spacing:.06em}
+.win__bar::after{content:"";flex:1;order:1;height:12px;margin-right:10px;background:repeating-linear-gradient(rgba(233,229,217,.6) 0 1px,transparent 1px 4px)}
+.win__x{order:2;border-radius:0;box-shadow:none}
+.bar{font-family:var(--mono);box-shadow:inset 0 2px 0 #fff}
+.bar__btn,.bar__tabs button{border-radius:0;font-weight:400;font-size:12.5px;box-shadow:inset -2px -2px 0 var(--mid),inset 2px 2px 0 #fff}
+.bar__btn--cta{box-shadow:inset -2px -2px 0 #000,inset 2px 2px 0 #4a443c}
+.bar__clock{font-weight:400}
+@media (max-width:760px){
+  .os__logo{height:min(15vh,120px)}
+  .os__name{font-size:2rem;margin-top:8px}
+  .os__sub{font-size:.8rem}
+  .os__term{margin-top:12px;padding:8px 12px;font-size:11.5px;line-height:1.6}
+  .os__ver{display:none}
+}
+
+/* ---------- Υπόδειξη scroll (κάτω) ---------- */
+.room__hint{font-weight:600;font-size:14.5px;color:var(--ink);padding-bottom:6px;animation:pulse 2.4s ease-in-out infinite}
+.room__hint i{display:inline-block;font-style:normal;margin-left:6px;animation:nudge 1.4s ease-in-out infinite}
+@keyframes nudge{50%{transform:translateY(5px)}}
+.win__lead--sub{margin:20px 0 12px;font-size:1.2rem!important;letter-spacing:.16em!important;color:var(--shade)}
+.plan--add{padding:14px 10px}
+.plan--add h3{color:var(--ink);font-size:1.5rem}
+.plan--add .plan__sub{margin-top:6px}
+
+/* ---------- Πακέτα & διαδραστικό πλάνο ---------- */
+.cards--2{grid-template-columns:1fr 1fr}
+.pack h3{font-size:1.7rem}
+.ticks{margin-top:12px}
+.ticks li{position:relative;padding:4px 0 4px 22px;font-size:14px;font-weight:600}
+.ticks li::before{content:"";position:absolute;left:2px;top:10px;width:9px;height:5px;border-left:2.5px solid currentColor;border-bottom:2.5px solid currentColor;transform:rotate(-45deg)}
+.pack--pro{background:var(--ink);color:var(--paper);box-shadow:3px 3px 0 var(--accent)}
+.pack--pro>p{color:var(--mid)}
+.pack--pro h3{color:var(--accent)}
+.pack--custom{border-style:dashed;background:var(--paper)}
+.os__icons .is-hot svg{filter:drop-shadow(0 0 8px var(--accent))}
+.os__icons .is-hot span{color:var(--accent)}
+.os__cta{margin-top:22px;padding:13px 22px;pointer-events:auto;font-family:var(--mono);font-size:14px;color:var(--ink);background:var(--accent);border:2px solid var(--ink);box-shadow:4px 4px 0 var(--paper);text-shadow:none;animation:cta 2.2s ease-in-out infinite}
+.os__cta:hover{background:var(--paper);transform:translate(-1px,-1px)}
+@keyframes cta{50%{box-shadow:4px 4px 0 var(--paper),0 0 26px rgba(218,193,167,.7)}}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.opts button{padding:16px 14px;text-align:left;font-weight:600;font-size:15px;border:2px solid var(--ink);background:var(--light);box-shadow:3px 3px 0 var(--mid);transition:transform .12s,background .15s}
+.opts button:hover{background:var(--accent);transform:translate(-1px,-1px)}
+.opts button::after{content:" →";opacity:.5}
+.plan2__first{padding:14px 16px;background:var(--ink);color:var(--paper);font-size:15px;line-height:1.5}
+.plan2__first b{display:block;margin-bottom:4px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+.plan2__cols{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+.plan2__cols>div{padding:14px;border:2px solid var(--ink);background:var(--light)}
+.plan2__cols h3{font-size:1.3rem}
+.plan2__meta{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.plan2__meta span{padding:12px 14px;border:2px dashed var(--ink);font-weight:600}
+.plan2__meta b{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--shade);font-weight:600}
+@media (max-width:760px){
+  .cards--2,.opts,.plan2__cols,.plan2__meta{grid-template-columns:1fr}
+  .opts button{padding:13px 12px}
+  .os__cta{margin-top:10px;padding:10px 14px;font-size:12.5px}
+  .os__term{display:none}
+}
+
+/* ---------- Μικροδιορθώσεις ---------- */
+.win__ctx{margin:-6px 0 14px;text-align:center;font-size:13px;font-weight:600;letter-spacing:.06em;color:var(--shade)}
+.tags li{border-radius:12px;line-height:1.3}
+.brand i em{font-style:normal}
+.nojs{position:fixed;inset:auto 0 0 0;z-index:99;padding:18px;background:var(--paper);color:var(--ink);text-align:center}
+.nojs a{text-decoration:underline}
+.room__hint{opacity:.85}
+@keyframes pulse{50%{opacity:.6}}
+@media (min-width:761px) and (max-height:860px){
+  .os__icons{flex-wrap:nowrap;display:grid;grid-template-columns:repeat(2,92px);grid-auto-rows:min-content;gap:2px 2px;align-content:start}
+  .os__icons>*{width:92px;padding:7px 2px}
+  .os__icons svg{width:48px;height:38px}
+  .os__info{inset:0 0 50px 200px}
+  .os__logo{height:min(26vh,200px)}
+  .os__term{margin-top:16px}
+  .os__cta{margin-top:16px}
+}
+@media (max-width:420px){.brand i em{display:none}}
+
+/* ---------- Website · Socials · Video (ύφος logo) ---------- */
+.brand i{letter-spacing:.18em;text-transform:uppercase;font-size:11.5px;font-weight:600;color:var(--accent);opacity:1}
+.os__trio{margin-top:24px;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:4px 14px;pointer-events:auto;font:400 clamp(.95rem,1.7vw,1.25rem)/1 var(--mono);letter-spacing:.42em;text-transform:uppercase}
+.os__trio span{color:var(--shade);letter-spacing:0}
+.os__trio button{position:relative;padding:6px 0 8px;margin-right:-.42em;color:var(--paper);text-shadow:0 0 8px rgba(233,229,217,.45);font:inherit;letter-spacing:inherit;text-transform:inherit}
+.os__trio button::after{content:"";position:absolute;left:0;right:.42em;bottom:0;height:2px;background:var(--accent);transform:scaleX(0);transition:transform .25s}
+.os__trio button:hover{color:var(--accent)}
+.os__trio button:hover::after,.os__trio button:focus-visible::after{transform:scaleX(1)}
+@media (max-width:760px){
+  .brand i{font-size:10.5px;letter-spacing:.14em}
+  .os__trio{margin-top:12px;font-size:.82rem;letter-spacing:.3em;gap:4px 10px}
+  .os__trio button{margin-right:-.3em}
+}
+@media (min-width:761px) and (max-height:860px){.os__trio{margin-top:16px}}
+
+/* ---------- Πλάνο: «Όλα τα παραπάνω» & ελεύθερο κείμενο ---------- */
+.opts .opts__all{grid-column:1/-1;text-align:center;background:var(--ink);color:var(--paper);box-shadow:3px 3px 0 var(--accent)}
+.opts .opts__all:hover{background:#2b2722;color:var(--accent)}
+.plan2__more{display:block;margin-top:14px}
+.plan2__more b{display:block;margin-bottom:8px;font:800 1.25rem/1.1 var(--display);letter-spacing:.03em;text-transform:uppercase}
+.plan2__more textarea{display:block;width:100%;min-height:96px;padding:12px 14px;resize:vertical;font:400 15px/1.5 var(--body);color:var(--ink);background:var(--light);border:2px solid var(--ink);border-radius:0;box-shadow:inset 2px 2px 0 var(--mid)}
+.plan2__more textarea::placeholder{color:var(--shade)}
+.plan2__more textarea:focus{outline:2px solid var(--accent);outline-offset:2px}
+
+/* ---------- Διαδραστική προεπισκόπηση projects ---------- */
+.pv__dev{display:flex;border:1.5px solid var(--ink);flex:none}
+.pv__dev button{display:flex;align-items:center;gap:6px;padding:4px 9px;font-size:12px;font-weight:600;background:var(--light)}
+.pv__dev button+button{border-left:1.5px solid var(--ink)}
+.pv__dev button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.pv__dev svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.pv__stage{position:relative;display:flex;flex-direction:column;align-items:center;padding:16px;background:#14120f radial-gradient(rgba(233,229,217,.12) 1px,transparent 1.3px);background-size:4px 4px}
+.pv__device{position:relative;display:flex;gap:8px}
+.pv__screen{position:relative;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;background:#0b0a09;cursor:grab;scrollbar-width:none;outline:none}
+.pv__screen::-webkit-scrollbar{display:none}
+.pv__screen:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.pv__screen.is-drag{cursor:grabbing;user-select:none}
+.pv__screen img{display:block;width:100%;height:auto;pointer-events:none;user-select:none;transition:opacity .3s}
+.pv__stage[data-dev="d"] .pv__device{width:100%}
+.pv__stage[data-dev="d"] .pv__screen{flex:1;height:min(46vh,420px);border:2px solid var(--paper);box-shadow:0 0 0 2px var(--ink)}
+.pv__stage[data-dev="m"] .pv__screen{width:min(240px,62vw);height:min(50vh,480px);border:9px solid #1d1b18;border-radius:30px;box-shadow:0 0 0 2px var(--paper),0 18px 40px rgba(0,0,0,.6)}
+.pv__bar{width:4px;align-self:stretch;background:rgba(233,229,217,.15)}
+.pv__bar i{display:block;height:100%;background:var(--accent);transform-origin:50% 0;transform:scaleY(0)}
+.pv__stage.is-loading img{opacity:0}
+.pv__stage.is-loading .pv__screen::before{content:"Φόρτωση…";position:absolute;inset:0;display:grid;place-items:center;color:var(--mid);font-size:13px}
+.pv__hint{margin-top:10px;font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--mid);transition:opacity .4s}
+.pv__hint.is-off{opacity:0}
+@media (max-width:760px){
+  .pv__chrome{flex-wrap:wrap}
+  .pv__url{flex-basis:100%;order:-1}
+  .pv__dots{display:none}
+  .pv__dev span{display:none}
+  .pv__chrome .btn{margin-left:auto}
+  .pv__stage{padding:12px}
+  .pv__stage[data-dev="d"] .pv__screen{height:min(34vh,300px)}
+}
+
+/* ---------- Φόρμες ---------- */
+.sform{display:grid;gap:10px;margin-top:14px}
+.sform label{display:grid;gap:5px}
+.sform label span{font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--shade)}
+.sform input,.sform textarea{width:100%;padding:11px 13px;font:400 15px/1.45 var(--body);color:var(--ink);background:var(--light);border:2px solid var(--ink);border-radius:0;box-shadow:inset 2px 2px 0 var(--mid)}
+.sform textarea{resize:vertical;min-height:96px}
+.sform input:focus,.sform textarea:focus{outline:2px solid var(--accent);outline-offset:2px}
+.sform .btn{justify-self:start;padding:12px 20px}
+.sform .btn:disabled{opacity:.6;cursor:wait}
+.sform__hp{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;opacity:0}
+.sform__msg{min-height:1.2em;font-size:14px;font-weight:600}
+.sform__msg:empty{display:none}
+.sform__msg.is-ok{color:#2f6b3a}
+.sform__msg.is-err{color:#9b2c1f}
+.sform__msg a{text-decoration:underline}
+.sform__note{font-size:12px;color:var(--shade)}
+.sform--row{grid-template-columns:1fr 1fr;align-items:end;margin-top:14px}
+.sform--row .btn,.sform--row .sform__msg{grid-column:1/-1;justify-self:center}
+.contact__or{margin:18px 0 0;text-align:center;font-size:11.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--shade)}
+@media (max-width:760px){.sform--row{grid-template-columns:1fr}.sform .btn{justify-self:stretch;justify-content:center}}
